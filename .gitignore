@@ -63,10 +63,13 @@ local.properties
 # Code Recommenders
 .recommenders/
 
-nbproject/private/
+nbproject/
 build/
 nbbuild/
 dist/
 nbdist/
 nbactions.xml
 .nb-gradle/
+build.xml
+manifest.mf
+
