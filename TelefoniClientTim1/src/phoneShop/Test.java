@@ -18,6 +18,7 @@ public class Test {
 
 		context = new InitialContext();
 		UserManager um = (UserManager)context.lookup(STATEFUL_LOCATION);
+		
 		User u = new User();
 		u.setUsername("user@gmail.com");
 		um.save(u);

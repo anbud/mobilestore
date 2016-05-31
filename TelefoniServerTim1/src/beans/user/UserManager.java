@@ -4,7 +4,7 @@ import javax.ejb.Remote;
 
 import model.User;
 
-@Remote(value=UserManager.class)
+@Remote
 public interface UserManager {
 
 	public void save(User user);
