@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Gui extends Application {
@@ -20,10 +21,10 @@ public class Gui extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
 		
-		stage.setTitle("Mobile Store");
+		stage.setTitle("Mobile store");
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("res/ico/logo.png")));
 		
 		openLoginView();
-		
 		stage.show();
 	}
 	
@@ -35,14 +36,8 @@ public class Gui extends Application {
 			l.controller = loader.<Controller>getController();
 			l.controller.setGui(this);
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		catch(Exception e) { }
 		return l;
-	}
-	
-	public Stage getStage() {
-		return stage;
 	}
 	
 	public void openLoginView() {
@@ -57,7 +52,9 @@ public class Gui extends Application {
 		stage.centerOnScreen();
 	}
 	
-	
+	public Stage getStage() {
+		return stage;
+	}
 
 	public static void main(String[] args) {
 		Gui.launch(args);

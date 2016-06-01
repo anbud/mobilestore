@@ -44,7 +44,7 @@ public class SignupController extends Controller {
 	private ImageView avatar;
 
 	@FXML
-	public void avatarAction(ActionEvent event) {
+	public void avatarAction(Event event) {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Choose avatar");
 		fc.getExtensionFilters().add(new ExtensionFilter("Image Files",	"*.jpg", "*.jpeg", "*.bmp", "*.png", "*.gif"));
@@ -63,7 +63,7 @@ public class SignupController extends Controller {
 	}
 
 	@FXML
-	public void signupAction(ActionEvent event) {
+	public void signupAction(Event event) {
 		String fullnames = fullname.getText().trim();
 		String usernames = username.getText().trim();
 		String passwords = password.getText().trim();
@@ -76,7 +76,7 @@ public class SignupController extends Controller {
 			passwords.isEmpty() ||
 			emails.isEmpty()) {
 			Alert a = new Alert(AlertType.WARNING);
-			a.setContentText("Full name, Username, Password ans Email can't be empty!");
+			a.setContentText("Full name, username, password and email can't be empty!");
 			a.setHeaderText("Missing info");
 			a.showAndWait();
 			return;
@@ -102,7 +102,8 @@ public class SignupController extends Controller {
 	}
 
 	@FXML
-	public void backAction(MouseEvent event) {
+	public void backAction(Event event) {
 		getGui().openLoginView();
 	}
+
 }
