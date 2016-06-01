@@ -1,0 +1,31 @@
+.gradient-button {
+	-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9);
+	-fx-background-radius: 30;
+}
+
+.gradient-button:hover {
+	-fx-background-color: linear-gradient(to bottom right, #4300d9, #0095d9);
+}
+
+.text-field, .text-field * {
+	-fx-background-radius: 30;
+	-fx-border-radius: 30;
+}
+
+.text-field .arrow-button {
+	-fx-background-radius: 0 30 30 0;
+}
+
+.text-field .content {
+	-fx-padding: 10;
+}
+
+#header-wrapper {
+	-fx-border-width: 0 0 4 0;
+	-fx-border-color: linear-gradient(to right, #0095d9, #4300d9);
+}
+
+#expand {
+	-fx-background-image: url("ico/expand.png");
+	-fx-background-color: transparent;
+}

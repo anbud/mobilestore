@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <DatePicker id="birth-date" layoutX="35.0" layoutY="83.0" prefHeight="40.0" prefWidth="190.0" promptText="birth date" styleClass="text-field" />
+      <Button id="choose-avatar" layoutX="235.0" layoutY="83.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="gradient-button" text="Choose avatar" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField id="full-name" layoutX="35.0" layoutY="143.0" prefHeight="40.0" prefWidth="300.0" promptText="full name" styleClass="text-field">
+         <font>
+            <Font name="Roboto" size="19.0" />
+         </font>
+      </TextField>
+      <TextField id="address" layoutX="35.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="address" styleClass="text-field">
+         <font>
+            <Font name="Roboto" size="19.0" />
+         </font>
+      </TextField>
+      <TextField id="email" layoutX="35.0" layoutY="263.0" prefHeight="40.0" prefWidth="300.0" promptText="email address" styleClass="text-field">
+         <font>
+            <Font name="Roboto" size="19.0" />
+         </font>
+      </TextField>
+      <TextField id="username" layoutX="35.0" layoutY="324.0" prefHeight="40.0" prefWidth="300.0" promptText="username" styleClass="text-field">
+         <font>
+            <Font name="Roboto" size="19.0" />
+         </font>
+      </TextField>
+      <PasswordField id="password" layoutX="35.0" layoutY="383.0" prefHeight="40.0" prefWidth="300.0" promptText="password" styleClass="text-field">
+         <font>
+            <Font name="Roboto" size="19.0" />
+         </font>
+      </PasswordField>
+      <TextArea id="about-me" layoutX="35.0" layoutY="443.0" prefHeight="120.0" prefWidth="300.0" promptText="Write something about yourself" styleClass="text-field" wrapText="true">
+         <font>
+            <Font name="Roboto" size="16.0" />
+         </font>
+      </TextArea>
+      <Button id="login-button" alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="590.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="300.0" styleClass="gradient-button" stylesheets="@style.css" text="Register" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView id="back-button" fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ico/gradient-back-50.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView id="avatar" fitHeight="65.0" fitWidth="65.0" layoutX="253.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ico/avatar-placeholder-128.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
