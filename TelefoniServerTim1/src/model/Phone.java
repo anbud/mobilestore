@@ -1,7 +1,20 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the phone database table.
@@ -9,95 +22,95 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PhoneTim1")
-@NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p")
+@NamedQueries(value = { @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p"),
+		@NamedQuery(name = "Phone.filter", query = "SELECT p FROM Phone p WHERE p.bluetooth=:b "
+				+ "AND p.contractor=:c " + "AND p.description=:d " + "AND p.dualSim=:ds " + "AND p.externalStorage=:es "
+				+ "AND p.frontCamera=:fc " + "AND p.internalStorage=:is " + "AND p.name=:n " + "AND p.os=:o "
+				+ "AND p.osVersion=:ov " + "AND p.price=:p " + "AND p.primaryCamera=:pc " + "AND p.processor=:p "
+				+ "AND p.ram=:r " + "AND p.screenSize=:ss " + "AND p.screenRes=:sr " + "AND p.thicknes=:t "
+				+ "AND p.weight=:w " + "AND p.wiFi=:wf") })
 public class Phone implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PHONE_ID", unique = true, nullable = false)
-	private int id;
+	private Integer id;
 
-	@Column(nullable = false)
+	@Column(name = "BLUETOOTH")
 	private boolean bluetooth;
 
-	@Column(nullable = false, length = 20)
+	@Column(name = "CONTRACTOR")
 	private String contractor;
 
-	@Column(nullable = true, length = 250)
+	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@Column(name = "DUAL_SIM", nullable = false)
+	@Column(name = "DUAL_SIM")
 	private boolean dualSim;
 
-	@Column(name = "EXTERNAL_STORAGE", length = 20)
-	private String externalStorage;
+	@Column(name = "EXTERNAL_STORAGE")
+	private Integer externalStorage;
 
-	@Column(name = "FRONT_CAMERA", nullable = false, length = 10)
-	private String frontCamera;
+	@Column(name = "FRONT_CAMERA")
+	private Integer frontCamera;
 
-	@Column(nullable = false)
-	private boolean gps;
+	@Column(name = "INTERNAL_STORAGE")
+	private Integer internalStorage;
 
-	@Column(name = "INTERNAL_STORAGE", nullable = false, length = 10)
-	private String internalStorage;
-
-	@Column(nullable = false, length = 50)
-	private String manufacturer;
-
-	@Column(nullable = false, length = 50)
+	@Column(name = "NAME")
 	private String name;
 
-	@Column(name = "NUM_CORES", nullable = false, length = 10)
-	private String numCores;
-
-	@Column(nullable = false, length = 20)
+	@Column(name = "OS_NAME")
 	private String os;
 
-	@Column(name = "OS_VERSION", nullable = false, length = 25)
+	@Column(name = "OS_VERSION")
 	private String osVersion;
 
-	@Column(nullable = false)
-	private int price;
+	@Column(name = "PRICE")
+	private Integer price;
 
-	@Column(name = "PRIMARY_CAMERA", nullable = false, length = 10)
+	@Column(name = "PRIMARY_CAMERA")
 	private String primaryCamera;
 
-	@Column(nullable = false, length = 30)
-	private String processore;
+	@Column(name = "PROCESSOR_NAME")
+	private String processor;
 
-	@Column(nullable = false, length = 10)
-	private String ram;
+	@Column(name = "RAM_SIZE")
+	private Integer ram;
 
-	@Column(name = "SCREEN_RES", nullable = false, length = 20)
+	@Column(name = "SCREEN_RES")
 	private String screenRes;
 
-	@Column(name = "SCREEN_SIZE", nullable = false, length = 5)
-	private String screenSize;
+	@Column(name = "SCREEN_SIZE")
+	private Float screenSize;
 
-	@Column(nullable = false)
-	private int thicknes;
+	@Column(name = "THICKNES")
+	private Integer thicknes;
 
-	@Column(nullable = false)
-	private int weight;
+	@Column(name = "WEIGHT")
+	private Integer weight;
 
-	@Column(name = "WI_FI", nullable = false)
+	@Column(name = "WI_FI")
 	private boolean wiFi;
 
-	// bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name = "USER")
 	private User user;
 
+	@OneToMany
+	private List<PhonePic> pictures;
+
 	public Phone() {
+		pictures = new ArrayList<PhonePic>();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -133,44 +146,28 @@ public class Phone implements Serializable {
 		this.dualSim = dualSim;
 	}
 
-	public String getExternalStorage() {
+	public Integer getExternalStorage() {
 		return this.externalStorage;
 	}
 
-	public void setExternalStorage(String externalStorage) {
+	public void setExternalStorage(Integer externalStorage) {
 		this.externalStorage = externalStorage;
 	}
 
-	public String getFrontCamera() {
+	public Integer getFrontCamera() {
 		return this.frontCamera;
 	}
 
-	public void setFrontCamera(String frontCamera) {
+	public void setFrontCamera(Integer frontCamera) {
 		this.frontCamera = frontCamera;
 	}
 
-	public boolean getGps() {
-		return this.gps;
-	}
-
-	public void setGps(boolean gps) {
-		this.gps = gps;
-	}
-
-	public String getInternalStorage() {
+	public Integer getInternalStorage() {
 		return this.internalStorage;
 	}
 
-	public void setInternalStorage(String internalStorage) {
+	public void setInternalStorage(Integer internalStorage) {
 		this.internalStorage = internalStorage;
-	}
-
-	public String getManufacturer() {
-		return this.manufacturer;
-	}
-
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
 	}
 
 	public String getName() {
@@ -179,14 +176,6 @@ public class Phone implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getNumCores() {
-		return this.numCores;
-	}
-
-	public void setNumCores(String numCores) {
-		this.numCores = numCores;
 	}
 
 	public String getOs() {
@@ -205,11 +194,11 @@ public class Phone implements Serializable {
 		this.osVersion = osVersion;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
@@ -221,19 +210,19 @@ public class Phone implements Serializable {
 		this.primaryCamera = primaryCamera;
 	}
 
-	public String getProcessore() {
-		return this.processore;
+	public String getProcessor() {
+		return this.processor;
 	}
 
-	public void setProcessore(String processore) {
-		this.processore = processore;
+	public void setProcessor(String processore) {
+		this.processor = processore;
 	}
 
-	public String getRam() {
+	public int getRam() {
 		return this.ram;
 	}
 
-	public void setRam(String ram) {
+	public void setRam(Integer ram) {
 		this.ram = ram;
 	}
 
@@ -245,27 +234,27 @@ public class Phone implements Serializable {
 		this.screenRes = screenRes;
 	}
 
-	public String getScreenSize() {
+	public Float getScreenSize() {
 		return this.screenSize;
 	}
 
-	public void setScreenSize(String screenSize) {
+	public void setScreenSize(Float screenSize) {
 		this.screenSize = screenSize;
 	}
 
-	public int getThicknes() {
+	public Integer getThicknes() {
 		return this.thicknes;
 	}
 
-	public void setThicknes(int thicknes) {
+	public void setThicknes(Integer thicknes) {
 		this.thicknes = thicknes;
 	}
 
-	public int getWeight() {
+	public Integer getWeight() {
 		return this.weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 
@@ -285,4 +274,25 @@ public class Phone implements Serializable {
 		this.user = userBean;
 	}
 
+	public List<PhonePic> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<PhonePic> pictures) {
+		this.pictures = pictures;
+	}
+
+	public PhonePic addPhonePic(PhonePic pic) {
+		getPictures().add(pic);
+		pic.setPhone(this);
+		
+		return pic;
+	}
+	
+	public PhonePic removePhonePic(PhonePic pic) {
+		getPictures().remove(pic);
+		pic.setPhone(null);
+		
+		return pic;
+	}
 }

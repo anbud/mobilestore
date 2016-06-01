@@ -1,11 +1,24 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the auction database table.
@@ -21,16 +34,16 @@ public class Auction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "AUCTION_ID", unique = true, nullable = false)
-	private int id;
+	private Integer id;
 
-	@Column(nullable = false)
-	private int bid;
+	@Column(name = "BID")
+	private Integer bid;
 
-	@Column(nullable = false)
+	@Column(name = "IS_CLOSED")
 	private boolean closed;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
+	@Column(name = "CREATION_DATE")
 	private Date date;
 
 	// bi-directional many-to-one association to User
@@ -50,21 +63,23 @@ public class Auction implements Serializable {
 	private List<Comment> comments;
 
 	public Auction() {
+		participants = new ArrayList<User>();
+		comments = new ArrayList<Comment>();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getBid() {
+	public Integer getBid() {
 		return this.bid;
 	}
 
-	public void setBid(int bid) {
+	public void setBid(Integer bid) {
 		this.bid = bid;
 	}
 
@@ -108,9 +123,7 @@ public class Auction implements Serializable {
 		this.comments = comments;
 	}
 
-	public Comment addComment(Comment comment) {
-		if (comments == null)
-			comments = new ArrayList<Comment>();
+	public Comment addComment(Comment comment) {		
 		getComments().add(comment);
 		comment.setAuction(this);
 

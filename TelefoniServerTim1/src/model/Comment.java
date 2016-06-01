@@ -18,17 +18,18 @@ public class Comment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "COM_ID", unique = true, nullable = false)
-	private int id;
+	private Integer id;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "CREATION_DATE")
 	private Date date;
 
-	@Column(nullable = false, length = 250)
+	@Column(name = "TEXT")
 	private String text;
 
 	// bi-directional many-to-one association to Auction
 	@ManyToOne
-	@JoinColumn(name = "BID")
+	@JoinColumn(name = "AUCTIO_ID")
 	private Auction auction;
 
 	// bi-directional many-to-one association to User
@@ -39,11 +40,11 @@ public class Comment implements Serializable {
 	public Comment() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

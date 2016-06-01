@@ -7,6 +7,7 @@ import javax.naming.NamingException;
 
 import beans.user.UserEJB;
 import beans.user.UserManager;
+import exceptions.UsernameExistsException;
 import model.User;
 
 public class Test {
@@ -20,8 +21,14 @@ public class Test {
 
 		context = new InitialContext();
 		UserManager um = (UserManager)context.lookup(STATEFUL_LOCATION);
-		loginTest(um);
-		
+		try {
+			insertionTest(um);
+			loginTest(um);
+		} catch (UsernameExistsException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	private static void loginTest(UserManager um) {
@@ -37,7 +44,8 @@ public class Test {
 		in.close();
 	}
 	
-	private void insertionTest(UserManager um) {
+	@SuppressWarnings("unused")
+	private static void insertionTest(UserManager um) throws UsernameExistsException {
 		User u = new User();
 		u.setUsername("gmail-user");
 		u.setAboutMe("");
@@ -46,10 +54,10 @@ public class Test {
 		u.setSurname("User");
 		u.setPassword("password");		
 		u.setAvatar(new byte[0]);
-		um.save(u);
+		um.register(u);
 		
 		
-		u = um.get("user@hotmail.com");
+		u = um.get();
 		if (u != null)
 			System.out.println(u.getUsername());
 		else
