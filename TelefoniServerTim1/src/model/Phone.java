@@ -3,91 +3,91 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the phone database table.
  * 
  */
 @Entity
-@Table(name="PhoneTim1")
-@NamedQuery(name="Phone.findAll", query="SELECT p FROM Phone p")
+@Table(name = "PhoneTim1")
+@NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p")
 public class Phone implements Serializable {
-	private static final long serialVersionUID = -1385499388080325670L;
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="PHONE_ID", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "PHONE_ID", unique = true, nullable = false)
 	private int id;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private boolean bluetooth;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable = false, length = 20)
 	private String contractor;
 
-	@Column(nullable=true, length=250)
+	@Column(nullable = true, length = 250)
 	private String description;
 
-	@Column(name="DUAL_SIM", nullable=false)
+	@Column(name = "DUAL_SIM", nullable = false)
 	private boolean dualSim;
 
-	@Column(name="EXTERNAL_STORAGE", length=10)
+	@Column(name = "EXTERNAL_STORAGE", length = 20)
 	private String externalStorage;
 
-	@Column(name="FRONT_CAMERA", nullable=false, length=10)
+	@Column(name = "FRONT_CAMERA", nullable = false, length = 10)
 	private String frontCamera;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private boolean gps;
 
-	@Column(name="INTERNAL_STORAGE", nullable=false, length=10)
+	@Column(name = "INTERNAL_STORAGE", nullable = false, length = 10)
 	private String internalStorage;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String manufacturer;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String name;
 
-	@Column(name="NUM_CORES", nullable=false, length=10)
+	@Column(name = "NUM_CORES", nullable = false, length = 10)
 	private String numCores;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable = false, length = 20)
 	private String os;
 
-	@Column(name="OS_VERSION", nullable=false, length=25)
+	@Column(name = "OS_VERSION", nullable = false, length = 25)
 	private String osVersion;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int price;
 
-	@Column(name="PRIMARY_CAMERA", nullable=false, length=10)
+	@Column(name = "PRIMARY_CAMERA", nullable = false, length = 10)
 	private String primaryCamera;
 
-	@Column(nullable=false, length=30)
+	@Column(nullable = false, length = 30)
 	private String processore;
 
-	@Column(nullable=false, length=10)
+	@Column(nullable = false, length = 10)
 	private String ram;
 
-	@Column(name="SCREEN_RES", nullable=false, length=20)
+	@Column(name = "SCREEN_RES", nullable = false, length = 20)
 	private String screenRes;
 
-	@Column(name="SCREEN_SIZE", nullable=false, length=5)
+	@Column(name = "SCREEN_SIZE", nullable = false, length = 5)
 	private String screenSize;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int thicknes;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int weight;
 
-	@Column(name="WI_FI", nullable=false)
+	@Column(name = "WI_FI", nullable = false)
 	private boolean wiFi;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="USER")
+	@JoinColumn(name = "USER")
 	private User user;
 
 	public Phone() {

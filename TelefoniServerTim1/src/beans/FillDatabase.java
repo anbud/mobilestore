@@ -36,7 +36,7 @@ public class FillDatabase {
 		user.setSurname("User");
 		user.setPassword("password");
 		user.setUsername("username");
-		user.setAvatar(null);
+		user.setAvatar(new byte[0]);
 
 		phone.setBluetooth(true);
 		phone.setContractor("sim-free");

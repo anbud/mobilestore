@@ -3,55 +3,50 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 /**
  * The persistent class for the auction database table.
  * 
  */
 @Entity
-@Table(name="AuctionTim1")
-@NamedQuery(name="Auction.findAll", query="SELECT a FROM Auction a")
+@Table(name = "AuctionTim1")
+@NamedQuery(name = "Auction.findAll", query = "SELECT a FROM Auction a")
 public class Auction implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="AUCTION_ID", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "AUCTION_ID", unique = true, nullable = false)
 	private int id;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int bid;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private boolean closed;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date date;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="USER")
+	@JoinColumn(name = "USER")
 	private User user;
 
-	//bi-directional many-to-many association to User
+	// bi-directional many-to-many association to User
 	@ManyToMany
-	@JoinTable(
-		name="ParticipantsTim1"
-		, joinColumns={
-			@JoinColumn(name="AUCTION_ID", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="USER", nullable=false)
-			}
-		)
+	@JoinTable(name = "ParticipantsTim1", joinColumns = {
+			@JoinColumn(name = "AUCTION_ID", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "USER", nullable = false) })
 	private List<User> participants;
 
-	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="auction")
+	// bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy = "auction")
 	private List<Comment> comments;
 
 	public Auction() {
@@ -114,6 +109,8 @@ public class Auction implements Serializable {
 	}
 
 	public Comment addComment(Comment comment) {
+		if (comments == null)
+			comments = new ArrayList<Comment>();
 		getComments().add(comment);
 		comment.setAuction(this);
 

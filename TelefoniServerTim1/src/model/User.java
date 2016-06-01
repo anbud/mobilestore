@@ -1,58 +1,68 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the user database table.
  * 
  */
 @Entity
-@Table(name="UserTim1")
-@NamedQueries(value = { @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-						@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username=:x")})
+@Table(name = "UserTim1")
+@NamedQueries(value = { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+		@NamedQuery(name = "User.findByEMail", query = "SELECT u FROM User u WHERE u.eMail=:x") })
 public class User implements Serializable {
-	private static final long serialVersionUID = 6213132359807936749L;
 
-	@Id	
-	@Column(unique=true, nullable=false, length=50)
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(unique = true, nullable = false, length = 50)
 	private String username;
 
-	@Column(name="ABOUT_ME", nullable=false, length=250)
+	@Column(name = "ABOUT_ME", nullable = false, length = 250)
 	private String aboutMe;
 
 	@Lob
-	@Column(nullable=false)
+	@Column(nullable = true)
 	private byte[] avatar;
 
-	@Column(name="E_MAIL", nullable=false, length=50)
+	@Column(name = "E_MAIL", nullable = false, length = 50)
 	private String eMail;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String name;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String password;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String surname;
 
-	//bi-directional many-to-one association to Auction
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Auction	
+	@OneToMany(mappedBy = "user")	
 	private List<Auction> auctions;
 
-	//bi-directional many-to-many association to Auction
-	@ManyToMany(mappedBy="participants")
+	// bi-directional many-to-many association to Auction
+	@ManyToMany(mappedBy = "participants")
 	private List<Auction> participations;
 
-	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 
-	//bi-directional many-to-one association to Phone
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Phone
+	@OneToMany(mappedBy = "user")
 	private List<Phone> phones;
 
 	public User() {
@@ -140,8 +150,8 @@ public class User implements Serializable {
 		return this.participations;
 	}
 
-	public void setParticipations(List<Auction> auctions2) {
-		this.participations = auctions2;
+	public void setParticipations(List<Auction> participations) {
+		this.participations = participations;
 	}
 
 	public List<Comment> getComments() {
@@ -175,6 +185,8 @@ public class User implements Serializable {
 	}
 
 	public Phone addPhone(Phone phone) {
+		if (phones == null)
+			phones = new ArrayList<Phone>();
 		getPhones().add(phone);
 		phone.setUserBean(this);
 
