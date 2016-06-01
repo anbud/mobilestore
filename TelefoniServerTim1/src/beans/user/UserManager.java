@@ -1,18 +1,29 @@
 package beans.user;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 
+import exceptions.UsernameExistsException;
+import model.Auction;
 import model.User;
 
 @Remote
 public interface UserManager {
 
-	public void save(User user);
+	public boolean register(User user) throws UsernameExistsException;
 	
-	public User get(String username);
+	public User get();
 	
 	public boolean login(String username);
 	
 	public void logout();
 	
+	public List<Auction> getActiveAuctions();
+	
+	public List<Auction> getClosedAuctions();
+	
+	public List<Auction> getActiveParticipations();
+	
+	public List<Auction> getClosedParticipations();
 }

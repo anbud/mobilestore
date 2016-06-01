@@ -27,33 +27,35 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique = true, nullable = false, length = 50)
+	@Column(name = "USERNAME", unique = true, nullable = false, length = 50)
 	private String username;
 
-	@Column(name = "ABOUT_ME", nullable = false, length = 250)
+	@Column(name = "ABOUT_ME")
 	private String aboutMe;
 
 	@Lob
-	@Column(nullable = true)
+	@Column(name = "AVATAR")
 	private byte[] avatar;
 
-	@Column(name = "E_MAIL", nullable = false, length = 50)
+	@Column(name = "E_MAIL")
 	private String eMail;
 
-	@Column(nullable = false, length = 50)
+	@Column(name = "NAME")
 	private String name;
 
-	@Column(nullable = false, length = 50)
+	@Column(name = "PASSWORD")
 	private String password;
 
-	@Column(nullable = false, length = 50)
+	@Column(name = "SURNAME")
 	private String surname;
 
 	// bi-directional many-to-one association to Auction	
+	// aukcije koje je postavio
 	@OneToMany(mappedBy = "user")	
 	private List<Auction> auctions;
 
 	// bi-directional many-to-many association to Auction
+	// aukcije u kojima je ucestvovao
 	@ManyToMany(mappedBy = "participants")
 	private List<Auction> participations;
 
@@ -66,6 +68,10 @@ public class User implements Serializable {
 	private List<Phone> phones;
 
 	public User() {
+		auctions = new ArrayList<Auction>();
+		participations = new ArrayList<Auction>();
+		comments = new ArrayList<Comment>();
+		phones = new ArrayList<Phone>();
 	}
 
 	public String getUsername() {
@@ -184,9 +190,7 @@ public class User implements Serializable {
 		this.phones = phones;
 	}
 
-	public Phone addPhone(Phone phone) {
-		if (phones == null)
-			phones = new ArrayList<Phone>();
+	public Phone addPhone(Phone phone) {		
 		getPhones().add(phone);
 		phone.setUserBean(this);
 

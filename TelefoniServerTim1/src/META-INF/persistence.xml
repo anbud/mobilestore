@@ -6,7 +6,8 @@
 		<class>model.Auction</class>
 		<class>model.Comment</class>
 		<class>model.Phone</class>
-		<class>model.User</class>
+		<class>model.PhonePic</class>
+		<class>model.User</class>		
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
