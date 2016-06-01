@@ -10,6 +10,7 @@
 .text-field, .text-field * {
 	-fx-background-radius: 30;
 	-fx-border-radius: 30;
+	-fx-prompt-text-fill: #B2B2B2;
 }
 
 .text-field .arrow-button {
