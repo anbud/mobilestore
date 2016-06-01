@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="first-page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Line endY="300.0" layoutX="400.0" layoutY="300.0" startY="-300.0" />
+      <Text layoutX="18.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="122.13672828674316" />
+      <TextField layoutX="141.0" layoutY="29.0" prefHeight="30.0" prefWidth="250.0" />
+      <Text layoutX="18.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="122.13671207427979" />
+      <ChoiceBox layoutX="141.0" layoutY="64.0" prefHeight="30.0" prefWidth="250.0" />
+   </children>
+</AnchorPane>
