@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Gui extends Application {
@@ -21,8 +22,8 @@ public class Gui extends Application {
 		public Controller controller;
 	}
 	
-	public static UserManager userManager;
-	public static InitialContext context;
+	public UserManager userManager;
+	public InitialContext context;
 	
 	public static String USER_BEAN = "ejb:/TelefoniServerTim1//" + UserEJB.class.getSimpleName() + "!" + UserManager.class.getName() + "?stateful";
 	public static String POST_BEAN = "ejb:/TelefoniServerTim1//" + PostEJB.class.getSimpleName() + "!" + PostManager.class.getName();
@@ -69,6 +70,24 @@ public class Gui extends Application {
 		stage.setScene(new Scene((Parent) l.node));
 		stage.setResizable(false);
 		stage.centerOnScreen();
+	}
+	
+	private void openContainerView() {
+		if( stage.getScene().getRoot().getId().equals("container") )
+			return;
+		
+		Loaded l = loadView("res/container.fxml");
+		stage.setScene(new Scene( (Parent) l.node ));
+		stage.centerOnScreen();
+	}
+	
+	public void openBoardView() {
+		openContainerView();
+		
+		Loaded l = loadView("res/board.fxml");
+		( (BorderPane) stage.getScene().getRoot() ).setCenter(l.node);
+		
+		stage.setResizable(true);
 	}
 	
 	public Stage getStage() {

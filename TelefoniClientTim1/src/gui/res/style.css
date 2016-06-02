@@ -43,4 +43,5 @@
 
 .nav-item-hover:hover {
 	-fx-background-color: #e92f45;
+	-fx-cursor: hand;
 }

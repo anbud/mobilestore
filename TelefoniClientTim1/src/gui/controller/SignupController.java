@@ -116,7 +116,7 @@ public class SignupController extends Controller {
 			if(avatarBytes != null)
 				user.setAvatar(avatarBytes);
 
-			if( Gui.userManager.register(user) ) {
+			if( getGui().userManager.register(user) ) {
 				
 				// TODO open home view
 				
@@ -124,7 +124,7 @@ public class SignupController extends Controller {
 		}
 		catch(UsernameExistsException e) {
 			Alert a = new Alert(AlertType.WARNING);
-			a.setContentText("This username is already taken!");
+			a.setContentText(e.getMessage());
 			a.setHeaderText("Username taken");
 			a.showAndWait();
 		}

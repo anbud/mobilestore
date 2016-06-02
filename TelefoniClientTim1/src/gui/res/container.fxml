@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,13 +14,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.ContainerController">
    <top>
       <HBox prefHeight="70.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane id="main-board" prefHeight="70.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" text="MAIN BOARD" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label alignment="CENTER" onMouseClicked="#mainBoardAction" text="MAIN BOARD" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Roboto" size="25.0" />
                      </font>
@@ -27,7 +32,7 @@
                </styleClass></AnchorPane>
             <AnchorPane id="all-phones" prefHeight="70.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" text="ALL PHONES" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label alignment="CENTER" onMouseClicked="#allPhonesAction" text="ALL PHONES" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Roboto" size="25.0" />
                      </font>
@@ -39,7 +44,7 @@
                </styleClass></AnchorPane>
             <AnchorPane id="add-phone" prefHeight="70.0" prefWidth="200.0">
                <children>
-                   <Label alignment="CENTER" text="ADD PHONE" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                   <Label alignment="CENTER" onMouseClicked="#addPhoneAction" text="ADD PHONE" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Roboto" size="25.0" />
                      </font>
@@ -49,7 +54,7 @@
                   <String fx:value="nav-item" />
                   <String fx:value="nav-item-hover" />
                </styleClass></AnchorPane>
-            <AnchorPane id="empty" prefHeight="70.0" prefWidth="441.0" styleClass="nav-item" />
+            <AnchorPane id="empty" minWidth="0.0" prefHeight="70.0" prefWidth="0.0" styleClass="nav-item" HBox.hgrow="ALWAYS" />
             <AnchorPane id="user-section" prefHeight="70.0" styleClass="nav-item">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
@@ -57,7 +62,7 @@
                         <Image url="@ico/avatar-placeholder-64.png" />
                      </image>
                   </ImageView>
-                  <Label id="username" alignment="CENTER" layoutX="70.0" layoutY="25.0" prefWidth="100.0" text="Log out" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                  <Label id="username" alignment="CENTER" layoutX="70.0" layoutY="25.0" onMouseClicked="#logoutAction" prefWidth="100.0" styleClass="nav-item-hover" text="Log out" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="20.0" />
                      </font>

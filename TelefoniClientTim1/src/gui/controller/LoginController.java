@@ -30,9 +30,9 @@ public class LoginController extends Controller {
 			return;
 		
 		try {
-			if( Gui.userManager.login(usernames, passwords) ) {
+			if( getGui().userManager.login(usernames, passwords) ) {
 				
-				// TODO open home view
+				getGui().openBoardView();
 				
 			}
 		}
