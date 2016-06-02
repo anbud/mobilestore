@@ -12,7 +12,6 @@ import exceptions.IncorrectPasswordException;
 import exceptions.NotRegisteredException;
 import exceptions.UsernameExistsException;
 import model.Auction;
-import model.Comment;
 import model.User;
 
 @Stateful
@@ -29,7 +28,7 @@ public class UserEJB implements UserManager {
 		if (this.user == null) {
 			try {
 				em.persist(user);
-				this.user = em.merge(user);											
+				this.user = em.merge(user);						
 				return true;
 			} catch (Exception e) {				
 				return false;
@@ -48,7 +47,6 @@ public class UserEJB implements UserManager {
 	@Override
 	public boolean login(String username, String password) throws IncorrectPasswordException, NotRegisteredException {
 		user = em.find(User.class, username);
-		System.out.println(user.getComments().size());
 		if (user == null)
 			throw new NotRegisteredException();
 
@@ -57,17 +55,6 @@ public class UserEJB implements UserManager {
 	
 		user = null;
 		throw new IncorrectPasswordException();
-	}
-
-	@Override
-	public boolean postComment(Comment comment) {
-		user.addComment(comment);
-		try {
-			em.merge(user);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
 	}
 
 	@Override

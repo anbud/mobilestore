@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,7 +53,7 @@ public class Auction implements Serializable {
 					@JoinColumn(name = "USER", nullable = false) })
 	private List<User> participants;
 
-	@OneToMany(mappedBy = "auction", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "auction", fetch = FetchType.EAGER)
 	private List<Comment> comments;
 
 	public Auction() {
