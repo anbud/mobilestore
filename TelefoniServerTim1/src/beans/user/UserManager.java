@@ -8,7 +8,6 @@ import exceptions.IncorrectPasswordException;
 import exceptions.NotRegisteredException;
 import exceptions.UsernameExistsException;
 import model.Auction;
-import model.Comment;
 import model.User;
 
 @Remote
@@ -21,8 +20,6 @@ public interface UserManager {
 	public boolean login(String username, String password) throws IncorrectPasswordException, NotRegisteredException;
 	
 	public void logout();
-	
-	public boolean postComment(Comment comment);
 	
 	public List<Auction> getActiveAuctions();
 	

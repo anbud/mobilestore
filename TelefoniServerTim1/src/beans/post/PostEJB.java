@@ -17,12 +17,11 @@ public class PostEJB implements PostManager {
 	@Override
 	public boolean postComment(Auction auction, User user, Comment comment) {
 		user.addComment(comment);
-		auction.addComment(comment);	
-		try {
-			em.merge(user);
-			em.merge(auction);
+		auction.addComment(comment);		
+		try {			
+			em.merge(user);		
 			return true;
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			return false;
 		}
 	}

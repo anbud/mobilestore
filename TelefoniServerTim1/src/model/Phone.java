@@ -23,7 +23,7 @@ import javax.persistence.Table;
 				+ "AND p.contractor=:c " + "AND p.description=:d " + "AND p.dualSim=:ds " + "AND p.externalStorage=:es "
 				+ "AND p.frontCamera=:fc " + "AND p.internalStorage=:is " + "AND p.name=:n " + "AND p.os=:o "
 				+ "AND p.osVersion=:ov " + "AND p.price=:p " + "AND p.primaryCamera=:pc " + "AND p.processor=:p "
-				+ "AND p.ram=:r " + "AND p.screenSize=:ss " + "AND p.screenRes=:sr " + "AND p.thicknes=:t "
+				+ "AND p.ram=:r " + "AND p.screenSize=:ss " + "AND p.screenRes=:sr " + "AND p.thickness=:t "
 				+ "AND p.weight=:w " + "AND p.wiFi=:wf") })
 public class Phone implements Serializable {
 
@@ -82,8 +82,8 @@ public class Phone implements Serializable {
 	@Column(name = "SCREEN_SIZE")
 	private Float screenSize;
 
-	@Column(name = "THICKNES")
-	private Integer thicknes;
+	@Column(name = "THICKNESS")
+	private Integer thickness;
 
 	@Column(name = "WEIGHT")
 	private Integer weight;
@@ -238,12 +238,12 @@ public class Phone implements Serializable {
 		this.screenSize = screenSize;
 	}
 
-	public Integer getThicknes() {
-		return this.thicknes;
+	public Integer getThickness() {
+		return this.thickness;
 	}
 
-	public void setThicknes(Integer thicknes) {
-		this.thicknes = thicknes;
+	public void setThickness(Integer thicknes) {
+		this.thickness = thicknes;
 	}
 
 	public Integer getWeight() {

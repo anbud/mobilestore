@@ -60,12 +60,14 @@ public class Gui extends Application {
 	public void openLoginView() {
 		Loaded l = loadView("res/login.fxml");
 		stage.setScene(new Scene((Parent) l.node));
+		stage.setResizable(false);
 		stage.centerOnScreen();
 	}
 	
 	public void openSignupView() {
 		Loaded l = loadView("res/register.fxml");
 		stage.setScene(new Scene((Parent) l.node));
+		stage.setResizable(false);
 		stage.centerOnScreen();
 	}
 	

@@ -19,7 +19,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "UserTim1")
 @NamedQueries(value = { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-		@NamedQuery(name = "User.findByEMail", query = "SELECT u FROM User u WHERE u.eMail=:x") })
+		@NamedQuery(name = "User.findByEMail", query = "SELECT u FROM User u WHERE u.eMail=:x"),
+		@NamedQuery(name = "User.auctions", query = "SELECT a FROM Auction a WHERE a.user=:u")})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,9 @@ public class User implements Serializable {
 
 	@Column(name = "SURNAME")
 	private String surname;
+	
+	@Column(name = "ADDRESS")
+	private String address;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Auction> auctions;
@@ -120,6 +124,14 @@ public class User implements Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public List<Phone> getPhones() {
