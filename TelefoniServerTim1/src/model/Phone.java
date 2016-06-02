@@ -1,8 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -96,10 +96,10 @@ public class Phone implements Serializable {
 	private User user;
 
 	@OneToMany(mappedBy = "phone")
-	private List<PhonePic> pictures;
+	private Set<PhonePic> pictures;
 
 	public Phone() {
-		pictures = new ArrayList<PhonePic>();
+		pictures = new HashSet<PhonePic>();
 	}
 
 	public Integer getId() {
@@ -270,11 +270,11 @@ public class Phone implements Serializable {
 		this.user = userBean;
 	}
 
-	public List<PhonePic> getPictures() {
+	public Set<PhonePic> getPictures() {
 		return pictures;
 	}
 
-	public void setPictures(List<PhonePic> pictures) {
+	public void setPictures(Set<PhonePic> pictures) {
 		this.pictures = pictures;
 	}
 

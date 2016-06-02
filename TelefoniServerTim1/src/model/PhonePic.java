@@ -21,7 +21,6 @@ public class PhonePic implements Serializable {
 	private Phone phone;
 
 	public PhonePic() {
-		super();
 	}
 
 	public int getId() {

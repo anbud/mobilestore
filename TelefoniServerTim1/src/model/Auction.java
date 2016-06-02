@@ -1,9 +1,9 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,14 +51,13 @@ public class Auction implements Serializable {
 	@JoinTable(name = "ParticipantsTim1", joinColumns = {
 			@JoinColumn(name = "AUCTION_ID", nullable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "USER", nullable = false) })
-	private List<User> participants;
+	private Set<User> participants;
 
 	@OneToMany(mappedBy = "auction", fetch = FetchType.EAGER)
-	private List<Comment> comments;
+	private Set<Comment> comments;
 
 	public Auction() {
-		participants = new ArrayList<User>();
-		comments = new ArrayList<Comment>();
+		comments = new HashSet<Comment>();
 	}
 
 	public Integer getId() {
@@ -101,19 +100,19 @@ public class Auction implements Serializable {
 		this.user = user;
 	}
 
-	public List<User> getParticipants() {
+	public Set<User> getParticipants() {
 		return this.participants;
 	}
 
-	public void setParticipants(List<User> participants) {
+	public void setParticipants(Set<User> participants) {
 		this.participants = participants;
 	}
 
-	public List<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 

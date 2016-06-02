@@ -1,8 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,22 +52,22 @@ public class User implements Serializable {
 	private String address;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List<Auction> auctions;
+	private Set<Auction> auctions;
 
 	@ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List<Auction> participations;
+	private Set<Auction> participations;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List<Comment> comments;
+	private Set<Comment> comments;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List<Phone> phones;
+	private Set<Phone> phones;
 
 	public User() {
-		auctions = new ArrayList<Auction>();
-		participations = new ArrayList<Auction>();
-		comments = new ArrayList<Comment>();
-		phones = new ArrayList<Phone>();
+		auctions = new HashSet<Auction>();
+		participations = new HashSet<Auction>();
+		comments = new HashSet<Comment>();
+		phones = new HashSet<Phone>();
 	}
 
 	public String getUsername() {
@@ -134,35 +134,35 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public List<Phone> getPhones() {
+	public Set<Phone> getPhones() {
 		return this.phones;
 	}
 
-	public void setPhones(List<Phone> phones) {
+	public void setPhones(Set<Phone> phones) {
 		this.phones = phones;
 	}
 
-	public List<Auction> getAuctions() {
+	public Set<Auction> getAuctions() {
 		return this.auctions;
 	}
 
-	public List<Auction> getParticipations() {
+	public Set<Auction> getParticipations() {
 		return this.participations;
 	}
 
-	public void setParticipations(List<Auction> participations) {
+	public void setParticipations(Set<Auction> participations) {
 		this.participations = participations;
 	}
 
-	public void setAuctions(List<Auction> auctions) {
+	public void setAuctions(Set<Auction> auctions) {
 		this.auctions = auctions;
 	}
 
-	public List<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 

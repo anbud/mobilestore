@@ -47,8 +47,9 @@ public class Test {
 		} catch (NotRegisteredException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
-		}
-		postCommentTest(pm, um);
+		}		
+		//postCommentTest(pm, um);
+		postAuctionTest(pm, um);
 		um.logout();
 	}
 
@@ -81,13 +82,14 @@ public class Test {
 		String poruka = in.nextLine();
 		Comment c = new Comment();
 		c.setText(poruka);
-		
+
 		Auction a = new Auction();
-		a.setBid(245);
+		a.setBid(250);
 		
-		User u = um.getUser();
+		User u = um.getUser();	
 		u.addAuction(a);
-		u.addComment(c);
+		u.addComment(c);		
+		
 		pm.postComment(a, u, c);
 		
 		System.out.println(u.getAuctions().size());
@@ -104,12 +106,9 @@ public class Test {
 		Auction a = new Auction();
 		a.setId(199);
 		
-		User u = um.getUser();
-		u.addAuction(a);
-		
-		pm.postAuction(u, a);
+		pm.postAuction(um.getUser(), a);
 
-		for (Auction b: u.getAuctions())
-			System.out.println(b.getId());
+		for (Auction b: um.getUser().getAuctions())
+			System.out.println(b.getId());		
 	}
 }
