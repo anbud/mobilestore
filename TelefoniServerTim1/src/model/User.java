@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -14,10 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- * The persistent class for the user database table.
- * 
- */
 @Entity
 @Table(name = "UserTim1")
 @NamedQueries(value = { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
@@ -49,22 +47,16 @@ public class User implements Serializable {
 	@Column(name = "SURNAME")
 	private String surname;
 
-	// bi-directional many-to-one association to Auction	
-	// aukcije koje je postavio
-	@OneToMany(mappedBy = "user")	
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Auction> auctions;
 
-	// bi-directional many-to-many association to Auction
-	// aukcije u kojima je ucestvovao
-	@ManyToMany(mappedBy = "participants")
+	@ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Auction> participations;
 
-	// bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Comment> comments;
 
-	// bi-directional many-to-one association to Phone
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Phone> phones;
 
 	public User() {
@@ -130,12 +122,36 @@ public class User implements Serializable {
 		this.surname = surname;
 	}
 
+	public List<Phone> getPhones() {
+		return this.phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
+	}
+
 	public List<Auction> getAuctions() {
 		return this.auctions;
 	}
 
+	public List<Auction> getParticipations() {
+		return this.participations;
+	}
+
+	public void setParticipations(List<Auction> participations) {
+		this.participations = participations;
+	}
+
 	public void setAuctions(List<Auction> auctions) {
 		this.auctions = auctions;
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public Auction addAuction(Auction auction) {
@@ -152,20 +168,18 @@ public class User implements Serializable {
 		return auction;
 	}
 
-	public List<Auction> getParticipations() {
-		return this.participations;
+	public Auction addParticipation(Auction auction) {
+		getAuctions().add(auction);
+		auction.addParticipant(this);
+
+		return auction;
 	}
 
-	public void setParticipations(List<Auction> participations) {
-		this.participations = participations;
-	}
+	public Auction removeParticipation(Auction auction) {
+		getAuctions().remove(auction);
+		auction.removeParticipant(this);
 
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+		return auction;
 	}
 
 	public Comment addComment(Comment comment) {
@@ -182,24 +196,16 @@ public class User implements Serializable {
 		return comment;
 	}
 
-	public List<Phone> getPhones() {
-		return this.phones;
-	}
-
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
-
-	public Phone addPhone(Phone phone) {		
+	public Phone addPhone(Phone phone) {
 		getPhones().add(phone);
-		phone.setUserBean(this);
+		phone.setUser(this);
 
 		return phone;
 	}
 
 	public Phone removePhone(Phone phone) {
 		getPhones().remove(phone);
-		phone.setUserBean(null);
+		phone.setUser(null);
 
 		return phone;
 	}

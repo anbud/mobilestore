@@ -4,10 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * The persistent class for the comment database table.
- * 
- */
 @Entity
 @Table(name = "CommentTim1")
 @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c")
@@ -27,14 +23,12 @@ public class Comment implements Serializable {
 	@Column(name = "TEXT")
 	private String text;
 
-	// bi-directional many-to-one association to Auction
 	@ManyToOne
-	@JoinColumn(name = "AUCTIO_ID")
+	@JoinColumn(name = "AUCTIO_ID", nullable = false)
 	private Auction auction;
 
-	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name = "USER")
+	@JoinColumn(name = "USER", nullable = false)
 	private User user;
 
 	public Comment() {
@@ -76,8 +70,7 @@ public class Comment implements Serializable {
 		return this.user;
 	}
 
-	public void setUser(User userBean) {
-		this.user = userBean;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
 }

@@ -16,10 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- * The persistent class for the phone database table.
- * 
- */
 @Entity
 @Table(name = "PhoneTim1")
 @NamedQueries(value = { @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p"),
@@ -96,10 +92,10 @@ public class Phone implements Serializable {
 	private boolean wiFi;
 
 	@ManyToOne
-	@JoinColumn(name = "USER")
+	@JoinColumn(name = "USER", nullable = false)
 	private User user;
 
-	@OneToMany
+	@OneToMany(mappedBy = "phone")
 	private List<PhonePic> pictures;
 
 	public Phone() {
@@ -270,7 +266,7 @@ public class Phone implements Serializable {
 		return this.user;
 	}
 
-	public void setUserBean(User userBean) {
+	public void setUser(User userBean) {
 		this.user = userBean;
 	}
 
@@ -285,14 +281,14 @@ public class Phone implements Serializable {
 	public PhonePic addPhonePic(PhonePic pic) {
 		getPictures().add(pic);
 		pic.setPhone(this);
-		
+
 		return pic;
 	}
-	
+
 	public PhonePic removePhonePic(PhonePic pic) {
 		getPictures().remove(pic);
 		pic.setPhone(null);
-		
+
 		return pic;
 	}
 }
