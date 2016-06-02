@@ -78,11 +78,11 @@ public class Gui extends Application {
 	}
 	
 	private void openContainerView() {
-		if( stage.getScene().getRoot().getId().equals("container") )
+		if(stage.getScene().getRoot().getId().equals("container"))
 			return;
 		
 		Loaded l = loadView("res/container.fxml");
-		stage.setScene(new Scene( (Parent) l.node ));
+		stage.setScene(new Scene((Parent) l.node ));
 		stage.centerOnScreen();
 	}
 	
@@ -90,7 +90,7 @@ public class Gui extends Application {
 		openContainerView();
 		
 		Loaded l = loadView("res/board.fxml");
-		( (BorderPane) stage.getScene().getRoot() ).setCenter(l.node);
+		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
 		
 		stage.setResizable(true);
 	}

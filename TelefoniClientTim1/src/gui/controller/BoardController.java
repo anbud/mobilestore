@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.ListView;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class BoardController extends Controller {
+
 	@FXML
 	private ListView myActiveList;
 	@FXML
