@@ -12,13 +12,11 @@ public class LoginController extends Controller {
 	private TextField username;
 	@FXML
 	private PasswordField password;
+
 	@FXML
 	private void loginAction(Event event) {
-		if(username.getText().trim().isEmpty() || password.getText().trim().isEmpty()) {
+		if(username.getText().trim().isEmpty() || password.getText().trim().isEmpty())
 			return;
-		}
-		
-		
 	}
 	
 	@FXML

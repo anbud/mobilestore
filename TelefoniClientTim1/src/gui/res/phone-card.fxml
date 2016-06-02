@@ -93,7 +93,7 @@
       </Text>
       <ImageView id="max-bid-avatar" fitHeight="26.0" fitWidth="26.0" layoutX="403.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@ico/avatar-placeholder-30.png" />
+            <Image url="@ico/avatar-placeholder-32.png" />
          </image>
       </ImageView>
       <Text layoutX="341.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimal bid">
