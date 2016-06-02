@@ -67,15 +67,15 @@ public class FillDatabase {
 		comment.setText("Don't bid");
 		
 		phonePic.setPicture(new byte[0]);
-
-		phonePic.setPhone(phone);
-		comment.setAuction(auction);
-		user.addPhone(phone);
+		
 		auction.setUser(user);
-		auction.addComment(comment);
+		phone.setUser(user);
+		comment.setUser(user);
+		comment.setAuction(auction);
+		phonePic.setPhone(phone);
 
-		em.persist(phone);
 		em.persist(user);
+		em.persist(phone);		
 		em.persist(auction);
 		em.persist(comment);
 		em.persist(phonePic);

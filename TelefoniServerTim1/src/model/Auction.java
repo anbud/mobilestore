@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,15 +22,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * The persistent class for the auction database table.
- * 
- */
 @Entity
 @Table(name = "AuctionTim1")
 @NamedQuery(name = "Auction.findAll", query = "SELECT a FROM Auction a")
 public class Auction implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -46,20 +44,17 @@ public class Auction implements Serializable {
 	@Column(name = "CREATION_DATE")
 	private Date date;
 
-	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name = "USER")
+	@JoinColumn(name = "USER", nullable = false)
 	private User user;
 
-	// bi-directional many-to-many association to User
 	@ManyToMany
 	@JoinTable(name = "ParticipantsTim1", joinColumns = {
 			@JoinColumn(name = "AUCTION_ID", nullable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "USER", nullable = false) })
 	private List<User> participants;
 
-	// bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy = "auction")
+	@OneToMany(mappedBy = "auction", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Comment> comments;
 
 	public Auction() {
@@ -103,16 +98,16 @@ public class Auction implements Serializable {
 		return this.user;
 	}
 
-	public void setUser(User userBean) {
-		this.user = userBean;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<User> getParticipants() {
 		return this.participants;
 	}
 
-	public void setParticipants(List<User> users1) {
-		this.participants = users1;
+	public void setParticipants(List<User> participants) {
+		this.participants = participants;
 	}
 
 	public List<Comment> getComments() {
@@ -123,7 +118,19 @@ public class Auction implements Serializable {
 		this.comments = comments;
 	}
 
-	public Comment addComment(Comment comment) {		
+	public User addParticipant(User user) {
+		getParticipants().add(user);
+
+		return user;
+	}
+
+	public User removeParticipant(User user) {
+		getParticipants().remove(user);
+
+		return user;
+	}
+
+	public Comment addComment(Comment comment) {
 		getComments().add(comment);
 		comment.setAuction(this);
 
