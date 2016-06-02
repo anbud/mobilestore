@@ -1,29 +1,23 @@
 package gui.controller;
 
-import javafx.fxml.FXML;
-
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-
 import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 
 import gui.Controller;
-import javafx.event.ActionEvent;
-
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.control.PasswordField;
-
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 
 public class SignupController extends Controller {
 	@FXML
@@ -62,6 +56,13 @@ public class SignupController extends Controller {
 		}
 	}
 
+	@FXML
+	public void initialize() {
+		//fullname.textProperty().addListener((observable, oldvalue, newvalue) -> { });
+		
+		//email.textProperty().addListener((obs, ov, nv) -> { });
+	}
+	
 	@FXML
 	public void signupAction(Event event) {
 		String fullnames = fullname.getText().trim();
