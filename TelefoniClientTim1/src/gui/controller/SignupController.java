@@ -57,6 +57,13 @@ public class SignupController extends Controller {
 	}
 
 	@FXML
+	public void initialize() {
+		//fullname.textProperty().addListener((observable, oldvalue, newvalue) -> { });
+		
+		//email.textProperty().addListener((obs, ov, nv) -> { });
+	}
+	
+	@FXML
 	public void signupAction(Event event) {
 		String fullnames = fullname.getText().trim();
 		String usernames = username.getText().trim();

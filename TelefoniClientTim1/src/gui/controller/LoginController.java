@@ -17,6 +17,8 @@ public class LoginController extends Controller {
 	private void loginAction(Event event) {
 		if(username.getText().trim().isEmpty() || password.getText().trim().isEmpty())
 			return;
+		
+		
 	}
 	
 	@FXML
