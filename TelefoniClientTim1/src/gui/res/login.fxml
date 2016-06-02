@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,14 +20,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
+<Pane id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
    <children>
-      <Label id="error-msg" layoutX="45.0" layoutY="69.0" textFill="#ff5555">
+      <Label id="error-msg" fx:id="error" layoutX="45.0" layoutY="69.0" text="User not found" textFill="#ff5555">
          <font>
-            <Font size="15.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <TextField id="username" fx:id="username" layoutX="35.0" layoutY="100.0" prefHeight="40.0" prefWidth="300.0" promptText="username">
+      <TextField id="username" fx:id="username" layoutX="35.0" layoutY="100.0" onAction="#loginAction" prefHeight="40.0" prefWidth="300.0" promptText="username">
          <font>
             <Font name="Roboto" size="19.0" />
          </font>

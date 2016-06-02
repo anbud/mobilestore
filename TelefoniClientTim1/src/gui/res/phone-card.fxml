@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -11,27 +18,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="phone-details" maxHeight="220.0" maxWidth="440.0" minHeight="220.0" minWidth="440.0" prefHeight="220.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to bottom right, #fff, #e0d4ff);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="phone-details" maxHeight="220.0" maxWidth="440.0" minHeight="220.0" minWidth="440.0" prefHeight="220.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to bottom right, #fff, #e0d4ff);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.custom.PhoneCard">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <ImageView id="phone-img" fitHeight="200.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="phone-img" fx:id="image" fitHeight="200.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@phones/htc-10-r.jpg" />
          </image>
       </ImageView>
-      <Text id="phone-name" layoutX="178.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HTC 10" wrappingWidth="224.240234375">
+      <Text id="phone-name" fx:id="name" layoutX="178.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HTC 10" wrappingWidth="224.240234375">
          <font>
             <Font name="Roboto" size="22.0" />
          </font>
       </Text>
-      <Text id="phone-body" layoutX="180.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="161g, 9mm thickness">
+      <Text id="phone-body" fx:id="description" layoutX="180.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="161g, 9mm thickness">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text id="phone-version" layoutX="180.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Android OS v6.0.1">
+      <Text id="phone-version" fx:id="os" layoutX="180.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Android OS v6.0.1">
          <font>
             <Font size="14.0" />
          </font>
@@ -41,7 +48,7 @@
             <Image url="@ico/storage.png" />
          </image>
       </ImageView>
-      <Text id="phone-storage" layoutX="200.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32/64gb storage">
+      <Text id="phone-storage" fx:id="storage" layoutX="200.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32/64gb storage">
          <font>
             <Font size="14.0" />
          </font>
@@ -51,7 +58,7 @@
             <Image url="@ico/memory.png" />
          </image>
       </ImageView>
-      <Text id="phone-ram-size" layoutX="200.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4GB RAM">
+      <Text id="phone-ram-size" fx:id="ram" layoutX="200.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4GB RAM">
          <font>
             <Font size="14.0" />
          </font>
@@ -61,7 +68,7 @@
             <Image url="@ico/screen.png" />
          </image>
       </ImageView>
-      <Text id="phone-display-size" layoutX="200.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.5&quot; | 1440x2560">
+      <Text id="phone-display-size" fx:id="screen" layoutX="200.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.5&quot; | 1440x2560">
          <font>
             <Font size="14.0" />
          </font>
@@ -71,7 +78,7 @@
             <Image url="@ico/camera.png" />
          </image>
       </ImageView>
-      <Text id="phone-camera" layoutX="200.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12MP | 2160p">
+      <Text id="phone-camera" fx:id="camera" layoutX="200.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12MP | 2160p">
          <font>
             <Font size="14.0" />
          </font>
@@ -81,17 +88,17 @@
             <Image url="@ico/battery.png" />
          </image>
       </ImageView>
-      <Text id="phone-battery" layoutX="200.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3000mAh">
+      <Text id="phone-battery" fx:id="battery" layoutX="200.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3000mAh">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text id="max-bid-username" layoutX="341.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" textAlignment="RIGHT" wrappingWidth="90.0">
+      <Text id="max-bid-username" fx:id="username" layoutX="341.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" textAlignment="RIGHT" wrappingWidth="90.0">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <ImageView id="max-bid-avatar" fitHeight="26.0" fitWidth="26.0" layoutX="403.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="max-bid-avatar" fx:id="avatar" fitHeight="26.0" fitWidth="26.0" layoutX="403.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ico/avatar-placeholder-32.png" />
          </image>
@@ -101,19 +108,19 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Text id="minimal-bid-placeholder" layoutX="360.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
+      <Text id="minimal-bid-placeholder" fx:id="minimalBid" layoutX="360.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
       <AnchorPane layoutX="328.0" layoutY="133.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="102.0">
          <children>
-            <TextField id="current-bid" alignment="CENTER" focusTraversable="false" layoutX="1.0" layoutY="1.0" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;" text="\$ 100">
+            <TextField id="current-bid" fx:id="bid" alignment="CENTER" focusTraversable="false" layoutX="1.0" layoutY="1.0" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;" text="\$ 100">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button id="bid-raiser" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="0.0" layoutX="70.0" layoutY="1.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-text-fill: #fff;" text="↑">
+            <Button id="bid-raiser" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="0.0" layoutX="70.0" layoutY="1.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" onAction="#increaseAction" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-text-fill: #fff;" text="↑">
                <font>
                   <Font size="15.0" />
                </font>
@@ -123,7 +130,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Button id="confirm-bid" layoutX="330.0" layoutY="177.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-background-radius: 30;" text="Confirm bid" textFill="WHITE">
+      <Button id="confirm-bid" layoutX="330.0" layoutY="177.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-background-radius: 30;" text="Confirm bid" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

@@ -6,10 +6,9 @@ import gui.Controller;
 import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 
 public class LoginController extends Controller {
 
@@ -17,9 +16,13 @@ public class LoginController extends Controller {
 	private TextField username;
 	@FXML
 	private PasswordField password;
+	@FXML
+	private Label error;
 
 	@FXML
 	private void loginAction(Event event) {
+		error.setText("");
+		
 		String usernames = username.getText().trim();
 		String passwords = password.getText().trim();
 		
@@ -34,10 +37,10 @@ public class LoginController extends Controller {
 			}
 		}
 		catch(IncorrectPasswordException e) {
-			
+			error.setText("Incorrect password!");
 		}
 		catch(NotRegisteredException e) {
-			
+			error.setText("User not found!");
 		}
 	}
 	
