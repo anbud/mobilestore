@@ -36,13 +36,13 @@
 }
 
 .nav-item {
-	-fx-background-color: #E71D36;
+	-fx-background-color: #E53A40;
 	-fx-border-width: 0 0 7 0;
-	-fx-border-color: #d0162b;
+	-fx-border-color: #e21d24;
 }
 
 .nav-item-hover:hover {
-	-fx-background-color: #e92f45;
+	-fx-background-color: #e84a50;
 	-fx-cursor: hand;
 }
 
