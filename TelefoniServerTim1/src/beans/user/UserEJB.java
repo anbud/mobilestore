@@ -48,7 +48,6 @@ public class UserEJB implements UserManager {
 	@Override
 	public boolean login(String username, String password) throws IncorrectPasswordException, NotRegisteredException {
 		user = em.find(User.class, username);
-		System.out.println(user.getComments().size());
 		if (user == null)
 			throw new NotRegisteredException();
 
