@@ -25,6 +25,10 @@ public class BoardController {
 	private void initialize() {
 		try {
 			myActiveList.getItems().add(new PhoneCard());
+			myActiveList.getItems().add(new PhoneCard());
+			myActiveList.getItems().add(new PhoneCard());
+			myActiveList.getItems().add(new PhoneCard());
+			myActiveList.getItems().add(new PhoneCard());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

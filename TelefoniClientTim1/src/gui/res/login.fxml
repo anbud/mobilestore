@@ -22,7 +22,7 @@
 
 <Pane id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
    <children>
-      <Label id="error-msg" fx:id="error" layoutX="45.0" layoutY="69.0" text="User not found" textFill="#ff5555">
+      <Label id="error-msg" fx:id="error" layoutX="45.0" layoutY="69.0" text="" textFill="#ff5555">
          <font>
             <Font size="16.0" />
          </font>
