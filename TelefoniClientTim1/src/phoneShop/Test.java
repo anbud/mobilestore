@@ -12,6 +12,7 @@ import beans.user.UserManager;
 import exceptions.IncorrectPasswordException;
 import exceptions.NotRegisteredException;
 import exceptions.UsernameExistsException;
+import model.Auction;
 import model.Comment;
 import model.User;
 
@@ -23,12 +24,13 @@ public class Test {
 			+ UserManager.class.getName() + "?stateful";
 	private static final String STATELES_LOCATION = "ejb:/" + SERVER_NAME + "//" + PostEJB.class.getSimpleName() + "!"
 			+ PostManager.class.getName();
+	private static Scanner in = new Scanner(System.in);
 
 	public static void main(String[] args) throws NamingException {
 
 		context = new InitialContext();
 		UserManager um = (UserManager) context.lookup(STATEFUL_LOCATION);
-		PostManager cm = (PostManager) context.lookup(STATELES_LOCATION);
+		PostManager pm = (PostManager) context.lookup(STATELES_LOCATION);		
 		
 		try {
 			insertionTest(um);
@@ -46,23 +48,18 @@ public class Test {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		postCommentTest(um);
+		postCommentTest(pm, um);
 		um.logout();
 	}
 
-	private static void loginTest(UserManager um) throws IncorrectPasswordException, NotRegisteredException {
-		Scanner in = new Scanner(System.in);
+	private static void loginTest(UserManager um) throws IncorrectPasswordException, NotRegisteredException {		
 		System.out.println("username: ");
 		String username = in.nextLine();
 		System.out.println("password: ");
 		String password = in.nextLine();
 		if (um.login(username, password)) {
-			// System.out.println("Ulogovani ste. Pritisnite Enter za logout.");
-			// System.out.println("ID aktivne aukcije korisnika " + um.getActiveAuctions().get(0).getId() + ".");
 			System.out.println(um.getUser().getName());
-		} else
-			System.out.println("Morate se registrovati.");
-		// in.close();
+		}
 	}
 
 	@SuppressWarnings("unused")
@@ -77,15 +74,42 @@ public class Test {
 		u.setAvatar(new byte[0]);		
 		um.register(u);		
 	}
-
-	private static void postCommentTest(UserManager um) {
+	
+	private static void postCommentTest(PostManager pm, UserManager um) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Unesite komentar: ");
 		String poruka = in.nextLine();
 		Comment c = new Comment();
 		c.setText(poruka);
-		if (um.postComment(c))
-			System.out.println("Ostavljeni komentar \"" + um.getUser().getComments().get(0).getText() + "\"");
+		
+		Auction a = new Auction();
+		a.setBid(245);
+		
+		User u = um.getUser();
+		u.addAuction(a);
+		u.addComment(c);
+		pm.postComment(a, u, c);
+		
+		System.out.println(u.getAuctions().size());
+		for (Auction b: u.getAuctions())
+			System.out.println(b.getId() + " " + b.getBid());
+		
+		for (Comment com: u.getComments())			
+			System.out.println(com.getText());
+		
 		in.close();
+	}
+	
+	private static void postAuctionTest(PostManager pm, UserManager um) {	
+		Auction a = new Auction();
+		a.setId(199);
+		
+		User u = um.getUser();
+		u.addAuction(a);
+		
+		pm.postAuction(u, a);
+
+		for (Auction b: u.getAuctions())
+			System.out.println(b.getId());
 	}
 }

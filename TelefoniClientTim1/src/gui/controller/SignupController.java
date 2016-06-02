@@ -5,7 +5,9 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 
+import exceptions.UsernameExistsException;
 import gui.Controller;
+import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -18,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import model.User;
 
 public class SignupController extends Controller {
 	@FXML
@@ -36,6 +39,8 @@ public class SignupController extends Controller {
 	private TextArea about;
 	@FXML
 	private ImageView avatar;
+	
+	private byte[] avatarBytes;
 
 	@FXML
 	public void avatarAction(Event event) {
@@ -47,8 +52,8 @@ public class SignupController extends Controller {
 			try {
 				avatar.setImage(new Image(file.toURI().toString()));
 				ImageInputStream stream = ImageIO.createImageInputStream(file);
-				byte[] bytes = new byte[(int) stream.length()];
-				stream.readFully(bytes);
+				avatarBytes = new byte[(int) stream.length()];
+				stream.readFully(avatarBytes);
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -99,6 +104,29 @@ public class SignupController extends Controller {
 			a.showAndWait();
 			email.setText("");
 			return;
+		}
+		
+		try {
+			User user = new User();
+			user.setUsername(usernames);
+			user.setPassword(passwords);
+			user.setAboutMe(abouts);
+			user.setName(fullnames);
+			user.setEMail(emails);
+			if(avatarBytes != null)
+				user.setAvatar(avatarBytes);
+
+			if( Gui.userManager.register(user) ) {
+				
+				// TODO open home view
+				
+			}
+		}
+		catch(UsernameExistsException e) {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setContentText("This username is already taken!");
+			a.setHeaderText("Username taken");
+			a.showAndWait();
 		}
 	}
 

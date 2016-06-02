@@ -1,5 +1,11 @@
 package gui;
 
+import javax.naming.InitialContext;
+
+import beans.post.PostEJB;
+import beans.post.PostManager;
+import beans.user.UserEJB;
+import beans.user.UserManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,6 +21,12 @@ public class Gui extends Application {
 		public Controller controller;
 	}
 	
+	public static UserManager userManager;
+	public static InitialContext context;
+	
+	public static String USER_BEAN = "ejb:/TelefoniServerTim1//" + UserEJB.class.getSimpleName() + "!" + UserManager.class.getName() + "?stateful";
+	public static String POST_BEAN = "ejb:/TelefoniServerTim1//" + PostEJB.class.getSimpleName() + "!" + PostManager.class.getName();
+	
 	private Stage stage;
 
 	@Override
@@ -24,7 +36,12 @@ public class Gui extends Application {
 		stage.setTitle("Mobile store");
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("res/ico/logo.png")));
 		
+		context = new InitialContext();
+		
+		userManager = (UserManager) context.lookup(USER_BEAN);
+		
 		openLoginView();
+		
 		stage.show();
 	}
 	

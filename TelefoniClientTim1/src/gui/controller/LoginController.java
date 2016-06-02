@@ -1,10 +1,15 @@
 package gui.controller;
 
+import exceptions.IncorrectPasswordException;
+import exceptions.NotRegisteredException;
 import gui.Controller;
+import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class LoginController extends Controller {
 
@@ -15,10 +20,25 @@ public class LoginController extends Controller {
 
 	@FXML
 	private void loginAction(Event event) {
-		if(username.getText().trim().isEmpty() || password.getText().trim().isEmpty())
+		String usernames = username.getText().trim();
+		String passwords = password.getText().trim();
+		
+		if(usernames.isEmpty() || passwords.isEmpty())
 			return;
 		
-		
+		try {
+			if( Gui.userManager.login(usernames, passwords) ) {
+				
+				// TODO open home view
+				
+			}
+		}
+		catch(IncorrectPasswordException e) {
+			
+		}
+		catch(NotRegisteredException e) {
+			
+		}
 	}
 	
 	@FXML

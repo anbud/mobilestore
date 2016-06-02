@@ -38,6 +38,7 @@ public class FillDatabase {
 		user.setSurname("User");
 		user.setPassword("password");
 		user.setUsername("username");
+		user.setAddress("????");
 		user.setAvatar(new byte[0]);
 
 		phone.setBluetooth(true);
@@ -56,7 +57,7 @@ public class FillDatabase {
 		phone.setRam(4);
 		phone.setScreenRes("1440x2560");
 		phone.setScreenSize(5.2f);
-		phone.setThicknes(9);
+		phone.setThickness(9);
 		phone.setWeight(161);
 		phone.setWiFi(true);
 
