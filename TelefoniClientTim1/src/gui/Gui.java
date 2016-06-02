@@ -46,6 +46,11 @@ public class Gui extends Application {
 		stage.show();
 	}
 	
+	@Override
+	public void stop() {
+		userManager.logout();
+	}
+	
 	private Loaded loadView(String file) {
 		Loaded l = new Loaded();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(file));

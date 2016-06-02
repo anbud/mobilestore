@@ -1,12 +1,13 @@
 package gui.controller;
 
+import gui.Controller;
 import gui.custom.PhoneCard;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.ListView;
 
-public class BoardController {
+public class BoardController extends Controller {
 	@FXML
 	private ListView myActiveList;
 	@FXML

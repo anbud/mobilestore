@@ -1,11 +1,13 @@
 package gui.controller;
 
+import gui.Controller;
 import javafx.fxml.FXML;
 
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
-public class ContainerController {
-
+public class ContainerController extends Controller {
 	
 	@FXML
 	public void mainBoardAction(MouseEvent event) {
