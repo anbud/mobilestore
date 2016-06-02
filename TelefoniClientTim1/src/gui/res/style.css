@@ -30,3 +30,17 @@
 	-fx-background-image: url("ico/expand.png");
 	-fx-background-color: transparent;
 }
+
+#navbar {
+	-fx-background-color: #96f;
+}
+
+.nav-item {
+	-fx-background-color: #E71D36;
+	-fx-border-width: 0 0 7 0;
+	-fx-border-color: #d0162b;
+}
+
+.nav-item-hover:hover {
+	-fx-background-color: #e92f45;
+}

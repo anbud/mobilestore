@@ -9,14 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<ScrollPane hbarPolicy="NEVER" prefHeight="750.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane hbarPolicy="NEVER" prefHeight="700.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefWidth="1180.0" stylesheets="@style.css">
          <children>
             <AnchorPane id="header-wrapper" prefHeight="40.0" prefWidth="400.0">
                <children>
-                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My active auctions" wrappingWidth="163.544921875" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
+                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My active auctions" wrappingWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -37,7 +36,7 @@
             </ListView>
             <AnchorPane id="header-wrapper" prefHeight="40.0" prefWidth="400.0">
                <children>
-                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My closed auctions" wrappingWidth="185.544921875" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
+                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My closed auctions" wrappingWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -55,7 +54,7 @@
             </ListView>
             <AnchorPane id="header-wrapper" prefHeight="40.0" prefWidth="400.0">
                <children>
-                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active auctions I'm participating" wrappingWidth="300.544921875" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
+                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active auctions I'm participating" wrappingWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -76,7 +75,7 @@
             </ListView>
             <AnchorPane id="header-wrapper" prefHeight="40.0" prefWidth="400.0">
                <children>
-                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Closed auctions I've participated" wrappingWidth="300.544921875" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
+                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Closed auctions I've participated" wrappingWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
                      <font>
                         <Font size="20.0" />
                      </font>
