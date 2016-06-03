@@ -24,7 +24,8 @@
                <styleClass>
                   <String fx:value="nav-item-hover" />
                   <String fx:value="nav-item" />
-               </styleClass></AnchorPane>
+               </styleClass>
+            </AnchorPane>
             <AnchorPane id="all-phones" prefHeight="70.0" prefWidth="200.0">
                <children>
                   <Label alignment="CENTER" onMouseClicked="#allPhonesAction" text="ALL PHONES" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -36,7 +37,8 @@
                <styleClass>
                   <String fx:value="nav-item" />
                   <String fx:value="nav-item-hover" />
-               </styleClass></AnchorPane>
+               </styleClass>
+            </AnchorPane>
             <AnchorPane id="add-phone" prefHeight="70.0" prefWidth="200.0">
                <children>
                    <Label alignment="CENTER" onMouseClicked="#addPhoneAction" text="ADD PHONE" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -48,7 +50,8 @@
                <styleClass>
                   <String fx:value="nav-item" />
                   <String fx:value="nav-item-hover" />
-               </styleClass></AnchorPane>
+               </styleClass>
+            </AnchorPane>
             <AnchorPane id="empty" minWidth="0.0" prefHeight="70.0" prefWidth="0.0" styleClass="nav-item" HBox.hgrow="ALWAYS" />
             <AnchorPane id="user-section" prefHeight="70.0" styleClass="nav-item">
                <children>
