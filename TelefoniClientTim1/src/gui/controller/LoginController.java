@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import utils.Utils;
 
 public class LoginController extends Controller {
 
@@ -29,7 +30,7 @@ public class LoginController extends Controller {
 			return;
 		
 		try {
-			if( getGui().userManager.login(usernames, passwords) ) {
+			if( getGui().userManager.login(usernames, Utils.MD5(passwords)) ) {
 				
 				getGui().openBoardView();
 				

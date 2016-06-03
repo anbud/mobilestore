@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import model.User;
+import utils.Utils;
 
 public class SignupController extends Controller {
 	@FXML
@@ -103,7 +104,7 @@ public class SignupController extends Controller {
 			String[] fullname = fullnames.split(" ", 2);
 			
 			user.setUsername(usernames);
-			user.setPassword(passwords);
+			user.setPassword(Utils.MD5(passwords));
 			user.setAboutMe(abouts);
 			user.setName(fullname[0]);
 			user.setSurname(fullname[1]);
