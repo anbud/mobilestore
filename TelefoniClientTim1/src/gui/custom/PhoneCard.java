@@ -1,24 +1,24 @@
 package gui.custom;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.text.Text;
-
-import javafx.scene.control.TextField;
 import gui.Gui;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 public class PhoneCard extends Pane {
 	@FXML
 	private ImageView image;
 	@FXML
-	private Text name;
+	private Label hoverMsg;
 	@FXML
-	private Text description;
+	private Text name;
 	@FXML
 	private Text os;
 	@FXML
@@ -42,6 +42,7 @@ public class PhoneCard extends Pane {
 	
 	private EventHandler<Event> increaseHandler;
 	private EventHandler<Event> confirmHandler;
+	private EventHandler<Event> openHandler;
 	
 	public PhoneCard() throws Exception {
 		FXMLLoader loader = new FXMLLoader(Gui.class.getResource("res/phone-card.fxml"));
@@ -50,6 +51,11 @@ public class PhoneCard extends Pane {
 		loader.load();
 	}
 	
+	@FXML
+	public void openAuctionAction(Event event) {
+		if(openHandler != null)
+			openHandler.handle(event);
+	}
 	
 	@FXML
 	private void increaseAction(Event event) {
@@ -63,6 +69,10 @@ public class PhoneCard extends Pane {
 			confirmHandler.handle(event);
 	}
 	
+	public void setOnOpen(EventHandler<Event> handler) {
+		openHandler = handler;
+	}
+	
 	public void setOnIncrease(EventHandler<Event> handler) {
 		increaseHandler = handler;
 	}
@@ -70,136 +80,108 @@ public class PhoneCard extends Pane {
 	public void setOnConfirm(EventHandler<Event> handler) {
 		confirmHandler = handler;
 	}
-
+	
+	@FXML
+	private void initialize() {
+		image.setOnMouseEntered(e -> {
+			hoverMsg.setVisible(true);
+		});
+		
+		hoverMsg.setOnMouseExited(e -> {
+			hoverMsg.setVisible(false);
+		});
+	}
 
 	public Image getImage() {
 		return image.getImage();
 	}
-
-
 	public void setImage(Image image) {
 		this.image.setImage(image);
 	}
-
+	
+	public String getHoverMsg() {
+		return hoverMsg.getText();
+	}
+	public void setHoverMsg(String hoverMsg) {
+		this.hoverMsg.setText(hoverMsg);
+	}
 
 	public String getPhoneName() {
 		return name.getText();
 	}
 
-
 	public void setPhoneName(String name) {
 		this.name.setText(name);
 	}
 
-
-	public String getDescription() {
-		return description.getText();
-	}
-
-
-	public void setDescription(String description) {
-		this.description.setText(description);
-	}
-
-
 	public String getOs() {
 		return os.getText();
 	}
-
-
 	public void setOs(String os) {
 		this.os.setText(os);
 	}
 
-
 	public String getStorage() {
 		return storage.getText();
 	}
-
-
 	public void setStorage(String storage) {
 		this.storage.setText(storage);
 	}
 
-
 	public String getRam() {
 		return ram.getText();
 	}
-
-
 	public void setRam(String ram) {
 		this.ram.setText(ram);
 	}
 
-
 	public String getScreen() {
 		return screen.getText();
 	}
-
-
 	public void setScreen(String screen) {
 		this.screen.setText(screen);
 	}
 
-
 	public String getCamera() {
 		return camera.getText();
 	}
-
-
 	public void setCamera(String camera) {
 		this.camera.setText(camera);
 	}
 
-
 	public String getBattery() {
 		return battery.getText();
 	}
-
-
 	public void setBattery(String battery) {
 		this.battery.setText(battery);
 	}
 
-
 	public String getUsername() {
 		return username.getText();
 	}
-
-
 	public void setUsername(String username) {
 		this.username.setText(username);
 	}
 
-
 	public Image getAvatar() {
 		return avatar.getImage();
 	}
-
-
 	public void setAvatar(Image avatar) {
 		this.avatar.setImage(avatar);
 	}
 
-
 	public int getMinimalBid() {
 		return Integer.parseInt(minimalBid.getText().replace("$ ", ""));
 	}
-
-
 	public void setMinimalBid(int minimalBid) {
-		this.minimalBid.setText("$ "+minimalBid);
+		this.minimalBid.setText("$ " + minimalBid);
 	}
-
 
 	public int getCurrentBid() {
 		return Integer.parseInt(bid.getText());
 	}
-
-
 	public void setCurrentBid(int bid) {
 		this.bid.setText(""+bid);
 	}
-	
 	
 }

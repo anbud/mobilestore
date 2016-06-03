@@ -77,7 +77,7 @@ public class Gui extends Application {
 			return;
 		
 		Loaded l = loadView("res/container.fxml");
-		stage.setScene(new Scene((Parent) l.node ));
+		stage.setScene(new Scene((Parent) l.node));
 		stage.centerOnScreen();
 	}
 	
@@ -87,6 +87,24 @@ public class Gui extends Application {
 		Loaded l = loadView("res/board.fxml");
 		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
 		
+		stage.setResizable(true);
+	}
+	
+	public void openAddPhoneView() {
+		openContainerView();
+		
+		Loaded l = loadView("res/add-phone.fxml");
+		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
+
+		stage.setResizable(true);
+	}
+	
+	public void openAllPhonesView() {
+		openContainerView();
+		
+		Loaded l = loadView("res/all-phones.fxml");
+		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
+
 		stage.setResizable(true);
 	}
 	

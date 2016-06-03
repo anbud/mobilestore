@@ -3,12 +3,11 @@ package gui.controller;
 import exceptions.IncorrectPasswordException;
 import exceptions.NotRegisteredException;
 import gui.Controller;
-import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 
 public class LoginController extends Controller {
 

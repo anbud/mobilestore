@@ -7,7 +7,6 @@ import javax.imageio.stream.ImageInputStream;
 
 import exceptions.UsernameExistsException;
 import gui.Controller;
-import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -62,13 +61,6 @@ public class SignupController extends Controller {
 	}
 
 	@FXML
-	public void initialize() {
-		//fullname.textProperty().addListener((observable, oldvalue, newvalue) -> { });
-		
-		//email.textProperty().addListener((obs, ov, nv) -> { });
-	}
-	
-	@FXML
 	public void signupAction(Event event) {
 		String fullnames = fullname.getText().trim();
 		String usernames = username.getText().trim();
@@ -108,18 +100,20 @@ public class SignupController extends Controller {
 		
 		try {
 			User user = new User();
+			String[] fullname = fullnames.split(" ", 2);
+			
 			user.setUsername(usernames);
 			user.setPassword(passwords);
 			user.setAboutMe(abouts);
-			user.setName(fullnames);
+			user.setName(fullname[0]);
+			user.setSurname(fullname[1]);
+			user.setAddress(addresss);
 			user.setEMail(emails);
 			if(avatarBytes != null)
 				user.setAvatar(avatarBytes);
 
-			if( getGui().userManager.register(user) ) {
-				
-				// TODO open home view
-				
+			if(getGui().userManager.register(user)) {
+				getGui().openBoardView();
 			}
 		}
 		catch(UsernameExistsException e) {

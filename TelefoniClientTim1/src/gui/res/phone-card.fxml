@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root type="javafx.scene.layout.Pane" id="phone-details" maxHeight="220.0" maxWidth="440.0" minHeight="220.0" minWidth="440.0" prefHeight="220.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to bottom right, #fff, #e0d4ff);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="phone-details" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to bottom right, #fff, #e0d4ff);" stylesheets="@style.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <ImageView id="phone-img" fx:id="image" fitHeight="200.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@phones/htc-10-r.jpg" />
-         </image>
-      </ImageView>
+      <StackPane layoutX="10.0" layoutY="10.0">
+         <children>
+            <ImageView id="phone-img" fx:id="image" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@phones/htc-10-r.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="hoverMsg" onMouseClicked="#openAuctionAction" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0.5);" text="Click to open auction" textAlignment="CENTER" textFill="#eeeeee" visible="false" wrapText="true">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </StackPane>
       <Text id="phone-name" fx:id="name" layoutX="178.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HTC 10" wrappingWidth="224.240234375">
          <font>
             <Font name="Roboto" size="22.0" />
          </font>
       </Text>
-      <Text id="phone-body" fx:id="description" layoutX="180.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="161g, 9mm thickness">
+      <Text id="phone-version" fx:id="os" layoutX="180.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Android OS v6.0.1">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text id="phone-version" fx:id="os" layoutX="180.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Android OS v6.0.1">
+      <ImageView layoutX="180.0" layoutY="67.0">
+         <image>
+            <Image url="@ico/storage.png" />
+         </image>
+      </ImageView>
+      <Text id="phone-storage" fx:id="storage" layoutX="200.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32/64gb storage">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <ImageView layoutX="180.0" layoutY="92.0">
          <image>
-            <Image url="@ico/storage.png" />
+            <Image url="@ico/memory.png" />
          </image>
       </ImageView>
-      <Text id="phone-storage" fx:id="storage" layoutX="200.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32/64gb storage">
+      <Text id="phone-ram-size" fx:id="ram" layoutX="200.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4GB RAM">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <ImageView layoutX="180.0" layoutY="117.0">
          <image>
-            <Image url="@ico/memory.png" />
+            <Image url="@ico/screen.png" />
          </image>
       </ImageView>
-      <Text id="phone-ram-size" fx:id="ram" layoutX="200.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4GB RAM">
+      <Text id="phone-display-size" fx:id="screen" layoutX="200.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.5&quot; | 1440x2560">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <ImageView layoutX="180.0" layoutY="142.0">
          <image>
-            <Image url="@ico/screen.png" />
+            <Image url="@ico/camera.png" />
          </image>
       </ImageView>
-      <Text id="phone-display-size" fx:id="screen" layoutX="200.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.5&quot; | 1440x2560">
+      <Text id="phone-camera" fx:id="camera" layoutX="200.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12MP | 2160p">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <ImageView layoutX="180.0" layoutY="167.0">
          <image>
-            <Image url="@ico/camera.png" />
-         </image>
-      </ImageView>
-      <Text id="phone-camera" fx:id="camera" layoutX="200.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12MP | 2160p">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <ImageView layoutX="180.0" layoutY="191.0">
-         <image>
             <Image url="@ico/battery.png" />
          </image>
       </ImageView>
-      <Text id="phone-battery" fx:id="battery" layoutX="200.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3000mAh">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text id="max-bid-username" fx:id="username" layoutX="341.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" textAlignment="RIGHT" wrappingWidth="90.0">
+      <Text id="phone-battery" fx:id="battery" layoutX="200.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3000mAh">
          <font>
             <Font size="14.0" />
          </font>
@@ -103,6 +103,11 @@
             <Image url="@ico/avatar-placeholder-32.png" />
          </image>
       </ImageView>
+      <Text id="max-bid-username" fx:id="username" layoutX="341.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" textAlignment="RIGHT" wrappingWidth="90.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
       <Text layoutX="341.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimal bid">
          <font>
             <Font size="15.0" />
