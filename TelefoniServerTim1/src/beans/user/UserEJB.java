@@ -59,9 +59,7 @@ public class UserEJB implements UserManager {
 
 	@Override
 	@Remove
-	public void logout() {
-		System.out.println("LOGOUT");
-	}
+	public void logout() {}
 
 	@Override
 	public List<Auction> getActiveAuctions() {

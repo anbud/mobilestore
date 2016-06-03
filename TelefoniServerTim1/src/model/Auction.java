@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +30,7 @@ public class Auction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "AUCTION_ID", unique = true, nullable = false)
 	private Integer id;
 
@@ -47,7 +48,7 @@ public class Auction implements Serializable {
 	@JoinColumn(name = "USER", nullable = false)
 	private User user;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "ParticipantsTim1", joinColumns = {
 			@JoinColumn(name = "AUCTION_ID", nullable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "USER", nullable = false) })
@@ -58,6 +59,8 @@ public class Auction implements Serializable {
 
 	public Auction() {
 		comments = new HashSet<Comment>();
+		participants = new HashSet<User>();
+		closed = false;
 	}
 
 	public Integer getId() {
@@ -117,14 +120,14 @@ public class Auction implements Serializable {
 	}
 
 	public User addParticipant(User user) {
-		getParticipants().add(user);
-
+		getParticipants().add(user);		
+		
 		return user;
 	}
 
 	public User removeParticipant(User user) {
-		getParticipants().remove(user);
-
+		getParticipants().remove(user);		
+		
 		return user;
 	}
 

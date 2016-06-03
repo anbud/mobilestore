@@ -4,12 +4,17 @@ import javax.ejb.Remote;
 
 import model.Auction;
 import model.Comment;
+import model.Phone;
 import model.User;
 
 @Remote
 public interface PostManager {
 
-	public boolean postComment(Auction auction, User user, Comment comment);
+	public Comment postComment(User user, Auction auction, Comment comment);
 	
-	public boolean postAuction(User user, Auction auction);
+	public Auction postAuction(User user, Auction auction, Phone phone);
+	
+	public Auction postBid(User user, Auction auction, int bid);
+	
+	public Auction getAuction();	
 }
