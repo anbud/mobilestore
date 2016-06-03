@@ -7,7 +7,6 @@ import javax.imageio.stream.ImageInputStream;
 
 import exceptions.UsernameExistsException;
 import gui.Controller;
-import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import model.User;
+import utils.Utils;
 
 public class SignupController extends Controller {
 	@FXML
@@ -62,13 +62,6 @@ public class SignupController extends Controller {
 	}
 
 	@FXML
-	public void initialize() {
-		//fullname.textProperty().addListener((observable, oldvalue, newvalue) -> { });
-		
-		//email.textProperty().addListener((obs, ov, nv) -> { });
-	}
-	
-	@FXML
 	public void signupAction(Event event) {
 		String fullnames = fullname.getText().trim();
 		String usernames = username.getText().trim();
@@ -108,23 +101,25 @@ public class SignupController extends Controller {
 		
 		try {
 			User user = new User();
+			String[] fullname = fullnames.split(" ", 2);
+			
 			user.setUsername(usernames);
-			user.setPassword(passwords);
+			user.setPassword(Utils.MD5(passwords));
 			user.setAboutMe(abouts);
-			user.setName(fullnames);
+			user.setName(fullname[0]);
+			user.setSurname(fullname[1]);
+			user.setAddress(addresss);
 			user.setEMail(emails);
 			if(avatarBytes != null)
 				user.setAvatar(avatarBytes);
 
-			if( Gui.userManager.register(user) ) {
-				
-				// TODO open home view
-				
+			if(getGui().userManager.register(user)) {
+				getGui().openBoardView();
 			}
 		}
 		catch(UsernameExistsException e) {
 			Alert a = new Alert(AlertType.WARNING);
-			a.setContentText("This username is already taken!");
+			a.setContentText(e.getMessage());
 			a.setHeaderText("Username taken");
 			a.showAndWait();
 		}

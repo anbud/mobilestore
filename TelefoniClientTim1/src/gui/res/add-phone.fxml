@@ -1,18 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="first-page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane alignment="CENTER" columnHalignment="CENTER" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AddPhoneController">
    <children>
-      <Line endY="300.0" layoutX="400.0" layoutY="300.0" startY="-300.0" />
-      <Text layoutX="18.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="122.13672828674316" />
-      <TextField layoutX="141.0" layoutY="29.0" prefHeight="30.0" prefWidth="250.0" />
-      <Text layoutX="18.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="122.13671207427979" />
-      <ChoiceBox layoutX="141.0" layoutY="64.0" prefHeight="30.0" prefWidth="250.0" />
+      <AnchorPane id="holder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="800.0" stylesheets="@style.css">
+         <children>
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="30.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="name" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField id="phone-name" fx:id="phoneName" layoutX="170.0" layoutY="30.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="70.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="OS" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="os" fx:id="os" layoutX="170.0" layoutY="70.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="110.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="OS version" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField id="os-version" fx:id="osVersion" layoutX="170.0" layoutY="110.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="150.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="processor name" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField id="processor" fx:id="processor" layoutX="170.0" layoutY="150.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="190.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="RAM" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="ram-size" fx:id="ramSize" layoutX="170.0" layoutY="190.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="230.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="primary camera" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="primary-camera" fx:id="primaryCamera" layoutX="170.0" layoutY="230.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="270.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="front camera" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="front-camera" fx:id="frontCamera" layoutX="170.0" layoutY="270.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="310.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="internal storage" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="internal-storage" fx:id="internalStorage" layoutX="170.0" layoutY="310.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="350.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="external storage" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="external-storage" fx:id="externalStorage" layoutX="170.0" layoutY="350.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="390.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="screen resolution" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="screen-res" fx:id="screenResolution" layoutX="170.0" layoutY="390.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="430.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="screen size" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField id="screen-size" fx:id="screenSize" layoutX="170.0" layoutY="430.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="423.0" layoutY="30.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="contractor" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="contractor" fx:id="contractor" layoutX="573.0" layoutY="30.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="470.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="WiFi" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox id="wifi" fx:id="wifi" layoutX="260.0" layoutY="470.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="21.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </CheckBox>
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="513.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="bluetooh" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox id="bluetooth" fx:id="bluetooth" layoutX="260.0" layoutY="513.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="21.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </CheckBox>
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="557.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="dual SIM" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox id="dual-sim" fx:id="dualSim" layoutX="260.0" layoutY="557.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="21.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </CheckBox>
+            <Label alignment="CENTER_RIGHT" layoutX="423.0" layoutY="70.0" prefHeight="17.0" prefWidth="150.0" styleClass="round-left-label" text="price" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField id="price" fx:id="price" layoutX="573.0" layoutY="70.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
+            <Label alignment="CENTER" layoutX="423.0" layoutY="110.0" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);; -fx-padding: 5 5 5 5; -fx-background-radius: 15 15 0 0;" text="description" textFill="#111111">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextArea id="description" fx:id="description" layoutX="423.0" layoutY="141.0" prefHeight="159.0" prefWidth="360.0" styleClass="text-field-desc" />
+            <Button layoutX="423.0" layoutY="310.0" mnemonicParsing="false" onAction="#addPhoneImagesAction" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec); -fx-background-radius: 15;" text="add phone images (max 3)" textFill="#111111">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <GridPane fx:id="picsHolder" layoutX="423.0" layoutY="372.0" prefHeight="140.0" prefWidth="360.0" style="-fx-border-color: #ccc; -fx-border-radius: 15;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="145.0" minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" />
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
+            <Button alignment="CENTER" layoutX="576.0" layoutY="544.0" mnemonicParsing="false" onAction="#publishPhoneAction" prefHeight="38.0" prefWidth="210.0" styleClass="gradient-button" text="Publish" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</FlowPane>
