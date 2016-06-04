@@ -50,8 +50,9 @@ public class UserEJB implements UserManager {
 		if (user == null)
 			throw new NotRegisteredException();
 
-		if (user.getPassword().equals(password))
-			return true;
+		if (user.getPassword().equals(password)) {			
+			return true;			
+		}			
 
 		user = null;
 		throw new IncorrectPasswordException();
@@ -64,22 +65,22 @@ public class UserEJB implements UserManager {
 	}
 
 	@Override
-	public List<Auction> getActiveAuctions() {
-		return user.getAuctions().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());
+	public List<Auction> getActiveAuctions() {							
+		return user.getAuctions().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());		
 	}
 
 	@Override
-	public List<Auction> getClosedAuctions() {
+	public List<Auction> getClosedAuctions() {		
 		return user.getAuctions().stream().filter(x -> x.getClosed()).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Auction> getActiveParticipations() {
+	public List<Auction> getActiveParticipations() {		
 		return user.getParticipations().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Auction> getClosedParticipations() {
+	public List<Auction> getClosedParticipations() {		
 		return user.getParticipations().stream().filter(x -> x.getClosed()).collect(Collectors.toList());
 	}
 }

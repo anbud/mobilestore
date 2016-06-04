@@ -41,10 +41,10 @@ public class Test {
 		FilterManager fm = (FilterManager) context.lookup(FilterManager_LOCATION);
 
 		postTest(um, pm, fm);
-		findAuctionsByPhoneTest(fm);
-		findCommentsTest(fm);
-		findAuctionsTest(fm);
-		postPicturesTest(pm, fm);
+	//	findAuctionsByPhoneTest(fm);
+		//findCommentsTest(fm);
+	//	findAuctionsTest(fm);
+	//	postPicturesTest(pm, fm);
 		um.logout();
 	}
 
@@ -70,29 +70,6 @@ public class Test {
 		postBidTest(um, pm, fm);		
 	}
 
-	private static void loginTest(UserManager um) throws IncorrectPasswordException, NotRegisteredException {
-		System.out.println("username: ");
-		String username = in.nextLine();
-		System.out.println("password: ");
-		String password = in.nextLine();
-		if (um.login(username, password)) {
-			System.out.println(um.getUser().getEMail());
-		}
-	}
-
-	@SuppressWarnings("unused")
-	private static void insertionTest(UserManager um) throws UsernameExistsException {
-		User u = new User();
-		u.setUsername("gmail-user");
-		u.setAboutMe("");
-		u.setEMail("user@hotmail.com");
-		u.setName("User");
-		u.setSurname("User");
-		u.setPassword("password");
-		u.setAvatar(new byte[0]);
-		um.register(u);
-	}
-
 	private static void postCommentTest(PostManager pm, UserManager um, FilterManager fm) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Unesite komentar: ");
@@ -107,17 +84,17 @@ public class Test {
 
 		pm.postComment(u, a, c);
 
-		pm.postComment(u, a, c);
+		//pm.postComment(u, a, c);
 
-		pm.postComment(u, a, c);
+		//pm.postComment(u, a, c);
 
-		c = pm.postComment(u, a, c);
+		//pm.postComment(u, a, c);
 
-		for (Auction b : u.getAuctions())
-			System.out.println("POST COMMENT - ID aukcije: " + b.getId());
+		/*for (Auction b : u.getAuctions())
+			System.out.println("POST COMMENT - ID aukcije: " + b.getId());*/
 
 		for (Comment com : u.getComments())
-			System.out.println("POST COMMENT - Komentar: " + com.getText());
+			System.out.println("POST COMMENT: " + com.getText());
 
 		in.close();
 	}
@@ -129,12 +106,12 @@ public class Test {
 
 		User u = um.getUser();
 
-		a = pm.postAuction(u, a, p);
+		pm.postAuction(u, a, p);
 
-		for (Auction b : u.getAuctions())
-			System.out.println("POST AUCTION - ID aukcije: " + b.getId());
+		for (Auction b : um.getActiveAuctions())
+			System.out.println("POST AUCTION: " + b.getId());
 
-		pm.postAuctionClosed(a);
+		//pm.postAuctionClosed(a);
 	}
 
 	private static void postBidTest(UserManager um, PostManager pm, FilterManager fm) {
@@ -152,10 +129,10 @@ public class Test {
 			System.out.println("Bid = 1200");
 
 		for (Auction c : u.getParticipations())
-			System.out.println("POST BID - Ucesnici " + c.getId());
+			System.out.println("POST BID AUCTIONS " + c.getId());
 
 		for (User uu : a.getParticipants())
-			System.out.println("POST BID - Ucesca " + uu.getEMail());
+			System.out.println("POST BID USERS " + uu.getUsername());
 	}
 
 	public static void findAuctionsByPhoneTest(FilterManager fm) {
@@ -181,5 +158,28 @@ public class Test {
 	
 	public static void postPicturesTest(PostManager pm, FilterManager fm) {
 		pm.postPictures(fm.getPhone(), new PhonePicture(), new PhonePicture());		
+	}
+	
+	private static void loginTest(UserManager um) throws IncorrectPasswordException, NotRegisteredException {
+		System.out.println("username: ");
+		String username = in.nextLine();
+		System.out.println("password: ");
+		String password = in.nextLine();
+		if (um.login(username, password)) {
+			System.out.println(um.getUser().getEMail());
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private static void insertionTest(UserManager um) throws UsernameExistsException {
+		User u = new User();
+		u.setUsername("gmail-user");
+		u.setAboutMe("");
+		u.setEMail("user@hotmail.com");
+		u.setName("User");
+		u.setSurname("User");
+		u.setPassword("password");
+		u.setAvatar(new byte[0]);
+		um.register(u);
 	}
 }

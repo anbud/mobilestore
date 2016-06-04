@@ -24,8 +24,7 @@ public class FilterEJB implements FilterManager {
 		q.setParameter("b", phone.getBluetooth());
 		q.setParameter("c", phone.getContractor());
 		q.setParameter("d", phone.getDescription());
-		q.setParameter("ds", phone.getDualSim());
-		q.setParameter("es", phone.getExternalStorage());
+		q.setParameter("ds", phone.getDualSim());		
 		q.setParameter("fc", phone.getFrontCamera());
 		q.setParameter("is", phone.getInternalStorage());
 		q.setParameter("n", phone.getName());

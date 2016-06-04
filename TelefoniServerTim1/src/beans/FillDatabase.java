@@ -45,16 +45,14 @@ public class FillDatabase {
 
 		phone.setBluetooth(true);
 		phone.setContractor("sim-free");
-		//phone.setDescription(null);
 		phone.setDualSim(false);
-		//phone.setExternalStorage(null);
 		phone.setFrontCamera(5);
 		phone.setInternalStorage(64);
 		phone.setName("10");
 		phone.setOs("Android");
 		phone.setOsVersion("v6.0.1");
 		phone.setPrice(500);
-		phone.setPrimaryCamera("12MP");
+		phone.setPrimaryCamera(12);
 		phone.setProcessor("Snapdragon 820");
 		phone.setRam(4);
 		phone.setScreenRes("1440x2560");

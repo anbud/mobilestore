@@ -30,7 +30,7 @@ public class PostEJB implements PostManager {
 
 	@Override
 	public Auction postAuction(User user, Auction auction, Phone phone) {
-		user.addAuction(auction);
+		user.addAuction(auction);		
 		user.addPhone(phone);
 		auction.addPhone(phone);		
 		try {

@@ -1,9 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,10 +35,10 @@ public class Auction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "AUCTION_ID", unique = true, nullable = false)
-	private Integer id;
+	private int id;
 
 	@Column(name = "BID")
-	private Integer bid;
+	private int bid;
 
 	@Column(name = "IS_CLOSED")
 	private boolean closed;
@@ -59,18 +59,18 @@ public class Auction implements Serializable {
 	@JoinTable(name = "ParticipationsTim1", joinColumns = {
 			@JoinColumn(name = "AUCTION_ID", nullable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "USER", nullable = false) })
-	private Set<User> participants;
+	private List<User> participants;
 
 	@OneToMany(mappedBy = "auction", fetch = FetchType.EAGER)
-	private Set<Comment> comments;
+	private List<Comment> comments;
 
 	public Auction() {
-		comments = new HashSet<Comment>();
-		participants = new HashSet<User>();
+		comments = new ArrayList<Comment>();
+		participants = new ArrayList<User>();
 		closed = false;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
@@ -78,7 +78,7 @@ public class Auction implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getBid() {
+	public int getBid() {
 		return this.bid;
 	}
 
@@ -118,7 +118,7 @@ public class Auction implements Serializable {
 		this.phone = phone;
 	}
 
-	public Set<User> getParticipants() {
+	public List<User> getParticipants() {
 		return this.participants;
 	}
 
@@ -129,15 +129,15 @@ public class Auction implements Serializable {
 		return phone;
 	}
 
-	public void setParticipants(Set<User> participants) {
+	public void setParticipants(List<User> participants) {
 		this.participants = participants;
 	}
 
-	public Set<Comment> getComments() {
+	public List<Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 
@@ -171,7 +171,7 @@ public class Auction implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -184,10 +184,7 @@ public class Auction implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Auction other = (Auction) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}
