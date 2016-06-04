@@ -6,10 +6,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="container" prefHeight="710.0" prefWidth="1190.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.ContainerController">
+<BorderPane id="container" prefHeight="700.0" prefWidth="1180.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.ContainerController">
    <top>
       <HBox prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9);" BorderPane.alignment="CENTER">
          <children>
@@ -55,12 +56,16 @@
             <AnchorPane id="empty" minWidth="0.0" prefHeight="70.0" prefWidth="0.0" styleClass="nav-item" HBox.hgrow="ALWAYS" />
             <AnchorPane id="user-section" prefHeight="70.0" styleClass="nav-item">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
-                     <image>
-                        <Image url="@ico/avatar-placeholder-64.png" />
-                     </image>
-                  </ImageView>
-                  <Label id="username" alignment="CENTER" layoutX="70.0" layoutY="25.0" onMouseClicked="#logoutAction" prefWidth="100.0" styleClass="nav-item-hover" text="Log out" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="10.0" prefHeight="63.0" prefWrapLength="63.0" AnchorPane.leftAnchor="10.0">
+                     <children>
+                        <ImageView id="user-avatar" fx:id="userAvatar" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@ico/avatar-placeholder-64.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </FlowPane>
+                  <Label id="username" alignment="CENTER" layoutX="70.0" layoutY="25.0" onMouseClicked="#logoutAction" prefWidth="100.0" styleClass="nav-item-hover" text="Log out" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="20.0" />
                      </font>

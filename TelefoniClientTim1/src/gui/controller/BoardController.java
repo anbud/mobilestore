@@ -7,17 +7,16 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.ListView;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class BoardController extends Controller {
 
 	@FXML
-	private ListView myActiveList;
+	private ListView<PhoneCard> myActiveList;
 	@FXML
-	private ListView myClosedList;
+	private ListView<PhoneCard> myClosedList;
 	@FXML
-	private ListView participatingActiveList;
+	private ListView<PhoneCard> participatingActiveList;
 	@FXML
-	private ListView participatingClosedList;
+	private ListView<PhoneCard> participatingClosedList;
 
 	@FXML
 	public void expandList(Event event) {
@@ -27,13 +26,10 @@ public class BoardController extends Controller {
 	@FXML
 	private void initialize() {
 		try {
-			myActiveList.getItems().add(new PhoneCard());
-			myActiveList.getItems().add(new PhoneCard());
-			myActiveList.getItems().add(new PhoneCard());
-			myActiveList.getItems().add(new PhoneCard());
-			myActiveList.getItems().add(new PhoneCard());
+			myActiveList.getItems().addAll(new PhoneCard(), new PhoneCard(), new PhoneCard(), new PhoneCard());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }
