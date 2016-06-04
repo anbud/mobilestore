@@ -19,7 +19,9 @@ import javax.persistence.Table;
 @Table(name = "UserTim1")
 @NamedQueries(value = { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
 		@NamedQuery(name = "User.findByEMail", query = "SELECT u FROM User u WHERE u.eMail=:x"),
-		@NamedQuery(name = "User.auctions", query = "SELECT a FROM Auction a WHERE a.user=:u") })
+		@NamedQuery(name = "User.auctions", query = "SELECT u FROM User u LEFT JOIN FETCH u.auctions WHERE u.username=:u"),
+		@NamedQuery(name = "User.participations", query = "SELECT u FROM User u LEFT JOIN FETCH u.participations WHERE u.username=:u"),
+		@NamedQuery(name = "User.phones", query = "SELECT u FROM User u LEFT JOIN FETCH u.phones WHERE u.username=:u"), })
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -157,7 +159,7 @@ public class User implements Serializable {
 		this.auctions = auctions;
 	}
 
-	public Set<Comment> getComments() {		
+	public Set<Comment> getComments() {
 		return this.comments;
 	}
 

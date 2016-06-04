@@ -6,7 +6,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CommentTim1")
-@NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c")
+@NamedQueries(value = { @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
+		@NamedQuery(name = "Comment.filter", query = "SELECT c FROM Comment c WHERE c.auction=:a")})
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +15,7 @@ public class Comment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "COM_ID", unique = true, nullable = false)
-	private Integer id;
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATION_DATE")
@@ -34,11 +35,11 @@ public class Comment implements Serializable {
 	public Comment() {
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -72,5 +73,27 @@ public class Comment implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comment other = (Comment) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 }
