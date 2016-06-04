@@ -38,7 +38,7 @@ public class FillDatabase {
 		user.setEMail("user@gmail.com");
 		user.setName("User");
 		user.setSurname("User");
-		user.setPassword("password");
+		user.setPassword("5f4dcc3b5aa765d61d8327deb882cf99"); //password
 		user.setUsername("username");
 		user.setAddress("????");
 		user.setAvatar(new byte[0]);
