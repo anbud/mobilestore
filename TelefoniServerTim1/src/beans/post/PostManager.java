@@ -5,6 +5,7 @@ import javax.ejb.Remote;
 import model.Auction;
 import model.Comment;
 import model.Phone;
+import model.PhonePicture;
 import model.User;
 
 @Remote
@@ -16,5 +17,7 @@ public interface PostManager {
 	
 	public Auction postBid(User user, Auction auction, int bid);
 	
-	public Auction getAuction();	
+	public Phone postPictures(Phone phone, PhonePicture... pictures);
+	
+	public boolean postAuctionClosed(Auction auction);
 }

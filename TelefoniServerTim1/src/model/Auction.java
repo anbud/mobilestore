@@ -16,15 +16,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "AuctionTim1")
-@NamedQuery(name = "Auction.findAll", query = "SELECT a FROM Auction a")
+@NamedQueries(value = { @NamedQuery(name = "Auction.findAll", query = "SELECT a FROM Auction a"),
+		@NamedQuery(name = "Auction.filter", query = "SELECT a FROM Auction a WHERE a.phone=:p") })
 public class Auction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -48,8 +51,12 @@ public class Auction implements Serializable {
 	@JoinColumn(name = "USER", nullable = false)
 	private User user;
 
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PHONE")
+	private Phone phone;
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinTable(name = "ParticipantsTim1", joinColumns = {
+	@JoinTable(name = "ParticipationsTim1", joinColumns = {
 			@JoinColumn(name = "AUCTION_ID", nullable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "USER", nullable = false) })
 	private Set<User> participants;
@@ -103,8 +110,23 @@ public class Auction implements Serializable {
 		this.user = user;
 	}
 
+	public Phone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Phone phone) {
+		this.phone = phone;
+	}
+
 	public Set<User> getParticipants() {
 		return this.participants;
+	}
+
+	public Phone addPhone(Phone phone) {
+		this.phone = phone;
+		phone.setAuction(this);
+
+		return phone;
 	}
 
 	public void setParticipants(Set<User> participants) {
@@ -120,14 +142,14 @@ public class Auction implements Serializable {
 	}
 
 	public User addParticipant(User user) {
-		getParticipants().add(user);		
-		
+		getParticipants().add(user);
+
 		return user;
 	}
 
 	public User removeParticipant(User user) {
-		getParticipants().remove(user);		
-		
+		getParticipants().remove(user);
+
 		return user;
 	}
 
@@ -143,5 +165,30 @@ public class Auction implements Serializable {
 		comment.setAuction(null);
 
 		return comment;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Auction other = (Auction) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 }

@@ -23,17 +23,17 @@ public class UserEJB implements UserManager {
 	private User user;
 
 	@Override
-	public boolean register(User user) throws UsernameExistsException {		
-		this.user = em.find(User.class, user.getUsername());		
+	public boolean register(User user) throws UsernameExistsException {
+		this.user = em.find(User.class, user.getUsername());
 		if (this.user == null) {
 			try {
 				em.persist(user);
-				this.user = em.merge(user);						
+				this.user = em.merge(user);
 				return true;
-			} catch (Exception e) {				
+			} catch (Exception e) {
 				return false;
 			}
-		} else {						
+		} else {
 			this.user = null;
 			throw new UsernameExistsException();
 		}
@@ -52,14 +52,16 @@ public class UserEJB implements UserManager {
 
 		if (user.getPassword().equals(password))
 			return true;
-	
+
 		user = null;
 		throw new IncorrectPasswordException();
 	}
 
 	@Override
 	@Remove
-	public void logout() {}
+	public void logout() {
+		user = null;
+	}
 
 	@Override
 	public List<Auction> getActiveAuctions() {

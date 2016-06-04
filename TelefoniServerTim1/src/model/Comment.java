@@ -6,7 +6,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CommentTim1")
-@NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c")
+@NamedQueries(value = { @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
+		@NamedQuery(name = "Comment.filter", query = "SELECT c FROM Comment c WHERE c.auction=:a")})
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PhonePicTim1")
-public class PhonePic implements Serializable {
+@Table(name = "PhonePictureTim1")
+public class PhonePicture implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +21,7 @@ public class PhonePic implements Serializable {
 	@JoinColumn(name = "PHONE", nullable = false)
 	private Phone phone;
 
-	public PhonePic() {
+	public PhonePicture() {
 	}
 
 	public int getId() {
