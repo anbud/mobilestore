@@ -2,6 +2,8 @@ package gui;
 
 import javax.naming.InitialContext;
 
+import beans.filter.FilterEJB;
+import beans.filter.FilterManager;
 import beans.post.PostEJB;
 import beans.post.PostManager;
 import beans.user.UserEJB;
@@ -22,11 +24,14 @@ public class Gui extends Application {
 		public Controller controller;
 	}
 	
-	public UserManager userManager;
 	public InitialContext context;
+	public UserManager userManager;
+	public PostManager postManager;
+	public FilterManager filterManager;
 	
 	public static String USER_BEAN = "ejb:/TelefoniServerTim1//" + UserEJB.class.getSimpleName() + "!" + UserManager.class.getName() + "?stateful";
 	public static String POST_BEAN = "ejb:/TelefoniServerTim1//" + PostEJB.class.getSimpleName() + "!" + PostManager.class.getName();
+	public static String FILTER_BEAN = "ejb:/TelefoniServerTim1//" + FilterEJB.class.getSimpleName() + "!" + FilterManager.class.getName();
 	
 	private Stage stage;
 
@@ -40,6 +45,8 @@ public class Gui extends Application {
 		context = new InitialContext();
 		
 		userManager = (UserManager) context.lookup(USER_BEAN);
+		postManager = (PostManager) context.lookup(POST_BEAN);
+		filterManager = (FilterManager) context.lookup(FILTER_BEAN);
 		
 		openLoginView();
 		
