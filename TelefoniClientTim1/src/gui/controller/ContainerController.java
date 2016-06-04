@@ -34,8 +34,6 @@ public class ContainerController extends Controller {
 		
 		try {
 			getGui().userManager = (UserManager) getGui().context.lookup(Gui.USER_BEAN);
-			getGui().postManager = (PostManager) getGui().context.lookup(Gui.POST_BEAN);
-			getGui().filterManager = (FilterManager) getGui().context.lookup(Gui.FILTER_BEAN);
 		} catch (NamingException e) { }
 	}
 

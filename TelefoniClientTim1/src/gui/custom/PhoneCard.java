@@ -30,8 +30,6 @@ public class PhoneCard extends Pane {
 	@FXML
 	private Text camera;
 	@FXML
-	private Text battery;
-	@FXML
 	private Text username;
 	@FXML
 	private ImageView avatar;
@@ -44,11 +42,16 @@ public class PhoneCard extends Pane {
 	private EventHandler<Event> confirmHandler;
 	private EventHandler<Event> openHandler;
 	
-	public PhoneCard() throws Exception {
+	public PhoneCard() throws RuntimeException {
 		FXMLLoader loader = new FXMLLoader(Gui.class.getResource("res/phone-card.fxml"));
 		loader.setRoot(this);
 		loader.setController(this);
-		loader.load();
+		try {
+			loader.load();
+		}
+		catch(Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	
 	@FXML
@@ -61,6 +64,8 @@ public class PhoneCard extends Pane {
 	private void increaseAction(Event event) {
 		if(increaseHandler != null)
 			increaseHandler.handle(event);
+		
+		this.setCurrentBid(this.getCurrentBid()+1);
 	}
 	
 	@FXML
@@ -147,13 +152,6 @@ public class PhoneCard extends Pane {
 	}
 	public void setCamera(String camera) {
 		this.camera.setText(camera);
-	}
-
-	public String getBattery() {
-		return battery.getText();
-	}
-	public void setBattery(String battery) {
-		this.battery.setText(battery);
 	}
 
 	public String getUsername() {
