@@ -59,7 +59,7 @@ public class FillDatabase {
 		phone.setScreenSize(5.2);		
 		phone.setWiFi(true);
 
-		auction.setClosed(false);
+		auction.setClosed(true);
 		auction.setDate(new Date());		
 
 		comment.setDate(new Date());
