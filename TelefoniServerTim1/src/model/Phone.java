@@ -114,6 +114,31 @@ public class Phone implements Serializable {
 		ram = 0;		
 		screenSize = 0.0;		
 	}
+	
+	
+
+	public Phone(String name, String os, String osVersion, String processor, int ram, double primaryCamera,
+				double frontCamera, int internalStorage, String screenRes, double screenSize, boolean wiFi,
+				boolean bluetooth, boolean dualSim, String contractor, int price, String description) {
+		super();
+		
+		this.name = name;
+		this.os = os;
+		this.osVersion = osVersion;
+		this.processor = processor;
+		this.ram = ram;
+		this.primaryCamera = primaryCamera;
+		this.frontCamera = frontCamera;
+		this.internalStorage = internalStorage;
+		this.screenRes = screenRes;
+		this.screenSize = screenSize;
+		this.wiFi = wiFi;
+		this.bluetooth = bluetooth;
+		this.dualSim = dualSim;
+		this.contractor = contractor;
+		this.price = price;
+		this.description = description;
+	}
 
 	public int getId() {
 		return this.id;

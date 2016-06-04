@@ -33,17 +33,16 @@ public class BoardController extends Controller {
 	@FXML
 	private void initialize() {
 		try {
-		List<Auction> myActive = Gui.get().userManager.getActiveAuctions();
-		List<Auction> myClosed = Gui.get().userManager.getClosedAuctions();
-		List<Auction> partActive = Gui.get().userManager.getActiveParticipations();
-		List<Auction> partClosed = Gui.get().userManager.getClosedParticipations();
-		
-		setList(myActiveList, myActive);
-		setList(myClosedList, myClosed);
-		setList(participatingActiveList, partActive);
-		setList(participatingClosedList, partClosed);
-		}
-		catch(Exception e) {
+			List<Auction> myActive = Gui.get().userManager.getActiveAuctions();
+			List<Auction> myClosed = Gui.get().userManager.getClosedAuctions();
+			List<Auction> partActive = Gui.get().userManager.getActiveParticipations();
+			List<Auction> partClosed = Gui.get().userManager.getClosedParticipations();
+			
+			setList(myActiveList, myActive);
+			setList(myClosedList, myClosed);
+			setList(participatingActiveList, partActive);
+			setList(participatingClosedList, partClosed);
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -67,7 +66,7 @@ public class BoardController extends Controller {
 					)
 				);
 			
-			pc.setOs(p.getOs()+" "+p.getOsVersion());
+			pc.setOs(p.getOs() + " " + p.getOsVersion());
 			pc.setStorage(p.getInternalStorage()+ " GB storage");
 			pc.setRam(p.getRamString() + " RAM");
 			pc.setScreen(String.format("%.1f | %s", p.getScreenSize(), p.getScreenRes()));
@@ -75,8 +74,8 @@ public class BoardController extends Controller {
 			String camera = "";
 			
 			if(p.getPrimaryCamera() > 0) {
-				if(Math.abs( p.getPrimaryCamera() - (int)p.getPrimaryCamera() ) == 0)
-					camera += (int)p.getPrimaryCamera();
+				if(Math.abs(p.getPrimaryCamera() - (int) p.getPrimaryCamera()) == 0)
+					camera += (int) p.getPrimaryCamera();
 				else
 					camera += String.format("%.1f", p.getPrimaryCamera());
 				camera += "MP";
@@ -86,8 +85,8 @@ public class BoardController extends Controller {
 			}
 			
 			if(p.getFrontCamera() > 0) {
-				if(Math.abs( p.getFrontCamera() - (int)p.getFrontCamera() ) == 0)
-					camera += (int)p.getFrontCamera();
+				if(Math.abs(p.getFrontCamera() - (int) p.getFrontCamera()) == 0)
+					camera += (int) p.getFrontCamera();
 				else
 					camera += String.format("%.1f", p.getFrontCamera());
 				camera += "MP";
@@ -115,7 +114,7 @@ public class BoardController extends Controller {
 			pc.setOnConfirm((event) -> {
 				try {
 					PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-					if( pm.postBid(Gui.get().userManager.getUser(), a, pc.getCurrentBid()) ) {
+					if(pm.postBid(Gui.get().userManager.getUser(), a, pc.getCurrentBid())) {
 						pc.setMinimalBid(pc.getCurrentBid()+1);
 						pc.setCurrentBid(pc.getCurrentBid()+1);
 					}

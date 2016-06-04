@@ -42,15 +42,16 @@ public class AllPhonesController extends Controller {
 	@FXML
 	private Button refreshResults;
 	
-	//private String[] osesarr = {"Android", "iOS", "Windows"};
+	
+	private String[] osesarr = {"Android", "iOS", "Windows"};
 	private String[] contactorsarr = {"mts", "telenor", "VIP", "sim free", "other"};
 	private String[] screenresarr = {"480x800", "640x960", "720x1080", "1080x1920", "1440x2560 (QHD)", "2160x3840 (4K)"};
 	
 	@FXML
 	private void initialize() {
-		//oses.getItems().addAll(osesarr);
-		//contractors.getItems().addAll(contactorsarr);
-		//screenResolutions.getItems().addAll(screenresarr);
+		oses.getItems().addAll(osesarr);
+		contractors.getItems().addAll(contactorsarr);
+		screenResolutions.getItems().addAll(screenresarr);
 	}
 
 }
