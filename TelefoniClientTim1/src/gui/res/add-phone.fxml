@@ -127,7 +127,7 @@
                </font>
             </Label>
             <TextField id="price" fx:id="price" layoutX="573.0" layoutY="70.0" prefHeight="31.0" prefWidth="210.0" styleClass="round-right-input" />
-            <Label alignment="CENTER" layoutX="423.0" layoutY="110.0" prefHeight="31.0" prefWidth="360.0" style="-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);; -fx-padding: 5 5 5 5; -fx-background-radius: 15 15 0 0;" text="description" textFill="#111111">
+            <Label alignment="CENTER" layoutX="423.0" layoutY="110.0" prefHeight="31.0" prefWidth="360.0" styleClass="round-top-label" text="description" textFill="#111111">
                <font>
                   <Font size="15.0" />
                </font>

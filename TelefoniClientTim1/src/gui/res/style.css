@@ -1,6 +1,7 @@
 .gradient-button {
 	-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9);
 	-fx-background-radius: 30;
+	-fx-cursor: hand;
 }
 
 .gradient-button:hover {
@@ -67,6 +68,23 @@
 
 .round-right-input {
 	-fx-background-radius: 0 15 15 0;
+	-fx-border-radius: 0 15 15 0;
+	-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);
+}
+
+.round-top-label {
+	-fx-background-color: linear-gradient(to bottom right, #a180ec, #80caec);
+	-fx-text-fill: #111;
+	-fx-padding: 5;
+	-fx-background-radius: 15 15 0 0;
+}
+
+.round-top-input {
+	-fx-background-radius: 0 0 15 15;
+	-fx-border-radius: 0 0 15 15;
+	-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
 }
 
 .tab {
