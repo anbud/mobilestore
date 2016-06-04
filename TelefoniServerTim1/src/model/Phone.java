@@ -234,6 +234,13 @@ public class Phone implements Serializable {
 	public int getRam() {
 		return this.ram;
 	}
+	
+	public String getRamString() {
+		if(this.ram >= 1024)
+			return (this.ram/1024) + " GB";
+		else
+			return this.ram + " MB";
+	}
 
 	public void setRam(Integer ram) {
 		this.ram = ram;
