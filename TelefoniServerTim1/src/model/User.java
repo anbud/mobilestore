@@ -182,13 +182,13 @@ public class User implements Serializable {
 	}
 
 	public Auction addParticipation(Auction auction) {
-		getAuctions().add(auction);
+		getParticipations().add(auction);
 
 		return auction;
 	}
 
 	public Auction removeParticipation(Auction auction) {
-		getAuctions().remove(auction);
+		getParticipations().remove(auction);
 
 		return auction;
 	}

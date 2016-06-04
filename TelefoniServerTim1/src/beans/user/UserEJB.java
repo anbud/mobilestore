@@ -40,7 +40,7 @@ public class UserEJB implements UserManager {
 	}
 
 	@Override
-	public User getUser() {
+	public User getUser() {	
 		return user;
 	}
 
@@ -65,7 +65,7 @@ public class UserEJB implements UserManager {
 	}
 
 	@Override
-	public List<Auction> getActiveAuctions() {							
+	public List<Auction> getActiveAuctions() {				
 		return user.getAuctions().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());		
 	}
 

@@ -17,52 +17,56 @@ public class PostEJB implements PostManager {
 	private EntityManager em;
 
 	@Override
-	public Comment postComment(User user, Auction auction, Comment comment) {
-		user.addComment(comment);
-		auction.addComment(comment);		
+	public boolean postComment(User user, Auction auction, Comment comment) {
 		try {
+			comment.setUser(user);
+			comment.setAuction(auction);
 			em.persist(comment);
-			return comment;
+			user.addComment(comment);
+			auction.addComment(comment);
+			em.merge(user);
+			em.merge(comment);
+			return true;
 		} catch (Exception e) {
-			return null;
+			return false;
 		}
 	}
 
 	@Override
-	public Auction postAuction(User user, Auction auction, Phone phone) {
-		user.addAuction(auction);		
+	public boolean postAuction(User user, Auction auction, Phone phone) {
+		user.addAuction(auction);
 		user.addPhone(phone);
-		auction.addPhone(phone);		
+		auction.addPhone(phone);
 		try {
 			em.persist(phone);
 			em.persist(auction);
-			return auction;
+			return true;
 		} catch (Exception e) {
-			return null;
+			return false;
 		}
 	}
 
 	@Override
-	public Auction postBid(User user, Auction auction, int bid) {
+	public boolean postBid(User user, Auction auction, int bid) {
 		auction.setBid(bid);
 		if (isParticipant(user, auction)) {
 			try {
-				auction = em.merge(auction);
-				return auction;
-			} catch (Exception e) {	
-				return null;
+				em.merge(auction);
+				return true;
+			} catch (Exception e) {
+				return false;
 			}
 		} else {
 			user.addParticipation(auction);
 			auction.addParticipant(user);
 			try {
-				auction = em.merge(auction);
-				return auction;
+				em.merge(auction);
+				return true;
 			} catch (Exception e) {
-				return null;
+				return false;
 			}
 		}
-	}	
+	}
 
 	@Override
 	public boolean postAuctionClosed(Auction auction) {
@@ -78,7 +82,7 @@ public class PostEJB implements PostManager {
 	private boolean isParticipant(User user, Auction auction) {
 		if (user.getParticipations().contains(auction))
 			return true;
-	
+
 		user = em.find(User.class, user.getUsername());
 
 		if (user.getParticipations().contains(auction))
@@ -88,13 +92,13 @@ public class PostEJB implements PostManager {
 	}
 
 	@Override
-	public Phone postPictures(Phone phone, PhonePicture... pictures) {
-		phone.addPictures(pictures);
+	public boolean postPictures(Phone phone, PhonePicture... pictures) {
 		try {
-			 phone = em.merge(phone);
-			 return phone;
+			phone.addPictures(pictures);
+			em.merge(phone);
+			return true;
 		} catch (Exception e) {
-			return null;
-		}	
+			return false;
+		}
 	}
 }
