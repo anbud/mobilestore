@@ -11,13 +11,13 @@ import model.User;
 @Remote
 public interface PostManager {
 
-	public Comment postComment(User user, Auction auction, Comment comment);
+	public boolean postComment(User user, Auction auction, Comment comment);
 	
-	public Auction postAuction(User user, Auction auction, Phone phone);
+	public boolean postAuction(User user, Auction auction, Phone phone);
 	
-	public Auction postBid(User user, Auction auction, int bid);
+	public boolean postBid(User user, Auction auction, int bid);
 	
-	public Phone postPictures(Phone phone, PhonePicture... pictures);
+	public boolean postPictures(Phone phone, PhonePicture... pictures);
 	
 	public boolean postAuctionClosed(Auction auction);
 }

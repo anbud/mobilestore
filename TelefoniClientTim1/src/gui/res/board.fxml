@@ -41,7 +41,7 @@
                   <Button id="expand" contentDisplay="CENTER" layoutX="661.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#expandList" prefHeight="25.0" prefWidth="25.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
-            <ListView id="closed-auctions-list" fx:id="myClosedList" minHeight="220.0" orientation="HORIZONTAL" prefHeight="220.0" prefWidth="600.0">
+            <ListView id="closed-auctions-list" fx:id="myClosedList" minHeight="240.0" orientation="HORIZONTAL" prefHeight="240.0" prefWidth="600.0">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
@@ -59,7 +59,7 @@
                   <Insets />
                </VBox.margin>
             </AnchorPane>
-            <ListView id="active-auctions-list" fx:id="participatingActiveList" minHeight="220.0" orientation="HORIZONTAL" prefHeight="220.0" prefWidth="600.0">
+            <ListView id="active-auctions-list" fx:id="participatingActiveList" minHeight="240.0" orientation="HORIZONTAL" prefHeight="240.0" prefWidth="600.0">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
@@ -74,7 +74,7 @@
                   <Button id="expand" contentDisplay="CENTER" layoutX="661.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#expandList" prefHeight="25.0" prefWidth="25.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
-            <ListView id="active-auctions-list" fx:id="participatingClosedList" minHeight="220.0" orientation="HORIZONTAL" prefHeight="220.0" prefWidth="600.0">
+            <ListView id="active-auctions-list" fx:id="participatingClosedList" minHeight="240.0" orientation="HORIZONTAL" prefHeight="240.0" prefWidth="600.0">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>

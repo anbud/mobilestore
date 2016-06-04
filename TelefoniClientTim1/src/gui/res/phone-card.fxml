@@ -88,16 +88,6 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <ImageView layoutX="180.0" layoutY="167.0">
-         <image>
-            <Image url="@ico/battery.png" />
-         </image>
-      </ImageView>
-      <Text id="phone-battery" fx:id="battery" layoutX="200.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3000mAh">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
       <ImageView id="max-bid-avatar" fx:id="avatar" fitHeight="26.0" fitWidth="26.0" layoutX="403.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ico/avatar-placeholder-32.png" />

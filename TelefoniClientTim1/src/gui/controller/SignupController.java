@@ -99,6 +99,15 @@ public class SignupController extends Controller {
 			return;
 		}
 		
+		if(fullnames.split(" ").length < 2) {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setContentText("Your full name is not valid, please change it!");
+			a.setHeaderText("Invalid name");
+			a.showAndWait();
+			fullname.setText("");
+			return;
+		}
+		
 		try {
 			User user = new User();
 			String[] fullname = fullnames.split(" ", 2);

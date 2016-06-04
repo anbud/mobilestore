@@ -40,7 +40,7 @@ public class UserEJB implements UserManager {
 	}
 
 	@Override
-	public User getUser() {
+	public User getUser() {	
 		return user;
 	}
 
@@ -65,22 +65,26 @@ public class UserEJB implements UserManager {
 	}
 
 	@Override
-	public List<Auction> getActiveAuctions() {							
+	public List<Auction> getActiveAuctions() {		
+		user = em.find(User.class, user.getUsername());		
 		return user.getAuctions().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());		
 	}
 
 	@Override
-	public List<Auction> getClosedAuctions() {		
+	public List<Auction> getClosedAuctions() {
+		user = em.find(User.class, user.getUsername());	
 		return user.getAuctions().stream().filter(x -> x.getClosed()).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Auction> getActiveParticipations() {		
+	public List<Auction> getActiveParticipations() {	
+		user = em.find(User.class, user.getUsername());	
 		return user.getParticipations().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Auction> getClosedParticipations() {		
+	public List<Auction> getClosedParticipations() {	
+		user = em.find(User.class, user.getUsername());
 		return user.getParticipations().stream().filter(x -> x.getClosed()).collect(Collectors.toList());
 	}
 }

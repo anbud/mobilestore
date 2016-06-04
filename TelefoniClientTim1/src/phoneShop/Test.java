@@ -41,10 +41,10 @@ public class Test {
 		FilterManager fm = (FilterManager) context.lookup(FilterManager_LOCATION);
 
 		postTest(um, pm, fm);
-	//	findAuctionsByPhoneTest(fm);
-		//findCommentsTest(fm);
-	//	findAuctionsTest(fm);
-	//	postPicturesTest(pm, fm);
+		findAuctionsByPhoneTest(fm);
+		findCommentsTest(fm);
+		findAuctionsTest(fm);
+		postPicturesTest(pm, fm);
 		um.logout();
 	}
 
@@ -65,8 +65,8 @@ public class Test {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		postAuctionTest(pm, um);
-		postCommentTest(pm, um, fm);
+		postAuctionTest(pm, um);		
+		postCommentTest(pm, um, fm);	
 		postBidTest(um, pm, fm);		
 	}
 
@@ -78,11 +78,9 @@ public class Test {
 		Comment c = new Comment();
 		c.setText(poruka);
 
-		User u = um.getUser();
-
 		Auction a = fm.getAuction();
 
-		pm.postComment(u, a, c);
+		pm.postComment(um.getUser(), a, c);
 
 		//pm.postComment(u, a, c);
 
@@ -93,7 +91,7 @@ public class Test {
 		/*for (Auction b : u.getAuctions())
 			System.out.println("POST COMMENT - ID aukcije: " + b.getId());*/
 
-		for (Comment com : u.getComments())
+		for (Comment com : um.getUser().getComments())
 			System.out.println("POST COMMENT: " + com.getText());
 
 		in.close();
@@ -104,9 +102,7 @@ public class Test {
 
 		Phone p = new Phone();		
 
-		User u = um.getUser();
-
-		pm.postAuction(u, a, p);
+		pm.postAuction(um.getUser(), a, p);
 
 		for (Auction b : um.getActiveAuctions())
 			System.out.println("POST AUCTION: " + b.getId());
@@ -114,21 +110,19 @@ public class Test {
 		//pm.postAuctionClosed(a);
 	}
 
-	private static void postBidTest(UserManager um, PostManager pm, FilterManager fm) {
-		User u = um.getUser();
-
+	private static void postBidTest(UserManager um, PostManager pm, FilterManager fm) {		
 		Auction a = fm.getAuction();
 
-		if (pm.postBid(u, a, 500) != null)
+		if (pm.postBid(um.getUser(), a, 500))
 			System.out.println("Bid = 500");
 
-		if (pm.postBid(u, a, 800) != null)
+		if (pm.postBid(um.getUser(), a, 800))
 			System.out.println("Bid = 800");
 
-		if (pm.postBid(u, a, 1200) != null)
+		if (pm.postBid(um.getUser(), a, 1200))
 			System.out.println("Bid = 1200");
 
-		for (Auction c : u.getParticipations())
+		for (Auction c : um.getActiveParticipations())
 			System.out.println("POST BID AUCTIONS " + c.getId());
 
 		for (User uu : a.getParticipants())
