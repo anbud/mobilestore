@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,17 +21,16 @@ import javax.persistence.Table;
 @Table(name = "PhoneTim1")
 @NamedQueries(value = { @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p"),
 		@NamedQuery(name = "Phone.filter", query = "SELECT p FROM Phone p WHERE p.bluetooth=:b "
-				+ "AND p.contractor=:c " + "AND p.description=:d " + "AND p.dualSim=:ds " + "AND p.externalStorage=:es "
-				+ "AND p.frontCamera=:fc " + "AND p.internalStorage=:is " + "AND p.name=:n " + "AND p.os=:o "
-				+ "AND p.osVersion=:ov " + "AND p.price=:p " + "AND p.primaryCamera=:pc " + "AND p.processor=:p "
-				+ "AND p.ram=:r " + "AND p.screenSize=:ss " + "AND p.screenRes=:sr " + "AND p.thickness=:t "
-				+ "AND p.weight=:w " + "AND p.wiFi=:wf") })
+				+ "AND p.contractor=:c AND p.description=:d AND p.dualSim=:ds AND p.externalStorage=:es "
+				+ "AND p.frontCamera=:fc AND p.internalStorage=:is AND p.name=:n AND p.os=:o "
+				+ "AND p.osVersion=:ov AND p.price=:p AND p.primaryCamera=:pc AND p.processor=:p "
+				+ "AND p.ram=:r AND p.screenSize=:ss AND p.screenRes=:sr AND p.wiFi=:wf") })
 public class Phone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PHONE_ID", unique = true, nullable = false)
 	private Integer id;
 
@@ -82,12 +82,6 @@ public class Phone implements Serializable {
 	@Column(name = "SCREEN_SIZE")
 	private Float screenSize;
 
-	@Column(name = "THICKNESS")
-	private Integer thickness;
-
-	@Column(name = "WEIGHT")
-	private Integer weight;
-
 	@Column(name = "WI_FI")
 	private boolean wiFi;
 
@@ -95,7 +89,7 @@ public class Phone implements Serializable {
 	@JoinColumn(name = "USER", nullable = false)
 	private User user;
 
-	@OneToMany(mappedBy = "phone")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "phone")
 	private Set<PhonePic> pictures;
 
 	public Phone() {
@@ -238,22 +232,6 @@ public class Phone implements Serializable {
 		this.screenSize = screenSize;
 	}
 
-	public Integer getThickness() {
-		return this.thickness;
-	}
-
-	public void setThickness(Integer thicknes) {
-		this.thickness = thicknes;
-	}
-
-	public Integer getWeight() {
-		return this.weight;
-	}
-
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
 	public boolean getWiFi() {
 		return this.wiFi;
 	}
@@ -262,12 +240,12 @@ public class Phone implements Serializable {
 		this.wiFi = wiFi;
 	}
 
-	public User getUserBean() {
+	public User getUser() {
 		return this.user;
 	}
 
-	public void setUser(User userBean) {
-		this.user = userBean;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Set<PhonePic> getPictures() {

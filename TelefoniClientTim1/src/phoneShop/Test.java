@@ -14,6 +14,7 @@ import exceptions.NotRegisteredException;
 import exceptions.UsernameExistsException;
 import model.Auction;
 import model.Comment;
+import model.Phone;
 import model.User;
 
 public class Test {
@@ -48,8 +49,9 @@ public class Test {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}		
-		//postCommentTest(pm, um);
 		postAuctionTest(pm, um);
+		postCommentTest(pm, um);
+		postBidTest(um, pm);
 		um.logout();
 	}
 
@@ -59,7 +61,7 @@ public class Test {
 		System.out.println("password: ");
 		String password = in.nextLine();
 		if (um.login(username, password)) {
-			System.out.println(um.getUser().getName());
+			System.out.println(um.getUser().getEMail());
 		}
 	}
 
@@ -81,34 +83,64 @@ public class Test {
 		System.out.println("Unesite komentar: ");
 		String poruka = in.nextLine();
 		Comment c = new Comment();
-		c.setText(poruka);
-
-		Auction a = new Auction();
-		a.setBid(250);
+		c.setText(poruka);	
 		
 		User u = um.getUser();	
-		u.addAuction(a);
-		u.addComment(c);		
 		
-		pm.postComment(a, u, c);
+		Auction a = pm.getAuction();
+						
+		pm.postComment(u, a, c);
 		
-		System.out.println(u.getAuctions().size());
+		pm.postComment(u, a, c);
+		
+		pm.postComment(u, a, c);
+		
+		c = pm.postComment(u, a, c);
+		System.out.println(c.getId());
+			
 		for (Auction b: u.getAuctions())
-			System.out.println(b.getId() + " " + b.getBid());
+			System.out.println("Aukcije " + b.getId() + " " + b.getBid());
 		
 		for (Comment com: u.getComments())			
-			System.out.println(com.getText());
+			System.out.println("Komentari " + com.getText());
 		
 		in.close();
 	}
 	
 	private static void postAuctionTest(PostManager pm, UserManager um) {	
 		Auction a = new Auction();
-		a.setId(199);
+		a.setBid(12);					
+				
+		Phone p = new Phone();
+		p.setBluetooth(true);
 		
-		pm.postAuction(um.getUser(), a);
-
-		for (Auction b: um.getUser().getAuctions())
+		User u = um.getUser();					
+		
+		a = pm.postAuction(u, a, p);				
+		System.out.println(a.getId());		
+		
+		for (Auction b: u.getAuctions())
 			System.out.println(b.getId());		
+	}
+	
+	private static void postBidTest(UserManager um, PostManager pm) {				
+		User u = um.getUser();
+
+		Auction a = pm.getAuction();
+		
+		if (pm.postBid(u, a, 500) != null)
+			System.out.println("Bid = 500");					
+		
+		if (pm.postBid(null, a, 800) != null)
+			System.out.println("Bid = 800");
+		
+		if (pm.postBid(null, a, 1200) != null)
+			System.out.println("Bid = 1200");			
+		
+		for (Auction c: u.getParticipations())
+			System.out.println("Ucesnici " + c.getBid());
+		
+		for (User uu: a.getParticipants())
+			System.out.println("Ucesca " + uu.getEMail());
 	}
 }

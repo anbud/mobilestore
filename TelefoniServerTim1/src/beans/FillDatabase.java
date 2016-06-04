@@ -56,9 +56,7 @@ public class FillDatabase {
 		phone.setProcessor("Snapdragon 820");
 		phone.setRam(4);
 		phone.setScreenRes("1440x2560");
-		phone.setScreenSize(5.2f);
-		phone.setThickness(9);
-		phone.setWeight(161);
+		phone.setScreenSize(5.2f);		
 		phone.setWiFi(true);
 
 		auction.setClosed(false);

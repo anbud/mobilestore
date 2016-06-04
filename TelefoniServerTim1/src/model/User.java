@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,13 +19,13 @@ import javax.persistence.Table;
 @Table(name = "UserTim1")
 @NamedQueries(value = { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
 		@NamedQuery(name = "User.findByEMail", query = "SELECT u FROM User u WHERE u.eMail=:x"),
-		@NamedQuery(name = "User.auctions", query = "SELECT a FROM Auction a WHERE a.user=:u")})
+		@NamedQuery(name = "User.auctions", query = "SELECT a FROM Auction a WHERE a.user=:u") })
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "USERNAME", unique = true, nullable = false, length = 50)
+	@Column(name = "USERNAME", unique = true, nullable = false)
 	private String username;
 
 	@Column(name = "ABOUT_ME")
@@ -47,20 +46,20 @@ public class User implements Serializable {
 
 	@Column(name = "SURNAME")
 	private String surname;
-	
+
 	@Column(name = "ADDRESS")
 	private String address;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<Auction> auctions;
 
-	@ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
 	private Set<Auction> participations;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<Comment> comments;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<Phone> phones;
 
 	public User() {
@@ -158,7 +157,7 @@ public class User implements Serializable {
 		this.auctions = auctions;
 	}
 
-	public Set<Comment> getComments() {
+	public Set<Comment> getComments() {		
 		return this.comments;
 	}
 
@@ -182,14 +181,12 @@ public class User implements Serializable {
 
 	public Auction addParticipation(Auction auction) {
 		getAuctions().add(auction);
-		auction.addParticipant(this);
 
 		return auction;
 	}
 
 	public Auction removeParticipation(Auction auction) {
 		getAuctions().remove(auction);
-		auction.removeParticipant(this);
 
 		return auction;
 	}
