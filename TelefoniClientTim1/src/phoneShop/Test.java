@@ -41,10 +41,10 @@ public class Test {
 		FilterManager fm = (FilterManager) context.lookup(FilterManager_LOCATION);
 
 		postTest(um, pm, fm);
-		//findAuctionsByPhoneTest(fm);
-		//fndCommentsTest(fm);
-		//findAuctionsTest(fm);
-		//postPicturesTest(pm, fm);
+		findAuctionsByPhoneTest(fm);
+		findCommentsTest(fm);
+		findAuctionsTest(fm);
+		postPicturesTest(pm, fm);
 		um.logout();
 	}
 
@@ -65,8 +65,8 @@ public class Test {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		postAuctionTest(pm, um);
-		postCommentTest(pm, um, fm);
+		postAuctionTest(pm, um);		
+		postCommentTest(pm, um, fm);	
 		postBidTest(um, pm, fm);		
 	}
 
@@ -104,7 +104,7 @@ public class Test {
 
 		pm.postAuction(um.getUser(), a, p);
 
-		for (Auction b : um.getUser().getAuctions())
+		for (Auction b : um.getActiveAuctions())
 			System.out.println("POST AUCTION: " + b.getId());
 
 		//pm.postAuctionClosed(a);
@@ -122,7 +122,7 @@ public class Test {
 		if (pm.postBid(um.getUser(), a, 1200))
 			System.out.println("Bid = 1200");
 
-		for (Auction c : um.getUser().getParticipations())
+		for (Auction c : um.getActiveParticipations())
 			System.out.println("POST BID AUCTIONS " + c.getId());
 
 		for (User uu : a.getParticipants())

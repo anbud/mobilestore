@@ -7,7 +7,7 @@
 		<class>model.Comment</class>
 		<class>model.Phone</class>
 		<class>model.PhonePicture</class>
-		<class>model.User</class>		
+		<class>model.User</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
