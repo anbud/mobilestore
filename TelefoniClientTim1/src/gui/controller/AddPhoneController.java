@@ -27,8 +27,6 @@ public class AddPhoneController extends Controller {
 	@FXML
 	private ChoiceBox<String> internalStorage;
 	@FXML
-	private ChoiceBox<String> externalStorage;
-	@FXML
 	private ChoiceBox<String> screenResolution;
 	@FXML
 	private TextField screenSize;

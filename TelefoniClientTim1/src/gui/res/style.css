@@ -70,6 +70,8 @@
 	-fx-background-radius: 0 15 15 0;
 	-fx-border-radius: 0 15 15 0;
 	-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
 }
 
 .round-top-label {
@@ -93,4 +95,8 @@
 	-fx-faint-focus-color: transparent;
 	-fx-font-size: 20;
 	-fx-padding: 10 20;
+}
+
+.combo-box .list-cell {
+	-fx-background-radius: 0 0 15 15;
 }
