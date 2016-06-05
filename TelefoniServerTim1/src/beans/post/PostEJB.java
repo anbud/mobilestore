@@ -1,9 +1,11 @@
 package beans.post;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import beans.filter.FilterManager;
 import model.Auction;
 import model.Comment;
 import model.Phone;
@@ -11,6 +13,7 @@ import model.PhonePicture;
 import model.User;
 
 @Stateless
+@Remote(PostManager.class)
 public class PostEJB implements PostManager {
 
 	@PersistenceContext(name = "TelefoniServerTim1")
