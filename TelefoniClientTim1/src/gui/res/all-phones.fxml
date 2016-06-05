@@ -83,13 +83,13 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="54.0" prefWidth="230.0">
                            <children>
-                              <Label alignment="CENTER" styleClass="round-top-label" text="ram size (range in GB)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <TextField fx:id="ramSizeFrom" alignment="CENTER" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 2" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="120.0">
+                              <Label alignment="CENTER" styleClass="round-top-label" text="ram size (range in MB)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextField fx:id="ramSizeFrom" alignment="CENTER" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 2048" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="120.0">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </TextField>
-                              <TextField fx:id="ramSizeTo" alignment="CENTER" layoutX="138.0" layoutY="27.0" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 4" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="0.0">
+                              <TextField fx:id="ramSizeTo" alignment="CENTER" layoutX="138.0" layoutY="27.0" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 4096" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="0.0">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
@@ -153,6 +153,24 @@
                                  </padding>
                               </TextField>
                               <TextField fx:id="cameraTo" alignment="CENTER" layoutX="138.0" layoutY="27.0" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 16" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="20.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="54.0" prefWidth="230.0">
+                           <children>
+                              <Label alignment="CENTER" styleClass="round-top-label" text="front camera (range in MP)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextField fx:id="frontCameraFrom" alignment="CENTER" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 3" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="120.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField fx:id="frontCameraTo" alignment="CENTER" layoutX="138.0" layoutY="27.0" prefHeight="27.0" prefWidth="211.0" promptText="e.g. 5" styleClass="round-top-input" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="0.0">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>

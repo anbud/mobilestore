@@ -1,12 +1,22 @@
 package gui.controller;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.naming.NamingException;
+
+import beans.filter.FilterManager;
 import gui.Controller;
+import gui.Gui;
+import gui.custom.PhoneCard;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import model.Auction;
+import model.Phone;
 
 public class AllPhonesController extends Controller {
 	@FXML
@@ -36,6 +46,10 @@ public class AllPhonesController extends Controller {
 	@FXML
 	private TextField cameraTo;
 	@FXML
+	private TextField frontCameraFrom;
+	@FXML
+	private TextField frontCameraTo;
+	@FXML
 	private ChoiceBox<String> contractors;
 	@FXML
 	private TextField priceFrom;
@@ -55,17 +69,26 @@ public class AllPhonesController extends Controller {
 		oses.getItems().addAll(osesarr);
 		contractors.getItems().addAll(contactorsarr);
 		screenResolutions.getItems().addAll(screenresarr);
-		/*
-		try {
-			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
-			fm.findAuctions();
-			auctionHolder.getChildren().addAll(new PhoneCard(), new PhoneCard());
-		} catch (NamingException e) { }*/
 	}
 
 	@FXML
 	private void filterPhonesAction(Event event) {
-		// TODO
+		Phone p = new Phone(phoneName.getText(), oses.getValue() == null ? "" : oses.getValue(), osVersion.getText(), processor.getText(), ramSizeFrom.getText().equals("") ? 0 : Integer.parseInt(ramSizeFrom.getText()), ramSizeTo.getText().equals("") ? 0 : Integer.parseInt(ramSizeTo.getText()),
+				storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText()), screenResolutions.getValue() == null ? "" : screenResolutions.getValue(), 
+				inchesFrom.getText().equals("") ? 0 : Integer.parseInt(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Integer.parseInt(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Integer.parseInt(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Integer.parseInt(frontCameraTo.getText()), 
+				cameraFrom.getText().equals("") ? 0 : Integer.parseInt(cameraFrom.getText()), cameraTo.getText().equals("") ? 0 : Integer.parseInt(cameraTo.getText()), contractors.getValue() == null ? "" : contractors.getValue(), 
+				priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText()));
+		
+		try {
+			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
+			List<Auction> l = fm.findAuctionsByPhone(p);
+			
+			List<PhoneCard> ph = new LinkedList<>();
+			l.stream().forEach(i -> {
+				 ph.add(new PhoneCard(i));
+			});
+			auctionHolder.getChildren().addAll(ph);//UX
+		} catch (NamingException e) {}
 	}
 	
 }
