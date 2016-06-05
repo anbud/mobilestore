@@ -159,8 +159,7 @@ public class AddPhoneController extends Controller {
 				} catch (Exception e) { }
 			});
 			
-			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-			
+			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);			
 			if(pm.postAuction(Gui.get().userManager.getUser(), phone)) {
 				Gui.get().openBoardView();
 			}

@@ -26,8 +26,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "AuctionTim1")
-@NamedQueries(value = { @NamedQuery(name = "Auction.findAll", query = "SELECT a FROM Auction a"),
-		@NamedQuery(name = "Auction.filter", query = "SELECT a FROM Auction a WHERE a.phone=:p") })
+@NamedQueries(value = { @NamedQuery(name = "Auction.findAll", query = "SELECT a FROM Auction a") })
 public class Auction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
