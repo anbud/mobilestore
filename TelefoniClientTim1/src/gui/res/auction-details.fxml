@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <TabPane focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
@@ -91,40 +92,49 @@
                               <Font name="Roboto" size="20.0" />
                            </font>
                         </Label>
-                        <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="430.0" layoutY="255.0" prefWrapLength="220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <StackPane layoutX="10.0" layoutY="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <AnchorPane>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="220.0">
                                  <children>
-                                    <TextField alignment="CENTER" focusTraversable="false" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </TextField>
-                                    <Button fx:id="raiseBid" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="0.0" layoutX="69.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-text-fill: #fff;" text="↑">
+                                    <AnchorPane>
+                                       <children>
+                                          <TextField alignment="CENTER" focusTraversable="false" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <Button fx:id="raiseBid" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="0.0" layoutX="69.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-text-fill: #fff;" text="↑">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Label layoutY="6.0" text="\$">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                    </AnchorPane>
+                                    <Button fx:id="confirmBid" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmAction" styleClass="gradient-button" text="Confirm bid" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Label layoutY="6.0" text="\$">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
                                  </children>
-                                 <padding>
-                                    <Insets left="10.0" right="10.0" />
-                                 </padding>
-                              </AnchorPane>
-                              <Button fx:id="confirmBid" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="gradient-button" text="Confirm bid" textFill="WHITE">
+                              </FlowPane>
+                              <Button fx:id="acceptBid" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#acceptAction" styleClass="gradient-button" text="Accept bid" textFill="WHITE" visible="false">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Button>
                            </children>
-                        </FlowPane>
+                        </StackPane>
                         <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="65.0" layoutY="360.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <AnchorPane>
