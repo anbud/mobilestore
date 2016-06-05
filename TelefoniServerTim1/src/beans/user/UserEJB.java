@@ -3,11 +3,13 @@ package beans.user;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ejb.Remote;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import beans.filter.FilterManager;
 import exceptions.IncorrectPasswordException;
 import exceptions.NotRegisteredException;
 import exceptions.UsernameExistsException;
@@ -15,6 +17,7 @@ import model.Auction;
 import model.User;
 
 @Stateful
+@Remote(UserManager.class)
 public class UserEJB implements UserManager {
 
 	@PersistenceContext(name = "TelefoniServerTim1")

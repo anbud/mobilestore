@@ -46,9 +46,9 @@ public class AllPhonesController extends Controller {
 	@FXML
 	private FlowPane auctionHolder;
 	
-	private String[] osesarr = {"Android", "iOS", "Windows"};
-	private String[] contactorsarr = {"mts", "telenor", "VIP", "sim free", "other"};
-	private String[] screenresarr = {"480x800", "640x960", "720x1080", "1080x1920", "1440x2560 (QHD)", "2160x3840 (4K)"};
+	private final String[] osesarr = {"Android", "iOS", "Windows"};
+	private final String[] contactorsarr = {"MTS", "Telenor", "VIP", "sim free", "other"};
+	private final String[] screenresarr = {"240x320", "240x400", "320x480", "480x800", "540x960", "640x960", "720x1280", "1080x1920", "1440x2560", "2160x3840"};
 	
 	@FXML
 	private void initialize() {
