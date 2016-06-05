@@ -63,14 +63,13 @@ public class AddPhoneController extends Controller {
 	private GridPane picsHolder;
 	
 	private List<File> images = new ArrayList<File>(3);
-	private String[] osarr = {"Android", "iOS", "Windows"};
-	private String[] ramSizearr = {"1 GB", "2 GB", "3 GB", "4 GB", "6 GB", "8 GB"};
-	private String[] primaryCameraarr = {"5 MP", "6 MP", "8 MP", "12 MP", "13 MP", "14 MP", "16 MP", "23 MP"};
-	private String[] frontCameraarr = {"1.2 MP", "2 MP", "5 MP", "6 MP", "8 MP", "13 MP"};
-	private String[] internalStoragearr = {"8 GB", "16 GB", "32 GB", "64 GB", "128 GB"};
-	private String[] contractorarr = {"mts", "telenor", "VIP", "sim free", "other"};
-	private String[] screenResarr = 
-		{"480x800", "640x960", "720x1080", "1080x1920", "1440x2560 (QHD)", "2160x3840 (4K)"};
+	private final String[] osarr = {"Android", "iOS", "Windows"};
+	private final String[] ramSizearr = {"128 MB", "256 MB", "512 MB", "768 MB", "1 GB", "1.5 GB", "2 GB", "3 GB", "4 GB", "6 GB", "8 GB"};
+	private final String[] primaryCameraarr = {"", "0.3 MP", "1 MP", "1.2 MP", "2 MP", "5 MP", "6 MP", "8 MP", "12 MP", "13 MP", "14 MP", "16 MP", "23 MP"};
+	private final String[] frontCameraarr = {"", "0.3 MP", "1 MP", "1.2 MP", "2 MP", "5 MP", "6 MP", "8 MP", "13 MP"};
+	private final String[] internalStoragearr = {"4 GB", "8 GB", "16 GB", "32 GB", "64 GB", "128 GB"};
+	private final String[] contractorarr = {"MTS", "Telenor", "VIP", "sim free", "other"};
+	private final String[] screenResarr = {"240x320", "240x400", "320x480", "480x800", "540x960", "640x960", "720x1280", "1080x1920", "1440x2560", "2160x3840"};
 	
 
 	@FXML
