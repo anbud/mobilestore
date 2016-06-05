@@ -13,8 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,13 +20,6 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "PhoneTim1")
-@NamedQueries(value = { @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p"),
-		@NamedQuery(name = "Phone.filter", query = "SELECT p FROM Phone p WHERE p.bluetooth=:b "
-				+ "AND p.contractor=:c AND p.description=:d AND p.dualSim=:ds "
-				+ "AND p.frontCamera=:fc AND (p.internalStorage BETWEEN :is AND :is1) AND p.name=:n AND p.os=:o "
-				+ "AND p.osVersion=:ov AND (p.price BETWEEN :p AND :p1) AND (p.primaryCamera BETWEEN :pc AND :pc1) AND p.processor=:pr "
-				+ "AND (p.ram BETWEEN :r AND :r1) AND p.screenRes=:sr AND (p.screenSize BETWEEN :ss AND :ss1)"
-				+ " AND p.wiFi=:wf") })
 public class Phone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -145,7 +136,7 @@ public class Phone implements Serializable {
 	public Phone(String name, String os, String osVersion, String processor, int ram, double primaryCamera,
 			double frontCamera, int internalStorage, String screenRes, double screenSize, boolean wiFi,
 			boolean bluetooth, boolean dualSim, String contractor, int price, String description) {
-		super();
+		this();
 
 		this.name = name;
 		this.os = os;
@@ -167,7 +158,7 @@ public class Phone implements Serializable {
 
 	public Phone(String name, String os, String osVersion, String processor, int ram, int ram1, int internalStorage, int internalStorage1, String screenRes, double screenSize, double screenSize1, double frontCamera, 
 			double frontCamera1, double primaryCamera, double primaryCamera1, String contractor, int price, int price1) {
-		super();
+		this();
 		this.contractor = contractor;
 		this.frontCamera = frontCamera;
 		this.internalStorage = internalStorage;

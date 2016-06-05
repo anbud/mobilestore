@@ -37,9 +37,9 @@ public class PostEJB implements PostManager {
 	}
 
 	@Override
-	public boolean postAuction(User user, Phone phone, int startBid) {
+	public boolean postAuction(User user, Phone phone) {
 		Auction auction = new Auction();
-		auction.setBid(startBid);
+		auction.setBid(phone.getPrice());
 		auction.setClosed(false);
 		auction.setDate(new Date());
 		auction.addPhone(phone);

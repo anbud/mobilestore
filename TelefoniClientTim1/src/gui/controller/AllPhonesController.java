@@ -73,11 +73,11 @@ public class AllPhonesController extends Controller {
 
 	@FXML
 	private void filterPhonesAction(Event event) {
-		Phone p = new Phone(phoneName.getText(), oses.getValue() == null ? "" : oses.getValue(), osVersion.getText(), processor.getText(), ramSizeFrom.getText().equals("") ? 0 : Integer.parseInt(ramSizeFrom.getText()), ramSizeTo.getText().equals("") ? 0 : Integer.parseInt(ramSizeTo.getText()),
-				storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText()), screenResolutions.getValue() == null ? "" : screenResolutions.getValue(), 
-				inchesFrom.getText().equals("") ? 0 : Integer.parseInt(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Integer.parseInt(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Integer.parseInt(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Integer.parseInt(frontCameraTo.getText()), 
-				cameraFrom.getText().equals("") ? 0 : Integer.parseInt(cameraFrom.getText()), cameraTo.getText().equals("") ? 0 : Integer.parseInt(cameraTo.getText()), contractors.getValue() == null ? "" : contractors.getValue(), 
-				priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText()));
+		Phone p = new Phone(phoneName.getText().trim(), oses.getSelectionModel().getSelectedItem() == null ? "" : oses.getSelectionModel().getSelectedItem().trim(), osVersion.getText().trim(), processor.getText().trim(), ramSizeFrom.getText().equals("") ? 0 : Integer.parseInt(ramSizeFrom.getText().trim()), ramSizeTo.getText().equals("") ? 0 : Integer.parseInt(ramSizeTo.getText().trim()),
+				storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText().trim()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText().trim()), screenResolutions.getSelectionModel().getSelectedItem() == null ? "" : screenResolutions.getSelectionModel().getSelectedItem().trim(), 
+				inchesFrom.getText().equals("") ? 0 : Integer.parseInt(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Integer.parseInt(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Integer.parseInt(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Integer.parseInt(frontCameraTo.getText().trim()), 
+				cameraFrom.getText().equals("") ? 0 : Integer.parseInt(cameraFrom.getText().trim()), cameraTo.getText().equals("") ? 0 : Integer.parseInt(cameraTo.getText().trim()), contractors.getSelectionModel().getSelectedItem() == null ? "" : contractors.getSelectionModel().getSelectedItem().trim(), 
+				priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText().trim()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText().trim()));
 		
 		try {
 			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
@@ -87,7 +87,7 @@ public class AllPhonesController extends Controller {
 			l.stream().forEach(i -> {
 				 ph.add(new PhoneCard(i));
 			});
-			auctionHolder.getChildren().addAll(ph);//UX
+			auctionHolder.getChildren().setAll(ph);//UX
 		} catch (NamingException e) {}
 	}
 	
