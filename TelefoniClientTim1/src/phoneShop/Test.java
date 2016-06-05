@@ -98,11 +98,11 @@ public class Test {
 	}
 
 	private static void postAuctionTest(PostManager pm, UserManager um) {
-		Auction a = new Auction();		
+		//Auction a = new Auction();		
 
 		Phone p = new Phone();		
 
-		pm.postAuction(um.getUser(), a, p);
+		pm.postAuction(um.getUser(), p, 400);
 
 		for (Auction b : um.getActiveAuctions())
 			System.out.println("POST AUCTION: " + b.getId());

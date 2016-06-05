@@ -66,7 +66,15 @@ public class FilterEJB implements FilterManager {
 		}
 		
 		if ((phone.getScreenSize() != 0) || (phone.getScreenSize1() != 0)) {
-			query.append("(p.internalStorage BETWEEN :is AND :is1) AND ");
+			query.append("(p.screenSize BETWEEN :ss AND :ss1) AND ");
+		}
+		
+		if ((phone.getPrimaryCamera() != 0) || (phone.getPrimaryCamera1() != 0)) {
+			query.append("(p.primaryCamera BETWEEN :pc AND :pc1) AND ");
+		}
+		
+		if (!phone.getContractor().equals("")) {
+			query.append("p.contractor=:c");
 		}
 		
 		Query q = em.createNamedQuery("Phone.filter1");
