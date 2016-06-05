@@ -165,9 +165,8 @@ public class Phone implements Serializable {
 		this.description = description;
 	}
 
-	public Phone(String contractor, double frontCamera, int internalStorage, String name, String os, String osVersion,
-			int price, double primaryCamera, String processor, int ram, String screenRes, double screenSize, int ram1,
-			int internalStorage1, double screenSize1, double frontCamera1, double primaryCamera1, int price1) {
+	public Phone(String name, String os, String osVersion, String processor, int ram, int ram1, int internalStorage, int internalStorage1, String screenRes, double screenSize, double screenSize1, double frontCamera, 
+			double frontCamera1, double primaryCamera, double primaryCamera1, String contractor, int price, int price1) {
 		super();
 		this.contractor = contractor;
 		this.frontCamera = frontCamera;
