@@ -160,9 +160,11 @@ public class AddPhoneController extends Controller {
 			});
 			
 			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-			if(pm.postAuction(Gui.get().userManager.getUser(), phone, howmuch)) {
+			
+			if(pm.postAuction(Gui.get().userManager.getUser(), phone)) {
 				Gui.get().openBoardView();
 			}
+
 		} catch (NullPointerException e) {
 			Alert a = new Alert(AlertType.WARNING);
 			a.setHeaderText("Missed info");

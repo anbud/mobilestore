@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -20,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root id="phone-details" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to bottom right, #fff, #e0d4ff);" stylesheets="@style.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="phone-details" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to bottom right, #fff, #e0d4ff);" stylesheets="@style.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -105,17 +98,18 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="341.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimal bid">
+      <Text layoutX="345.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Initial price">
          <font>
-            <Font size="15.0" />
+            <Font size="14.0" />
          </font>
       </Text>
-      <Text id="minimal-bid-placeholder" fx:id="minimalBid" layoutX="360.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
+      <Text id="minimal-bid-placeholder" fx:id="initialPrice" layoutX="361.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Text>
-      <AnchorPane fx:id="bidHolder" layoutX="328.0" layoutY="133.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="102.0">
+
+      <AnchorPane fx:id="bidHolder" layoutX="200.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="102.0">
          <children>
             <TextField id="current-bid" fx:id="bid" alignment="CENTER" focusTraversable="false" layoutX="1.0" layoutY="1.0" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;" text="\$ 100">
                <font>
@@ -132,6 +126,7 @@
             </Button>
          </children>
       </AnchorPane>
+
       <Button id="confirm-bid" fx:id="bidButton" layoutX="330.0" layoutY="177.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-background-radius: 30;" text="Confirm bid" textFill="WHITE">
          <font>
             <Font size="14.0" />
@@ -140,5 +135,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Text layoutX="345.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current bid">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text id="minimal-bid-placeholder" fx:id="currentBid" layoutX="353.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 100" textAlignment="CENTER" wrappingWidth="50.5693359375">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </fx:root>
