@@ -122,11 +122,11 @@ public class AddPhoneController extends Controller {
 			
 			String primarycamerastring = primaryCamera.getSelectionModel().getSelectedItem();
 			double primarycamera = 
-					(primaryCamera.getValue() == null || primarycamerastring.equals("")) ? 0 :
+					primarycamerastring.equals("") ? 0 :
 					Double.parseDouble(primarycamerastring.substring(0, primarycamerastring.indexOf(" ")));
 			String frontcamerastring = frontCamera.getSelectionModel().getSelectedItem();
 			double frontcamera = 
-					(frontCamera.getValue() == null || frontcamerastring.equals("")) ? 0 :
+					frontcamerastring.equals("") ? 0 :
 					Double.parseDouble(frontcamerastring.substring(0, frontcamerastring.indexOf(" ")));
 			String internalstoragestring = internalStorage.getSelectionModel().getSelectedItem();
 			int internalstorage = 
