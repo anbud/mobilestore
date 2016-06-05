@@ -132,9 +132,11 @@ public class Test {
 
 	public static void findAuctionsByPhoneTest(FilterManager fm) {
 		Phone p = new Phone();
-		p.setName("10");
+		/*p.setName("10");
 		p.setFrontCamera(4.0);
 		p.setFrontCamera1(5.5);
+		p.setOs("Android");
+		p.setProcessor("Snapdragon 820");*/
 		List<Auction> auctions = fm.findAuctionsByPhone(p);
 		for (Auction a : auctions) {
 			System.out.println("Aukcije za trazeni fon " + a.getId());
