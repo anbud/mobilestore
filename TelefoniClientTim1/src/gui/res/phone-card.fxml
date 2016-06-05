@@ -22,7 +22,7 @@
          <children>
             <ImageView id="phone-img" fx:id="image" fitHeight="200.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@phones/htc-10-r.jpg" />
+                  <Image url="@ico/no-phone-photo.png" />
                </image>
             </ImageView>
             <Label fx:id="hoverMsg" onMouseClicked="#openAuctionAction" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0.5);" text="Click to open auction" textAlignment="CENTER" textFill="#eeeeee" visible="false" wrapText="true">
