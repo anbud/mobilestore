@@ -87,7 +87,7 @@ public class AllPhonesController extends Controller {
 			l.stream().forEach(i -> {
 				 ph.add(new PhoneCard(i));
 			});
-			auctionHolder.getChildren().addAll(ph);//UX
+			auctionHolder.getChildren().setAll(ph);//UX
 		} catch (NamingException e) {}
 	}
 	

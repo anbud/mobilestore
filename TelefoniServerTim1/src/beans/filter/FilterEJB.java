@@ -30,6 +30,11 @@ public class FilterEJB implements FilterManager {
 			query.append(" a.phone.name=:n !");
 			parameters.add("n");
 		}
+		
+		if (!phone.getOs().equals("")) {
+			query.append(" a.phone.os=:os !");
+			parameters.add("os");
+		}
 
 		if (!phone.getOsVersion().equals("")) {
 			query.append(" a.phone.osVersion=:ov !");
