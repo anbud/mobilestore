@@ -2,6 +2,7 @@ package beans.filter;
 
 import java.util.List;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import model.Comment;
 import model.Phone;
 
 @Stateless
+@Remote(FilterManager.class)
 public class FilterEJB implements FilterManager {
 
 	@PersistenceContext(name="TelefoniServerTim1")
@@ -20,7 +22,7 @@ public class FilterEJB implements FilterManager {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Auction> findAuctionsByPhone(Phone phone) {		
-		Query q = em.createNamedQuery("Phone.filter");
+/*		Query q = em.createNamedQuery("Phone.filter1");
 		q.setParameter("b", phone.getBluetooth());
 		q.setParameter("c", phone.getContractor());
 		q.setParameter("d", phone.getDescription());
@@ -34,10 +36,48 @@ public class FilterEJB implements FilterManager {
 		q.setParameter("pc", phone.getPrimaryCamera());
 		q.setParameter("pr", phone.getProcessor());
 		q.setParameter("r", phone.getRam());
-		q.setParameter("sr", phone.getScreenRes());
-		q.setParameter("ss", phone.getScreenSize());	
-		q.setParameter("wf", phone.getWiFi());
+		q.setParameter("sr", phone.getScreenRes());		
+		q.setParameter("ss", phone.getScreenSize());
+		q.setParameter("wf", phone.getWiFi());*/
 		
+		StringBuilder query = new StringBuilder("SELECT p FROM Phone WHERE ");
+		if (!phone.getName().equals("")) {
+			query.append("p.name=:n AND ");
+		}
+		
+		if (!phone.getOsVersion().equals("")) {
+			query.append("p.osVersion=:ov AND ");
+		}
+		
+		if (!phone.getProcessor().equals("")) {
+			query.append("p.processor=:p AND ");
+		}
+		
+		if ((phone.getRam() != 0) || (phone.getRam1() != 0)) {
+			query.append("(p.ram BETWEEN :r AND :r1) AND ");
+		}
+		
+		if ((phone.getInternalStorage() != 0) || (phone.getInternalStorage1() != 0)) {
+			query.append("(p.internalStorage BETWEEN :is AND :is1) AND ");
+		}
+		
+		if (!phone.getScreenRes().equals("")) {
+			query.append("p.screenRes=:sr AND ");
+		}
+		
+		if ((phone.getScreenSize() != 0) || (phone.getScreenSize1() != 0)) {
+			query.append("(p.screenSize BETWEEN :ss AND :ss1) AND ");
+		}
+		
+		if ((phone.getPrimaryCamera() != 0) || (phone.getPrimaryCamera1() != 0)) {
+			query.append("(p.primaryCamera BETWEEN :pc AND :pc1) AND ");
+		}
+		
+		if (!phone.getContractor().equals("")) {
+			query.append("p.contractor=:c");
+		}
+		
+		Query q = em.createNamedQuery("Phone.filter1");
 		phone = (Phone)q.getSingleResult();
 		
 		q = em.createNamedQuery("Auction.filter");

@@ -13,7 +13,7 @@ public interface PostManager {
 
 	public boolean postComment(User user, Auction auction, Comment comment);
 	
-	public boolean postAuction(User user, Auction auction, Phone phone);
+	public boolean postAuction(User user, Phone phone, int startBid);
 	
 	public boolean postBid(User user, Auction auction, int bid);
 	

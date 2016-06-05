@@ -18,15 +18,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "PhoneTim1")
 @NamedQueries(value = { @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p"),
 		@NamedQuery(name = "Phone.filter", query = "SELECT p FROM Phone p WHERE p.bluetooth=:b "
 				+ "AND p.contractor=:c AND p.description=:d AND p.dualSim=:ds "
-				+ "AND p.frontCamera=:fc AND p.internalStorage=:is AND p.name=:n AND p.os=:o "
-				+ "AND p.osVersion=:ov AND p.price=:p AND p.primaryCamera=:pc AND p.processor=:pr "
-				+ "AND p.ram=:r AND p.screenRes=:sr AND p.screenSize=:ss AND p.wiFi=:wf") })
+				+ "AND p.frontCamera=:fc AND (p.internalStorage BETWEEN :is AND :is1) AND p.name=:n AND p.os=:o "
+				+ "AND p.osVersion=:ov AND (p.price BETWEEN :p AND :p1) AND (p.primaryCamera BETWEEN :pc AND :pc1) AND p.processor=:pr "
+				+ "AND (p.ram BETWEEN :r AND :r1) AND p.screenRes=:sr AND (p.screenSize BETWEEN :ss AND :ss1)"
+				+ " AND p.wiFi=:wf") })
 public class Phone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -83,7 +85,7 @@ public class Phone implements Serializable {
 
 	@Column(name = "WI_FI")
 	private boolean wiFi;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "USER", nullable = false)
 	private User user;
@@ -95,6 +97,24 @@ public class Phone implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "phone", cascade = CascadeType.ALL)
 	private Set<PhonePicture> pictures;
 
+	@Transient
+	private int ram1;
+
+	@Transient
+	private int internalStorage1;
+
+	@Transient
+	private double screenSize1;
+
+	@Transient
+	private double frontCamera1;
+
+	@Transient
+	private double primaryCamera1;
+
+	@Transient
+	private int price1;
+
 	public Phone() {
 		pictures = new HashSet<PhonePicture>();
 		contractor = "";
@@ -103,25 +123,30 @@ public class Phone implements Serializable {
 		os = "";
 		osVersion = "";
 		processor = "";
-		screenRes = "";		
+		screenRes = "";
 		bluetooth = false;
-		dualSim = false;		
+		dualSim = false;
 		wiFi = false;
 		frontCamera = 0.0;
 		internalStorage = 0;
 		price = 0;
-		primaryCamera = 0.0;		
-		ram = 0;		
-		screenSize = 0.0;		
+		primaryCamera = 0.0;
+		ram = 0;
+		screenSize = 0.0;
+
+		frontCamera1 = 0.0;
+		internalStorage1 = 0;
+		price1 = 0;
+		primaryCamera1 = 0.0;
+		ram1 = 0;
+		screenSize1 = 0.0;
 	}
-	
-	
 
 	public Phone(String name, String os, String osVersion, String processor, int ram, double primaryCamera,
-				double frontCamera, int internalStorage, String screenRes, double screenSize, boolean wiFi,
-				boolean bluetooth, boolean dualSim, String contractor, int price, String description) {
+			double frontCamera, int internalStorage, String screenRes, double screenSize, boolean wiFi,
+			boolean bluetooth, boolean dualSim, String contractor, int price, String description) {
 		super();
-		
+
 		this.name = name;
 		this.os = os;
 		this.osVersion = osVersion;
@@ -138,6 +163,29 @@ public class Phone implements Serializable {
 		this.contractor = contractor;
 		this.price = price;
 		this.description = description;
+	}
+
+	public Phone(String name, String os, String osVersion, String processor, int ram, int ram1, int internalStorage, int internalStorage1, String screenRes, double screenSize, double screenSize1, double frontCamera, 
+			double frontCamera1, double primaryCamera, double primaryCamera1, String contractor, int price, int price1) {
+		super();
+		this.contractor = contractor;
+		this.frontCamera = frontCamera;
+		this.internalStorage = internalStorage;
+		this.name = name;
+		this.os = os;
+		this.osVersion = osVersion;
+		this.price = price;
+		this.primaryCamera = primaryCamera;
+		this.processor = processor;
+		this.ram = ram;
+		this.screenRes = screenRes;
+		this.screenSize = screenSize;
+		this.ram1 = ram1;
+		this.internalStorage1 = internalStorage1;
+		this.screenSize1 = screenSize1;
+		this.frontCamera1 = frontCamera1;
+		this.primaryCamera1 = primaryCamera1;
+		this.price1 = price1;
 	}
 
 	public int getId() {
@@ -247,15 +295,15 @@ public class Phone implements Serializable {
 	public int getRam() {
 		return this.ram;
 	}
-	
+
 	public String getRamString() {
-		if(this.ram >= 1024)
-			return (this.ram/1024) + " GB";
+		if (this.ram >= 1024)
+			return (this.ram / 1024) + " GB";
 		else
 			return this.ram + " MB";
 	}
 
-	public void setRam(Integer ram) {
+	public void setRam(int ram) {
 		this.ram = ram;
 	}
 
@@ -297,7 +345,7 @@ public class Phone implements Serializable {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
-	}	
+	}
 
 	public Set<PhonePicture> getPictures() {
 		return pictures;
@@ -324,7 +372,7 @@ public class Phone implements Serializable {
 
 		return pictures;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -345,5 +393,53 @@ public class Phone implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public void setRam1(int ram1) {
+		this.ram1 = ram1;
+	}
+
+	public int getRam1() {
+		return ram1;
+	}
+
+	public int getInternalStorage1() {
+		return internalStorage1;
+	}
+
+	public void setInternalStorage1(int internalStorage1) {
+		this.internalStorage1 = internalStorage1;
+	}
+
+	public double getScreenSize1() {
+		return screenSize1;
+	}
+
+	public void setScreenSize1(double screenSize1) {
+		this.screenSize1 = screenSize1;
+	}
+
+	public double getFrontCamera1() {
+		return frontCamera1;
+	}
+
+	public void setFrontCamera1(double frontCamera1) {
+		this.frontCamera1 = frontCamera1;
+	}
+
+	public double getPrimaryCamera1() {
+		return primaryCamera1;
+	}
+
+	public void setPrimaryCamera1(double primaryCamera1) {
+		this.primaryCamera1 = primaryCamera1;
+	}
+
+	public int getPrice1() {
+		return price1;
+	}
+
+	public void setPrice1(int price1) {
+		this.price1 = price1;
 	}
 }

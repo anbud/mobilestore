@@ -40,11 +40,11 @@ public class Test {
 		PostManager pm = (PostManager) context.lookup(PostManager_LOCATION);
 		FilterManager fm = (FilterManager) context.lookup(FilterManager_LOCATION);
 
-		postTest(um, pm, fm);
+		//postTest(um, pm, fm);
 		findAuctionsByPhoneTest(fm);
-		findCommentsTest(fm);
-		findAuctionsTest(fm);
-		postPicturesTest(pm, fm);
+		//findCommentsTest(fm);
+		//findAuctionsTest(fm);
+		//postPicturesTest(pm, fm);
 		um.logout();
 	}
 
@@ -98,11 +98,11 @@ public class Test {
 	}
 
 	private static void postAuctionTest(PostManager pm, UserManager um) {
-		Auction a = new Auction();		
+		//Auction a = new Auction();		
 
 		Phone p = new Phone();		
 
-		pm.postAuction(um.getUser(), a, p);
+		pm.postAuction(um.getUser(), p, 400);
 
 		for (Auction b : um.getActiveAuctions())
 			System.out.println("POST AUCTION: " + b.getId());
@@ -130,7 +130,9 @@ public class Test {
 	}
 
 	public static void findAuctionsByPhoneTest(FilterManager fm) {
-		List<Auction> auctions = fm.findAuctionsByPhone(fm.getPhone());
+		Phone p = new Phone();
+		p.setBluetooth(true);
+		List<Auction> auctions = fm.findAuctionsByPhone(p);
 		for (Auction a : auctions) {
 			System.out.println("Aukcije za trazeni fon " + a.getId());
 		}

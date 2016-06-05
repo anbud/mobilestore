@@ -1,5 +1,8 @@
 package beans.post;
 
+import java.util.Date;
+
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +14,7 @@ import model.PhonePicture;
 import model.User;
 
 @Stateless
+@Remote(PostManager.class)
 public class PostEJB implements PostManager {
 
 	@PersistenceContext(name = "TelefoniServerTim1")
@@ -33,10 +37,14 @@ public class PostEJB implements PostManager {
 	}
 
 	@Override
-	public boolean postAuction(User user, Auction auction, Phone phone) {
-		user.addAuction(auction);
-		user.addPhone(phone);
+	public boolean postAuction(User user, Phone phone, int startBid) {
+		Auction auction = new Auction();
+		auction.setBid(startBid);
+		auction.setClosed(false);
+		auction.setDate(new Date());
 		auction.addPhone(phone);
+		user.addAuction(auction);
+		user.addPhone(phone);		
 		try {
 			em.persist(phone);
 			em.persist(auction);
