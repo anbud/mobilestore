@@ -1,6 +1,7 @@
 package gui.custom;
 
 import java.io.ByteArrayInputStream;
+import java.util.Optional;
 
 import beans.post.PostManager;
 import gui.Gui;
@@ -8,7 +9,10 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -93,11 +97,18 @@ public class PhoneCard extends Pane {
 		if(confirmHandler != null)
 			confirmHandler.handle(event);
 		
+		if(this.getBid() <= this.getCurrentBid())
+			return;
+		
 		try {
-			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-			if(pm.postBid(Gui.get().userManager.getUser(), auction, this.getBid())) {
-				this.setCurrentBid(this.getBid());
-				this.setBid(this.getBid()+1);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+			Optional<ButtonType> result = alert.showAndWait();
+			if(result.isPresent() && result.get() == ButtonType.YES) {
+				PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
+				if(pm.postBid(Gui.get().userManager.getUser(), auction, this.getBid())) {
+					this.setCurrentBid(this.getBid());
+					this.setBid(this.getBid()+1);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
