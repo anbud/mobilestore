@@ -1,5 +1,6 @@
 package gui.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -7,6 +8,7 @@ import javax.naming.NamingException;
 import beans.filter.FilterManager;
 import gui.Controller;
 import gui.Gui;
+import gui.custom.PhoneCard;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -81,10 +83,11 @@ public class AllPhonesController extends Controller {
 			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
 			List<Auction> l = fm.findAuctionsByPhone(p);
 			
+			List<PhoneCard> ph = new LinkedList<>();
 			l.stream().forEach(i -> {
-				//do something
+				 ph.add(new PhoneCard(i));
 			});
-			//auctionHolder.getChildren().addAll(new PhoneCard(l), new PhoneCard());
+			auctionHolder.getChildren().addAll(ph);//UX
 		} catch (NamingException e) {}
 	}
 	
