@@ -49,19 +49,6 @@ public class BoardController extends Controller {
 		list.forEach((a) -> {
 			PhoneCard pc = new PhoneCard();
 			pc.setAuction(a);
-			
-			pc.setOnConfirm((event) -> {
-				try {
-					PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-					if(pm.postBid(Gui.get().userManager.getUser(), a, pc.getCurrentBid())) {
-						pc.setMinimalBid(pc.getCurrentBid()+1);
-						pc.setCurrentBid(pc.getCurrentBid()+1);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			});
-			
 			listview.getItems().add(pc);
 			
 		});

@@ -2,6 +2,7 @@ package gui.custom;
 
 import java.io.ByteArrayInputStream;
 
+import beans.post.PostManager;
 import gui.Gui;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -40,7 +41,9 @@ public class PhoneCard extends Pane {
 	@FXML
 	private ImageView avatar;
 	@FXML
-	private Text minimalBid;
+	private Text initialPrice;
+	@FXML
+	private Text currentBid;
 	@FXML
 	private TextField bid;
 	@FXML
@@ -68,7 +71,7 @@ public class PhoneCard extends Pane {
 	
 	public PhoneCard(Auction a) throws RuntimeException {
 		this();
-		this.auction = a;
+		this.setAuction(a);
 	}
 	
 	@FXML
@@ -82,13 +85,23 @@ public class PhoneCard extends Pane {
 		if(increaseHandler != null)
 			increaseHandler.handle(event);
 		
-		this.setCurrentBid(this.getCurrentBid()+1);
+		this.setBid(this.getBid()+1);
 	}
 	
 	@FXML
 	private void confirmAction(Event event) {
 		if(confirmHandler != null)
 			confirmHandler.handle(event);
+		
+		try {
+			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
+			if(pm.postBid(Gui.get().userManager.getUser(), auction, this.getBid())) {
+				this.setCurrentBid(this.getBid());
+				this.setBid(this.getBid()+1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setOnOpen(EventHandler<Event> handler) {
@@ -185,18 +198,25 @@ public class PhoneCard extends Pane {
 		this.avatar.setImage(avatar);
 	}
 
-	public int getMinimalBid() {
-		return Integer.parseInt(minimalBid.getText().replace("$ ", ""));
+	public int getCurrentBid() {
+		return Integer.parseInt(currentBid.getText().replace("$ ", ""));
 	}
-	public void setMinimalBid(int minimalBid) {
-		this.minimalBid.setText("$ " + minimalBid);
+	public void setCurrentBid(int currentBid) {
+		this.currentBid.setText("$ " + currentBid);
+	}
+	
+	public int getInitialPrice() {
+		return Integer.parseInt(initialPrice.getText().replace("$ ", ""));
+	}
+	public void setInitialPrice(int initialPrice) {
+		this.initialPrice.setText("$ " + initialPrice);
 	}
 
-	public int getCurrentBid() {
+	public int getBid() {
 		return Integer.parseInt(bid.getText());
 	}
 	
-	public void setCurrentBid(int bid) {
+	public void setBid(int bid) {
 		this.bid.setText(""+bid);
 	}
 	
@@ -253,11 +273,12 @@ public class PhoneCard extends Pane {
 		
 		this.setCamera(camera);
 		
-		this.setMinimalBid(a.getBid());
+		this.setInitialPrice(a.getPhone().getPrice());
 		this.setCurrentBid(a.getBid());
+		this.setBid(a.getBid()+1);
 		this.setUsername(a.getUser().getUsername());
 		
-		if(a.getUser().getAvatar().length > 0)
+		if(a.getUser().getAvatar() != null && a.getUser().getAvatar().length > 0)
 			this.setAvatar(
 				new Image(
 					new ByteArrayInputStream(

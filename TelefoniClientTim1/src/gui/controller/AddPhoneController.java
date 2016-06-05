@@ -156,7 +156,9 @@ public class AddPhoneController extends Controller {
 					pp.setPicture(bytes);
 					pp.setPhone(phone);
 					phone.addPictures(pp);
-				} catch (Exception e) { }
+				} catch (Exception e) { 
+					e.printStackTrace();
+				}
 			});
 			
 			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);			
