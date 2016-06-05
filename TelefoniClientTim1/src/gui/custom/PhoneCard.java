@@ -54,6 +54,8 @@ public class PhoneCard extends Pane {
 	private AnchorPane bidHolder;
 	@FXML
 	private Button bidButton;
+	@FXML
+	private Button acceptBid;
 	
 	private Auction auction;
 	
@@ -82,6 +84,8 @@ public class PhoneCard extends Pane {
 	public void openAuctionAction(Event event) {
 		if(openHandler != null)
 			openHandler.handle(event);
+		
+		
 	}
 	
 	@FXML
@@ -97,8 +101,11 @@ public class PhoneCard extends Pane {
 		if(confirmHandler != null)
 			confirmHandler.handle(event);
 		
-		if(this.getBid() <= this.getCurrentBid())
+		if(this.getBid() <= this.getCurrentBid()) {
+			Alert alert = new Alert(AlertType.ERROR, "Your bid must be higher than the current bid!");
+			alert.showAndWait();
 			return;
+		}
 		
 		try {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
@@ -111,6 +118,22 @@ public class PhoneCard extends Pane {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void acceptAction(Event event) {
+		try {
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+			Optional<ButtonType> result = alert.showAndWait();
+			if(result.isPresent() && result.get() == ButtonType.YES) {
+				PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
+				pm.postAuctionClosed(auction);
+				Gui.get().openBoardView();
+			}
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -236,6 +259,10 @@ public class PhoneCard extends Pane {
 		bidHolder.setVisible(enabled);
 	}
 	
+	public void setAcceptEnabled(boolean enabled) {
+		acceptBid.setVisible(enabled);
+	}
+	
 	public void setAuction(Auction a) {
 		auction = a;
 		
@@ -298,9 +325,11 @@ public class PhoneCard extends Pane {
 				)
 			);
 		
-		boolean enabled = Gui.get().userManager.getUser().getUsername().equals(a.getUser().getUsername()) ? false : !a.getClosed();
+		boolean myauction = Gui.get().userManager.getUser().getUsername().equals(a.getUser().getUsername());
+		boolean enabled = myauction ? false : !a.getClosed();
 
 		this.setBidEnabled(enabled);
+		this.setAcceptEnabled(myauction && !a.getClosed());
 	}
 	
 	public Auction getAuction() {

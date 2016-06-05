@@ -26,8 +26,9 @@ public class LoginController extends Controller {
 		String usernames = username.getText().trim();
 		String passwords = password.getText().trim();
 		
-		if(usernames.isEmpty() || passwords.isEmpty())
-			return;
+		if(usernames.isEmpty() || passwords.isEmpty()) {
+			error.setText("Please insert username and password!");
+		}
 		
 		try {
 			if( getGui().userManager.login(usernames, Utils.MD5(passwords)) ) {
