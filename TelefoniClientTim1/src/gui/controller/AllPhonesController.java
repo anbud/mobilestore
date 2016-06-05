@@ -7,7 +7,6 @@ import javax.naming.NamingException;
 import beans.filter.FilterManager;
 import gui.Controller;
 import gui.Gui;
-import gui.custom.PhoneCard;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,6 +44,10 @@ public class AllPhonesController extends Controller {
 	@FXML
 	private TextField cameraTo;
 	@FXML
+	private TextField frontCameraFrom;
+	@FXML
+	private TextField frontCameraTo;
+	@FXML
 	private ChoiceBox<String> contractors;
 	@FXML
 	private TextField priceFrom;
@@ -70,7 +73,7 @@ public class AllPhonesController extends Controller {
 	private void filterPhonesAction(Event event) {
 		Phone p = new Phone(phoneName.getText(), oses.getValue() == null ? "" : oses.getValue(), osVersion.getText(), processor.getText(), ramSizeFrom.getText().equals("") ? 0 : Integer.parseInt(ramSizeFrom.getText()), ramSizeTo.getText().equals("") ? 0 : Integer.parseInt(ramSizeTo.getText()),
 				storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText()), screenResolutions.getValue() == null ? "" : screenResolutions.getValue(), 
-				inchesFrom.getText().equals("") ? 0 : Integer.parseInt(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Integer.parseInt(inchesTo.getText()), cameraFrom.getText().equals("") ? 0 : Integer.parseInt(cameraFrom.getText()), cameraTo.getText().equals("") ? 0 : Integer.parseInt(cameraTo.getText()), 
+				inchesFrom.getText().equals("") ? 0 : Integer.parseInt(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Integer.parseInt(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Integer.parseInt(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Integer.parseInt(frontCameraTo.getText()), 
 				cameraFrom.getText().equals("") ? 0 : Integer.parseInt(cameraFrom.getText()), cameraTo.getText().equals("") ? 0 : Integer.parseInt(cameraTo.getText()), contractors.getValue() == null ? "" : contractors.getValue(), 
 				priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText()));
 		
