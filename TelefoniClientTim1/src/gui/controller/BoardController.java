@@ -65,6 +65,8 @@ public class BoardController extends Controller {
 						)
 					)
 				);
+			else 
+				pc.setImage(new Image(Gui.class.getResourceAsStream("res/ico/no-phone-photo.png")));
 			
 			pc.setOs(p.getOs() + " " + p.getOsVersion());
 			pc.setStorage(p.getInternalStorage()+ " GB storage");

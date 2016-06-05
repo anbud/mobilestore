@@ -4,9 +4,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.NamingException;
+
+import beans.post.PostManager;
 import gui.Controller;
+import gui.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -100,39 +106,57 @@ public class AddPhoneController extends Controller {
 
 	@FXML
 	public void publishPhoneAction(Event event) {
-		String name = phoneName.getText();
-		String osname = os.getSelectionModel().getSelectedItem();
-		String osversion = osVersion.getText();
-		String processorname = processor.getText();
-		String ramsizestring = ramSize.getSelectionModel().getSelectedItem();
-		int ramsize = Integer.parseInt(ramsizestring.substring(0, ramsizestring.indexOf(" ")));
-		String primarycamerastring = primaryCamera.getSelectionModel().getSelectedItem();
-		double primarycamera = 
-				Double.parseDouble(primarycamerastring.substring(0, primarycamerastring.indexOf(" ")));
-		String frontcamerastring = frontCamera.getSelectionModel().getSelectedItem();
-		double frontcamera = Double.parseDouble(frontcamerastring.substring(0, frontcamerastring.indexOf(" ")));
-		String internalstoragestring = internalStorage.getSelectionModel().getSelectedItem();
-		int internalstorage = 
-				Integer.parseInt(internalstoragestring.substring(0, internalstoragestring.indexOf(" ")));
-		String screenres = screenResolution.getSelectionModel().getSelectedItem();
-		String screensizestring = screenSize.getText();
-		double screensize = Double.parseDouble(screensizestring.substring(0, screensizestring.indexOf(" ")));
-		boolean hasWifi = wifi.isSelected();
-		boolean hasBluetooth = bluetooth.isSelected();
-		boolean isDualSim = dualSim.isSelected();
-		String contractorname = contractor.getSelectionModel().getSelectedItem();
-		int howmuch = Integer.parseInt(price.getText());
-		String desc = description.getText();
-		
-		Phone phone = new Phone(name, osname, osversion, processorname, ramsize, primarycamera, frontcamera, 
-				internalstorage, screenres, screensize, hasWifi, hasBluetooth, isDualSim, contractorname,
-				howmuch, desc);
-		
-		images.forEach(i -> {
-			PhonePicture pp = new PhonePicture();
-			pp.setPicture(i.toURI().toString().getBytes());
-			pp.setPhone(phone);
-		});
+		try {
+			String name = phoneName.getText().trim();
+			String osname = os.getSelectionModel().getSelectedItem();
+			String osversion = osVersion.getText().trim();
+			String processorname = processor.getText().trim();
+			String ramsizestring = ramSize.getSelectionModel().getSelectedItem();
+			int ramsize = Integer.parseInt(ramsizestring.substring(0, ramsizestring.indexOf(" ")));
+			String primarycamerastring = primaryCamera.getSelectionModel().getSelectedItem();
+			double primarycamera = 
+					Double.parseDouble(primarycamerastring.substring(0, primarycamerastring.indexOf(" ")));
+			String frontcamerastring = frontCamera.getSelectionModel().getSelectedItem();
+			double frontcamera = 
+					Double.parseDouble(frontcamerastring.substring(0, frontcamerastring.indexOf(" ")));
+			String internalstoragestring = internalStorage.getSelectionModel().getSelectedItem();
+			int internalstorage = 
+					Integer.parseInt(internalstoragestring.substring(0, internalstoragestring.indexOf(" ")));
+			String screenres = screenResolution.getSelectionModel().getSelectedItem();
+			String screensizestring = screenSize.getText().trim();
+			double screensize = 
+					Double.parseDouble(screensizestring.substring(0, screensizestring.indexOf(" ")));
+			boolean hasWifi = wifi.isSelected();
+			boolean hasBluetooth = bluetooth.isSelected();
+			boolean isDualSim = dualSim.isSelected();
+			String contractorname = contractor.getSelectionModel().getSelectedItem();
+			int howmuch = Integer.parseInt(price.getText().trim());
+			String desc = description.getText().trim();
+	
+			Phone phone = new Phone(name, osname, osversion, processorname, ramsize, primarycamera, frontcamera, 
+					internalstorage, screenres, screensize, hasWifi, hasBluetooth, isDualSim, contractorname,
+					howmuch, desc);
+
+			images.forEach(i -> {
+				PhonePicture pp = new PhonePicture();
+				pp.setPicture(i.toURI().toString().getBytes());
+				pp.setPhone(phone);
+				phone.addPictures(pp);
+			});
+			
+			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
+			pm.postAuction(Gui.get().userManager.getUser(), null, phone);
+		} catch (NullPointerException e) {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setHeaderText("Missed info");
+			a.setContentText("You haven't filled all the informations");
+			a.showAndWait();
+		} catch (NumberFormatException e) {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setHeaderText("Wrong input");
+			a.setContentText("...");
+			a.showAndWait();
+		} catch (NamingException e) { }
 	}
 
 }

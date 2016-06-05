@@ -2,8 +2,6 @@ package gui.controller;
 
 import javax.naming.NamingException;
 
-import beans.filter.FilterManager;
-import beans.post.PostManager;
 import beans.user.UserManager;
 import gui.Controller;
 import gui.Gui;

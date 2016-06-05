@@ -48,7 +48,7 @@
             </ListView>
             <AnchorPane id="header-wrapper" prefHeight="40.0" prefWidth="400.0">
                <children>
-                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active auctions I'm participating" wrappingWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
+                  <Text layoutX="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active auctions I'm participating in" wrappingWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="3.0">
                      <font>
                         <Font size="20.0" />
                      </font>

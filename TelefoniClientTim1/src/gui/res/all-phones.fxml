@@ -189,7 +189,7 @@
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
                         </AnchorPane>
-                        <Button fx:id="refreshResults" alignment="CENTER" mnemonicParsing="false" prefWidth="250.0" styleClass="gradient-button" text="Refresh results" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="refreshResults" alignment="CENTER" mnemonicParsing="false" onAction="#filterPhonesAction" prefWidth="250.0" styleClass="gradient-button" text="Refresh results" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -210,7 +210,7 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <FlowPane prefHeight="700.0" prefWidth="900.0" />
+            <FlowPane fx:id="auctionHolder" alignment="CENTER" prefWrapLength="900.0" />
          </content>
       </ScrollPane>
    </center>
