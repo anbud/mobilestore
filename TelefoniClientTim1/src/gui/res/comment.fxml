@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="100.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutY="10.0" prefWidth="100.0" prefWrapLength="100.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <ImageView fx:id="userAvatar" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ico/avatar-placeholder-128.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+      <Label fx:id="username" alignment="CENTER" layoutY="85.0" prefHeight="20.0" prefWidth="100.0" text="username" textAlignment="CENTER" AnchorPane.leftAnchor="0.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="120.0" layoutY="10.0" style="-fx-border-radius: 0 0 10 0;" styleClass="round-right-input" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit" wrapText="true" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-1.0">
+         <padding>
+            <Insets bottom="5.0" left="6.0" right="5.0" top="10.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,6 +1,7 @@
 .gradient-button {
 	-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9);
 	-fx-background-radius: 30;
+	-fx-text-fill: #fff;
 	-fx-cursor: hand;
 }
 
@@ -18,6 +19,17 @@
 	-fx-background-radius: 0 0 30 30;
 	-fx-border-radius: 30;
 	-fx-prompt-text-fill: #B2B2B2;
+}
+
+.comment, .comment * {
+	-fx-background-radius: 20 0 0 20;
+	-fx-prompt-text-fill: #B2B2B2;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+}
+
+.comment .content {
+	-fx-padding: 10;
 }
 
 .text-field .arrow-button {

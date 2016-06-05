@@ -145,5 +145,13 @@
             <Font size="14.0" />
          </font>
       </Text>
+      <Button id="confirm-bid" fx:id="acceptBid" layoutX="330.0" layoutY="177.0" mnemonicParsing="false" onAction="#acceptButton" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-background-radius: 30;" text="Accept bid" textFill="WHITE" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </fx:root>
