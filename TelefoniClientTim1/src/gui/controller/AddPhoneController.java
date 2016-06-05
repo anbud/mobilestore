@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.naming.NamingException;
 
 import beans.post.PostManager;
@@ -111,7 +113,13 @@ public class AddPhoneController extends Controller {
 			String osversion = osVersion.getText().trim();
 			String processorname = processor.getText().trim();
 			String ramsizestring = ramSize.getSelectionModel().getSelectedItem();
-			int ramsize = Integer.parseInt(ramsizestring.substring(0, ramsizestring.indexOf(" ")));
+			
+			int rammul = 1;
+			if(ramsizestring.endsWith("GB"))
+				rammul = 1024;
+			
+			int ramsize = (int) (rammul * Double.parseDouble(ramsizestring.substring(0, ramsizestring.indexOf(" "))));
+			
 			String primarycamerastring = primaryCamera.getSelectionModel().getSelectedItem();
 			double primarycamera = 
 					Double.parseDouble(primarycamerastring.substring(0, primarycamerastring.indexOf(" ")));
@@ -137,10 +145,16 @@ public class AddPhoneController extends Controller {
 					howmuch, desc);
 
 			images.forEach(i -> {
-				PhonePicture pp = new PhonePicture();
-				pp.setPicture(i.toURI().toString().getBytes());
-				pp.setPhone(phone);
-				phone.addPictures(pp);
+				try {
+					ImageInputStream stream = ImageIO.createImageInputStream(i);
+					byte[] bytes = new byte[(int) stream.length()];
+					stream.readFully(bytes);
+					
+					PhonePicture pp = new PhonePicture();
+					pp.setPicture(bytes);
+					pp.setPhone(phone);
+					phone.addPictures(pp);
+				} catch (Exception e) { }
 			});
 			
 			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
