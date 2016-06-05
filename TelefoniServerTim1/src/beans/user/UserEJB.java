@@ -9,7 +9,6 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import beans.filter.FilterManager;
 import exceptions.IncorrectPasswordException;
 import exceptions.NotRegisteredException;
 import exceptions.UsernameExistsException;
@@ -75,13 +74,13 @@ public class UserEJB implements UserManager {
 
 	@Override
 	public List<Auction> getClosedAuctions() {
-		user = em.find(User.class, user.getUsername());	
+		user = em.find(User.class, user.getUsername());		
 		return user.getAuctions().stream().filter(x -> x.getClosed()).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Auction> getActiveParticipations() {	
-		user = em.find(User.class, user.getUsername());	
+		user = em.find(User.class, user.getUsername());		
 		return user.getParticipations().stream().filter(x -> !x.getClosed()).collect(Collectors.toList());
 	}
 

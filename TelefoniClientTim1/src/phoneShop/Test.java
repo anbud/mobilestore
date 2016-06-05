@@ -42,9 +42,9 @@ public class Test {
 
 		postTest(um, pm, fm);
 		findAuctionsByPhoneTest(fm);
-		//findCommentsTest(fm);
-		//findAuctionsTest(fm);
-		//postPicturesTest(pm, fm);
+		findCommentsTest(fm);
+		findAuctionsTest(fm);
+		postPicturesTest(pm, fm);
 		um.logout();
 	}
 
