@@ -1,16 +1,22 @@
 package gui.custom;
 
+import java.io.ByteArrayInputStream;
+
 import gui.Gui;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import model.Auction;
+import model.Phone;
 
 public class PhoneCard extends Pane {
 	@FXML
@@ -37,6 +43,12 @@ public class PhoneCard extends Pane {
 	private Text minimalBid;
 	@FXML
 	private TextField bid;
+	@FXML
+	private AnchorPane bidHolder;
+	@FXML
+	private Button bidButton;
+	
+	private Auction auction;
 	
 	private EventHandler<Event> increaseHandler;
 	private EventHandler<Event> confirmHandler;
@@ -178,8 +190,84 @@ public class PhoneCard extends Pane {
 	public int getCurrentBid() {
 		return Integer.parseInt(bid.getText());
 	}
+	
 	public void setCurrentBid(int bid) {
 		this.bid.setText(""+bid);
+	}
+	
+	public void setBidEnabled(boolean enabled) {
+		bidButton.setVisible(enabled);
+		bidHolder.setVisible(enabled);
+	}
+	
+	public void setAuction(Auction a) {
+		auction = a;
+		
+		Phone p = a.getPhone();
+		
+		this.setPhoneName(p.getName());
+		
+		if(!p.getPictures().isEmpty())
+			this.setImage(
+				new Image(
+					new ByteArrayInputStream(
+						p.getPictures().iterator().next().getPicture()
+					)
+				)
+			);
+		
+		this.setOs(p.getOs() + " " + p.getOsVersion());
+		this.setStorage(p.getInternalStorage()+ " GB storage");
+		this.setRam(p.getRamString() + " RAM");
+		this.setScreen(String.format("%.1f | %s", p.getScreenSize(), p.getScreenRes()));
+		
+		String camera = "";
+		
+		if(p.getPrimaryCamera() > 0) {
+			if(Math.abs(p.getPrimaryCamera() - (int) p.getPrimaryCamera()) == 0)
+				camera += (int) p.getPrimaryCamera();
+			else
+				camera += String.format("%.1f", p.getPrimaryCamera());
+			camera += "MP";
+			
+			if(p.getFrontCamera() > 0)
+				camera += " | ";
+		}
+		
+		if(p.getFrontCamera() > 0) {
+			if(Math.abs(p.getFrontCamera() - (int) p.getFrontCamera()) == 0)
+				camera += (int) p.getFrontCamera();
+			else
+				camera += String.format("%.1f", p.getFrontCamera());
+			camera += "MP";
+		}
+		
+		if(camera.length() == 0) {
+			camera = "No";
+		}
+		
+		this.setCamera(camera);
+		
+		this.setMinimalBid(a.getBid());
+		this.setCurrentBid(a.getBid());
+		this.setUsername(a.getUser().getUsername());
+		
+		if(a.getUser().getAvatar().length > 0)
+			this.setAvatar(
+				new Image(
+					new ByteArrayInputStream(
+						a.getUser().getAvatar()
+					)
+				)
+			);
+		
+		boolean enabled = Gui.get().userManager.getUser().getUsername().equals(a.getUser().getUsername()) ? false : !a.getClosed();
+
+		this.setBidEnabled(enabled);
+	}
+	
+	public Auction getAuction() {
+		return auction;
 	}
 	
 }

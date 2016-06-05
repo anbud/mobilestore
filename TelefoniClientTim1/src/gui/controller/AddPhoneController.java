@@ -122,9 +122,11 @@ public class AddPhoneController extends Controller {
 			
 			String primarycamerastring = primaryCamera.getSelectionModel().getSelectedItem();
 			double primarycamera = 
+					(primaryCamera.getValue() == null || primarycamerastring.equals("")) ? 0 :
 					Double.parseDouble(primarycamerastring.substring(0, primarycamerastring.indexOf(" ")));
 			String frontcamerastring = frontCamera.getSelectionModel().getSelectedItem();
 			double frontcamera = 
+					(frontCamera.getValue() == null || frontcamerastring.equals("")) ? 0 :
 					Double.parseDouble(frontcamerastring.substring(0, frontcamerastring.indexOf(" ")));
 			String internalstoragestring = internalStorage.getSelectionModel().getSelectedItem();
 			int internalstorage = 
@@ -132,7 +134,7 @@ public class AddPhoneController extends Controller {
 			String screenres = screenResolution.getSelectionModel().getSelectedItem();
 			String screensizestring = screenSize.getText().trim();
 			double screensize = 
-					Double.parseDouble(screensizestring.substring(0, screensizestring.indexOf(" ")));
+					Double.parseDouble(screensizestring);
 			boolean hasWifi = wifi.isSelected();
 			boolean hasBluetooth = bluetooth.isSelected();
 			boolean isDualSim = dualSim.isSelected();
@@ -158,7 +160,9 @@ public class AddPhoneController extends Controller {
 			});
 			
 			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-			pm.postAuction(Gui.get().userManager.getUser(), null, phone);
+			if(pm.postAuction(Gui.get().userManager.getUser(), phone, howmuch)) {
+				Gui.get().openBoardView();
+			}
 		} catch (NullPointerException e) {
 			Alert a = new Alert(AlertType.WARNING);
 			a.setHeaderText("Missed info");
