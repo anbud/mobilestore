@@ -74,7 +74,13 @@ public class FilterEJB implements FilterManager {
 			parameters.add("pc");
 			parameters.add("pc1");
 		}
-
+		
+		if ((phone.getFrontCamera() != 0) || (phone.getFrontCamera1() != 0)) {
+			query.append(" (a.phone.frontCamera BETWEEN :fc AND :fc1) !");
+			parameters.add("fc");
+			parameters.add("fc1");
+		}
+		
 		if (!phone.getContractor().equals("")) {
 			query.append(" a.phone.contractor=:c !");
 			parameters.add("c");
@@ -99,6 +105,8 @@ public class FilterEJB implements FilterManager {
 		for (String param : parameters) {
 			if (param.equals("n"))
 				q.setParameter("n", phone.getName());
+			else if (param.equals("os"))
+				q.setParameter("os", phone.getOs());
 			else if (param.equals("ov"))
 				q.setParameter("ov", phone.getOsVersion());
 			else if (param.equals("pr"))
@@ -121,6 +129,10 @@ public class FilterEJB implements FilterManager {
 				q.setParameter("pc", phone.getPrimaryCamera());
 			else if (param.equals("pc1"))
 				q.setParameter("pc1", phone.getPrimaryCamera1());
+			else if (param.equals("fc"))
+				q.setParameter("fc", phone.getFrontCamera());
+			else if (param.equals("fc1"))
+				q.setParameter("fc1", phone.getFrontCamera1());
 			else if (param.equals("c"))
 				q.setParameter("c", phone.getContractor());
 			else if (param.equals("p"))
