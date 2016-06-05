@@ -172,7 +172,7 @@ public class AddPhoneController extends Controller {
 		} catch (NumberFormatException e) {
 			Alert a = new Alert(AlertType.WARNING);
 			a.setHeaderText("Wrong input");
-			a.setContentText("...");
+			a.setContentText("It's not a valid number!");
 			a.showAndWait();
 		} catch (NamingException e) { }
 	}
