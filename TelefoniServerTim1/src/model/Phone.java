@@ -136,7 +136,7 @@ public class Phone implements Serializable {
 	public Phone(String name, String os, String osVersion, String processor, int ram, double primaryCamera,
 			double frontCamera, int internalStorage, String screenRes, double screenSize, boolean wiFi,
 			boolean bluetooth, boolean dualSim, String contractor, int price, String description) {
-		super();
+		this();
 
 		this.name = name;
 		this.os = os;
@@ -158,7 +158,7 @@ public class Phone implements Serializable {
 
 	public Phone(String name, String os, String osVersion, String processor, int ram, int ram1, int internalStorage, int internalStorage1, String screenRes, double screenSize, double screenSize1, double frontCamera, 
 			double frontCamera1, double primaryCamera, double primaryCamera1, String contractor, int price, int price1) {
-		super();
+		this();
 		this.contractor = contractor;
 		this.frontCamera = frontCamera;
 		this.internalStorage = internalStorage;

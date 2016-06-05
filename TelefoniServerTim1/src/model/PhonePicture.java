@@ -14,6 +14,7 @@ public class PhonePicture implements Serializable {
 	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
 
+	@Lob
 	@Column(name = "PICTURE", nullable = true)
 	private byte[] picture;
 
