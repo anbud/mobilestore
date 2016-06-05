@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import model.Auction;
 import model.Comment;
 import model.Phone;
+import model.PhonePicture;
 
 @Stateless
 @Remote(FilterManager.class)
@@ -80,16 +81,20 @@ public class FilterEJB implements FilterManager {
 			parameters.add("p1");
 		}
 
-		String qu = query.toString().replaceAll("!", "AND");
-		qu = qu.substring(0, qu.length() - "AND".length()).trim();				
+		String qu = query.toString();
+		
+		if (parameters.size() == 0) {
+			qu = qu.replace(" WHERE", "");
+		} else {
+			qu = qu.replaceAll("!", "AND");
+			qu = qu.substring(0, qu.length() - "AND".length()).trim();
+		}
 
 		Query q = em.createQuery(qu);
-		for (String param: parameters) {
-			System.out.println("Param " + param);
-			if (param.equals("n")) {
+		for (String param : parameters) {
+			if (param.equals("n"))
 				q.setParameter("n", phone.getName());
-				System.out.println("ADASD");
-			} else if (param.equals("ov"))
+			else if (param.equals("ov"))
 				q.setParameter("ov", phone.getOsVersion());
 			else if (param.equals("pr"))
 				q.setParameter("pr", phone.getProcessor());
@@ -117,7 +122,7 @@ public class FilterEJB implements FilterManager {
 				q.setParameter("p", phone.getPrice());
 			else if (param.equals("p1"))
 				q.setParameter("p1", phone.getPrice1());
-		}	
+		}
 
 		return q.getResultList();
 	}
@@ -125,7 +130,7 @@ public class FilterEJB implements FilterManager {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comment> findComments(Auction auction) {
-		Query q = em.createNamedQuery("Comment.filter");
+		Query q = em.createNamedQuery("SELECT c FROM Comment c WHERE c.auction=:a");
 		q.setParameter("a", auction);
 
 		return q.getResultList();
@@ -135,6 +140,12 @@ public class FilterEJB implements FilterManager {
 	@Override
 	public List<Auction> findAuctions() {
 		return em.createNamedQuery("Auction.findAll").getResultList();
+	}
+
+	@Override
+	public List<PhonePicture> findPicturesByPhone(Phone phone) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

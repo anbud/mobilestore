@@ -10,18 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "UserTim1")
-@NamedQueries(value = { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-		@NamedQuery(name = "User.findByEMail", query = "SELECT u FROM User u WHERE u.eMail=:x"),
-		@NamedQuery(name = "User.auctions", query = "SELECT u FROM User u LEFT JOIN FETCH u.auctions WHERE u.username=:u"),
-		@NamedQuery(name = "User.participations", query = "SELECT u FROM User u LEFT JOIN FETCH u.participations WHERE u.username=:u"),
-		@NamedQuery(name = "User.phones", query = "SELECT u FROM User u LEFT JOIN FETCH u.phones WHERE u.username=:u"), })
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
