@@ -66,6 +66,11 @@ public class PhoneCard extends Pane {
 		}
 	}
 	
+	public PhoneCard(Auction a) throws RuntimeException {
+		this();
+		this.auction = a;
+	}
+	
 	@FXML
 	public void openAuctionAction(Event event) {
 		if(openHandler != null)
