@@ -69,4 +69,3 @@ nbactions.xml
 .nb-gradle/
 build.xml
 manifest.mf
-jboss-ejb-client.properties
