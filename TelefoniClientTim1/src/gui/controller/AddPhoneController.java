@@ -158,7 +158,7 @@ public class AddPhoneController extends Controller {
 			});
 			
 			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
-			pm.postAuction(Gui.get().userManager.getUser(), null, phone);
+			//pm.postAuction(Gui.get().userManager.getUser(), null, phone);
 		} catch (NullPointerException e) {
 			Alert a = new Alert(AlertType.WARNING);
 			a.setHeaderText("Missed info");
