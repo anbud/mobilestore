@@ -2,6 +2,7 @@ package beans.filter;
 
 import java.util.List;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import model.Comment;
 import model.Phone;
 
 @Stateless
+@Remote(FilterManager.class)
 public class FilterEJB implements FilterManager {
 
 	@PersistenceContext(name="TelefoniServerTim1")
