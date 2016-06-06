@@ -87,7 +87,7 @@ public class FilterEJB implements FilterManager {
 		}
 
 		if ((phone.getPrice() != 0) || (phone.getPrice1() != 0)) {
-			query.append(" (a.phone.price BETWEEN :p AND :p1)");
+			query.append(" (a.phone.price BETWEEN :p AND :p1) !");
 			parameters.add("p");
 			parameters.add("p1");
 		}

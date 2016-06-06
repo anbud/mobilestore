@@ -71,6 +71,62 @@ public class AllPhonesController extends Controller {
 		oses.getItems().addAll(osesarr);
 		contractors.getItems().addAll(contactorsarr);
 		screenResolutions.getItems().addAll(screenresarr);
+		
+		inputHandler(ramSizeFrom);
+		inputHandler(ramSizeTo);
+		inputHandler(storageFrom);
+		inputHandler(storageTo);
+		inputHandler(priceFrom);
+		inputHandler(priceTo);
+		
+		doubleInputHandler(cameraFrom);
+		doubleInputHandler(cameraTo);
+		doubleInputHandler(frontCameraFrom);
+		doubleInputHandler(frontCameraTo);
+		doubleInputHandler(inchesFrom);
+		doubleInputHandler(inchesTo);
+		
+		//Show all phones
+		try {
+			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
+			List<Auction> l = fm.findAuctions();
+			
+			List<PhoneCard> ph = new LinkedList<>();
+			l.stream().forEach(i -> {
+				 ph.add(new PhoneCard(i));
+			});
+			auctionHolder.getChildren().setAll(ph);//UX
+		} catch (NamingException e) {}
+	}
+	
+	private void inputHandler(TextField field) {
+		field.textProperty().addListener((a, b, c) -> {
+			try {
+				if (!field.getText().equals("")) {
+					Integer.parseInt(field.getText());
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				} else {
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				}
+			} catch (NumberFormatException e) {
+				field.setStyle("-fx-border-color: #f00;");
+			}
+		});
+	}
+	
+	private void doubleInputHandler(TextField field) {
+		field.textProperty().addListener((a, b, c) -> {
+			try {
+				if (!field.getText().equals("")) {
+					Double.parseDouble(field.getText());
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				} else {
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				}
+			} catch (NumberFormatException e) {
+				field.setStyle("-fx-border-color: #f00;");
+			}
+		});
 	}
 
 	@FXML
@@ -79,12 +135,14 @@ public class AllPhonesController extends Controller {
 		
 		try {
 			p = new Phone(phoneName.getText().trim(), oses.getSelectionModel().getSelectedItem() == null ? "" : oses.getSelectionModel().getSelectedItem().trim(), osVersion.getText().trim(), processor.getText().trim(), ramSizeFrom.getText().equals("") ? 0 : Integer.parseInt(ramSizeFrom.getText().trim()), ramSizeTo.getText().equals("") ? 0 : Integer.parseInt(ramSizeTo.getText().trim()),
-				storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText().trim()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText().trim()), screenResolutions.getSelectionModel().getSelectedItem() == null ? "" : screenResolutions.getSelectionModel().getSelectedItem().trim(), 
-				inchesFrom.getText().equals("") ? 0 : Integer.parseInt(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Integer.parseInt(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Integer.parseInt(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Integer.parseInt(frontCameraTo.getText().trim()), 
-				cameraFrom.getText().equals("") ? 0 : Integer.parseInt(cameraFrom.getText().trim()), cameraTo.getText().equals("") ? 0 : Integer.parseInt(cameraTo.getText().trim()), contractors.getSelectionModel().getSelectedItem() == null ? "" : contractors.getSelectionModel().getSelectedItem().trim(), 
-				priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText().trim()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText().trim()));
+					storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText().trim()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText().trim()), screenResolutions.getSelectionModel().getSelectedItem() == null ? "" : screenResolutions.getSelectionModel().getSelectedItem().trim(), 
+					inchesFrom.getText().equals("") ? 0 : Double.parseDouble(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Double.parseDouble(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Double.parseDouble(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Double.parseDouble(frontCameraTo.getText().trim()), 
+					cameraFrom.getText().equals("") ? 0 : Double.parseDouble(cameraFrom.getText().trim()), cameraTo.getText().equals("") ? 0 : Double.parseDouble(cameraTo.getText().trim()), contractors.getSelectionModel().getSelectedItem() == null ? "" : contractors.getSelectionModel().getSelectedItem().trim(), 
+					priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText().trim()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText().trim()));
 		} catch(NumberFormatException e) {
-			Alert alert = new Alert(AlertType.ERROR, "Some of the numeric values were invalid!");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Wrong input(s) - check for red border input fields");
+			alert.setContentText("See placeholders for right input.");
 			alert.showAndWait();
 			return;
 		}
