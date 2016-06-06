@@ -24,10 +24,10 @@ public class PostEJB implements PostManager {
 	public boolean postComment(User user, Auction auction, Comment comment, Comment... parent) {
 		try {
 			comment.setUser(user);
-			comment.setAuction(auction);			
+			comment.setAuction(auction);
 			
 			if(parent.length > 0)
-				comment.setParent(em.find(Comment.class, parent[0].getId()));
+				comment.setParent(parent[0]);
 			
 			em.persist(comment);
 			user.addComment(comment);
