@@ -97,7 +97,7 @@ public class FillDatabase {
 		PhonePicture phonePic = new PhonePicture();
 
 		user.setAboutMe("");
-		user.setEMail("Me@vsakos.com");
+		user.setEMail("me@vsakos.com");
 		user.setName("Akos");
 		user.setSurname("Varga-Somogyi");
 		user.setPassword("e10adc3949ba59abbe56e057f20f883e"); //123456
@@ -105,7 +105,7 @@ public class FillDatabase {
 		user.setAddress("????");
 		user.setAvatar(new byte[0]);
 
-		phone.setName("Xiaomi Redmi 2 Prime");
+		phone.setName("Xiaomi Redmi 2");
 		phone.setContractor("sim-free");
 		phone.setDualSim(true);
 		phone.setScreenRes("720x1280");
@@ -114,7 +114,7 @@ public class FillDatabase {
 		phone.setOsVersion("v4.4.4 (KitKat)");
 		phone.setProcessor("Snapdragon 410");
 		phone.setInternalStorage(16);		
-		phone.setRam(2);
+		phone.setRam(2048);
 		phone.setPrimaryCamera(8);
 		phone.setFrontCamera(2);
 		phone.setWiFi(true);
@@ -160,21 +160,21 @@ public class FillDatabase {
 		user.setAddress("????");
 		user.setAvatar(new byte[0]);
 
-		phone.setName("LG Nexus 5X");
+		phone.setName("Motorola Nexus 6");
 		phone.setContractor("sim-free");
 		phone.setDualSim(false);
-		phone.setScreenRes("1080x1920");
-		phone.setScreenSize(5.2);		
+		phone.setScreenRes("1440x2560");
+		phone.setScreenSize(5.96);		
 		phone.setOs("Android");
 		phone.setOsVersion("v6.0 (Marshmallow)");
-		phone.setProcessor("Snapdragon 808");
+		phone.setProcessor("Snapdragon 805");
 		phone.setInternalStorage(32);		
-		phone.setRam(2);
-		phone.setPrimaryCamera(12.3);
-		phone.setFrontCamera(5);
+		phone.setRam(3072);
+		phone.setPrimaryCamera(13);
+		phone.setFrontCamera(2);
 		phone.setWiFi(true);
 		phone.setBluetooth(true);		
-		phone.setPrice(340);
+		phone.setPrice(410);
 
 		auction.setClosed(false);
 		auction.setDate(new Date());		
