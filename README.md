@@ -1,4 +1,6 @@
 # Mobile Store
+![Build status](https://api.travis-ci.org/travis-ci/travis-web.svg?branch=master)
+
 OOP2 project realized using JavaFX and WildFly AS, **Team A**.
 
 ## H2 Database server
