@@ -87,6 +87,18 @@ public class AllPhonesController extends Controller {
 		doubleInputHandler(frontCameraTo);
 		doubleInputHandler(inchesFrom);
 		doubleInputHandler(inchesTo);
+		
+		//Show all phones
+		try {
+			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
+			List<Auction> l = fm.findAuctions();
+			
+			List<PhoneCard> ph = new LinkedList<>();
+			l.stream().forEach(i -> {
+				 ph.add(new PhoneCard(i));
+			});
+			auctionHolder.getChildren().setAll(ph);//UX
+		} catch (NamingException e) {}
 	}
 	
 	private void inputHandler(TextField field) {
