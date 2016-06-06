@@ -79,21 +79,23 @@ public class Test {
 		c.setText(poruka);
 
 		Auction a = fm.getAuction();
+		
+		User u = um.getUser();
 
 		pm.postComment(um.getUser(), a, c);
-
-		//pm.postComment(u, a, c);
-
-		//pm.postComment(u, a, c);
-
-		//pm.postComment(u, a, c);
+		
+		Comment c1 = new Comment();
+		c1.setText(poruka + " akosje...");
+		
+		//System.out.println(fm.findComments(a).get(0));
+		pm.postComment(u, a, c1, fm.findComments(a).get(0));
 
 		/*for (Auction b : u.getAuctions())
 			System.out.println("POST COMMENT - ID aukcije: " + b.getId());*/
 
-		for (Comment com : um.getUser().getComments())
-			System.out.println("POST COMMENT: " + com.getText());
-
+		for (Comment com : um.getUser().getComments()) {
+			System.out.println("POST COMMENT: " + com.getText() + " " + (com.getParent() == null ? "" : com.getParent().getText()));
+		}
 		in.close();
 	}
 
