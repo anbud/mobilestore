@@ -261,7 +261,7 @@
          </content></Tab>
       <Tab id="comments" closable="false" text="Comments">
          <content>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="borderpane" prefHeight="200.0" prefWidth="200.0">
                <bottom>
                   <AnchorPane fx:id="comment" prefHeight="80.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                      <children>

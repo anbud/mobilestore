@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import model.Auction;
 import model.Phone;
@@ -97,6 +98,8 @@ public class AuctionDetailsController extends Controller {
 	private Label auctionDate;
 	@FXML
 	private ListView<Comment> commentList;
+	@FXML
+	private BorderPane borderpane;
 	
 	private Auction auction;
 
@@ -136,6 +139,7 @@ public class AuctionDetailsController extends Controller {
 			if(result.isPresent() && result.get() == ButtonType.YES) {
 				PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
 				pm.postAuctionClosed(auction);
+				auction.setClosed(true);
 				Gui.get().openAuctionDetailsView(auction);
 			}
 		}
@@ -244,6 +248,9 @@ public class AuctionDetailsController extends Controller {
 
 		this.setBidEnabled(enabled);
 		this.setAcceptEnabled(myauction && !a.getClosed() && this.getInitialPrice() < this.getCurrentBid());
+		
+		if(this.auction.getClosed())
+			borderpane.setBottom(null);
 		
 		
 		// pictures
