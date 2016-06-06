@@ -3,6 +3,9 @@ package gui.controller;
 import java.io.ByteArrayInputStream;
 import java.util.Optional;
 
+import javax.naming.NamingException;
+
+import beans.filter.FilterManager;
 import beans.post.PostManager;
 import gui.Controller;
 import gui.Gui;
@@ -18,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import model.Auction;
 import model.Phone;
 import model.User;
@@ -79,6 +83,8 @@ public class AuctionDetailsController extends Controller {
 	private TextArea commentInput;
 	@FXML
 	private AnchorPane bidHolder;
+	@FXML
+	private FlowPane imageHolder;
 	
 	private Auction auction;
 
@@ -207,6 +213,34 @@ public class AuctionDetailsController extends Controller {
 
 		this.setBidEnabled(enabled);
 		this.setAcceptEnabled(myauction && !a.getClosed() && this.getInitialPrice() < this.getCurrentBid());
+		
+		
+		// pictures
+			
+		imageHolder.getChildren().clear();
+			
+		p.getPictures().forEach((pic) -> {
+			Image img = new Image(
+				new ByteArrayInputStream(
+					pic.getPicture()
+				)
+			);
+			ImageView imgView = new ImageView(img);
+			imgView.setFitHeight(320);
+			imgView.setFitWidth(500);
+			imageHolder.getChildren().add(imgView);
+		});
+		
+		
+		// comments
+		
+		try {
+			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void setBidEnabled(boolean enabled) {

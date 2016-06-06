@@ -21,15 +21,20 @@ public class PostEJB implements PostManager {
 	private EntityManager em;
 
 	@Override
-	public boolean postComment(User user, Auction auction, Comment comment) {
+	public boolean postComment(User user, Auction auction, Comment comment, Comment... parent) {
 		try {
 			comment.setUser(user);
 			comment.setAuction(auction);
+			
+			if(parent.length > 0)
+				comment.setParent(parent[0]);
+			
 			em.persist(comment);
 			user.addComment(comment);
 			auction.addComment(comment);
 			em.merge(user);
 			em.merge(comment);
+			
 			return true;
 		} catch (Exception e) {
 			return false;

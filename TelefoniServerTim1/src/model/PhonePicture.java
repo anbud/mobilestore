@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Arrays;
+
 import javax.persistence.*;
 
 @Entity
@@ -54,6 +56,7 @@ public class PhonePicture implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + Arrays.hashCode(picture);
 		return result;
 	}
 
@@ -67,6 +70,8 @@ public class PhonePicture implements Serializable {
 			return false;
 		PhonePicture other = (PhonePicture) obj;
 		if (id != other.id)
+			return false;
+		if (!Arrays.equals(picture, other.picture))
 			return false;
 		return true;
 	}

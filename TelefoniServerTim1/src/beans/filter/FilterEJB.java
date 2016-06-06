@@ -87,7 +87,7 @@ public class FilterEJB implements FilterManager {
 		}
 
 		if ((phone.getPrice() != 0) || (phone.getPrice1() != 0)) {
-			query.append(" (a.phone.price BETWEEN :p AND :p1)");
+			query.append(" (a.phone.price BETWEEN :p AND :p1) !");
 			parameters.add("p");
 			parameters.add("p1");
 		}
@@ -149,6 +149,16 @@ public class FilterEJB implements FilterManager {
 	public List<Comment> findComments(Auction auction) {
 		Query q = em.createQuery("SELECT c FROM Comment c WHERE c.auction=:a");
 		q.setParameter("a", auction);
+
+		return q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> findReplyComments(Auction auction, Comment comment) {
+		Query q = em.createQuery("SELECT c FROM Comment c WHERE c.auction=:a AND c.parent=:com");
+		q.setParameter("a", auction);
+		q.setParameter("com", comment);
 
 		return q.getResultList();
 	}

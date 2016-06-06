@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "CommentTim1")
@@ -23,12 +24,19 @@ public class Comment implements Serializable {
 	private String text;
 
 	@ManyToOne
-	@JoinColumn(name = "AUCTIO_ID", nullable = false)
+	@JoinColumn(name = "AUCTION_ID", nullable = false)
 	private Auction auction;
 
 	@ManyToOne
 	@JoinColumn(name = "USER", nullable = false)
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "PARENT_ID", nullable = true)
+	private Comment parent;
+	
+	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+	private Set<Comment> children;
 
 	public Comment() {
 	}
@@ -71,6 +79,26 @@ public class Comment implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Set<Comment> getChildren() {
+		return this.children;
+	}
+	
+	public boolean addChild(Comment c) {
+		return children.add(c);
+	}
+	
+	public boolean removeChild(Comment c) {
+		return children.remove(c);
+	}
+	
+	public void setParent(Comment c) {
+		this.parent = c;
+	}
+	
+	public Comment getParent() {
+		return parent;
 	}
 
 	@Override
