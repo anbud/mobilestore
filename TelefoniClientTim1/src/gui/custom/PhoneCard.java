@@ -218,6 +218,7 @@ public class PhoneCard extends Pane {
 	}
 	public void setInitialPrice(int initialPrice) {
 		this.initialPrice.setText("$ " + initialPrice);
+		//System.out.println(this.initialPrice);
 	}
 
 	public int getBid() {
