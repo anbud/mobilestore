@@ -27,7 +27,7 @@ public class FilterEJB implements FilterManager {
 		List<String> parameters = new ArrayList<String>();
 		StringBuilder query = new StringBuilder("SELECT a FROM Auction a WHERE");
 		if (!phone.getName().equals("")) {
-			query.append(" a.phone.name=:n !");
+			query.append(" a.phone.name like :n !");
 			parameters.add("n");
 		}
 		
@@ -37,7 +37,7 @@ public class FilterEJB implements FilterManager {
 		}
 
 		if (!phone.getOsVersion().equals("")) {
-			query.append(" a.phone.osVersion=:ov !");
+			query.append(" a.phone.osVersion like :ov !");
 			parameters.add("ov");
 		}
 
@@ -104,11 +104,11 @@ public class FilterEJB implements FilterManager {
 		Query q = em.createQuery(qu);
 		for (String param : parameters) {
 			if (param.equals("n"))
-				q.setParameter("n", phone.getName());
+				q.setParameter("n", phone.getName() + "%");
 			else if (param.equals("os"))
 				q.setParameter("os", phone.getOs());
 			else if (param.equals("ov"))
-				q.setParameter("ov", phone.getOsVersion());
+				q.setParameter("ov", "%" + phone.getOsVersion() + "%");
 			else if (param.equals("pr"))
 				q.setParameter("pr", phone.getProcessor());
 			else if (param.equals("r"))

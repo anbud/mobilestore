@@ -18,7 +18,7 @@ import model.User;
 
 @LocalBean
 @Singleton
-@Startup
+//@Startup
 public class FillDatabase {
 
 	@PersistenceContext(name = "TelefoniServerTim1")
