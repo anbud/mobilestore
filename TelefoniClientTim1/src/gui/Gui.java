@@ -8,6 +8,7 @@ import beans.post.PostEJB;
 import beans.post.PostManager;
 import beans.user.UserEJB;
 import beans.user.UserManager;
+import gui.controller.AuctionDetailsController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Auction;
 
 public class Gui extends Application {
 	
@@ -123,6 +125,17 @@ public class Gui extends Application {
 		Loaded l = loadView("res/all-phones.fxml");
 		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
 
+		stage.setResizable(true);
+	}
+	
+	public void openAuctionDetailsView(Auction a) {
+		openContainerView();
+		
+		Loaded l = loadView("res/auction-details.fxml");
+		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
+		
+		((AuctionDetailsController) l.controller).setAuction(a);
+		
 		stage.setResizable(true);
 	}
 	
