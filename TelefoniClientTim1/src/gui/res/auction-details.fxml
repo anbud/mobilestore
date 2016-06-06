@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane focusTraversable="false" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AuctionDetailsController">
+<TabPane fx:id="tabpane" focusTraversable="false" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AuctionDetailsController">
   <tabs>
     <Tab id="infos" closable="false" text="Informations">
          <content>
@@ -275,7 +275,7 @@
                   </AnchorPane>
                </bottom>
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <ListView fx:id="commentList" prefHeight="200.0" prefWidth="200.0" styleClass="listview-padded" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </content>

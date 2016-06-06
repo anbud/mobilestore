@@ -1,6 +1,9 @@
 package gui.controller;
 
 import java.io.ByteArrayInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.naming.NamingException;
@@ -9,15 +12,18 @@ import beans.filter.FilterManager;
 import beans.post.PostManager;
 import gui.Controller;
 import gui.Gui;
+import gui.custom.Comment;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +33,8 @@ import model.Phone;
 import model.User;
 
 public class AuctionDetailsController extends Controller {
+	@FXML
+	private TabPane tabpane;
 	@FXML
 	private Label phoneName;
 	@FXML
@@ -85,6 +93,10 @@ public class AuctionDetailsController extends Controller {
 	private AnchorPane bidHolder;
 	@FXML
 	private FlowPane imageHolder;
+	@FXML
+	private Label auctionDate;
+	@FXML
+	private ListView<Comment> commentList;
 	
 	private Auction auction;
 
@@ -134,7 +146,24 @@ public class AuctionDetailsController extends Controller {
 	
 	@FXML
 	private void commentAction(Event event) {
-		
+		try {
+			PostManager pm = (PostManager) Gui.get().context.lookup(Gui.POST_BEAN);
+			
+			User u = Gui.get().userManager.getUser();
+			
+			model.Comment c = new model.Comment();
+			c.setUser(u);
+			c.setText(commentInput.getText());
+			c.setDate(new Date());
+			c.setParent(null);
+			
+			if(pm.postComment(u, this.auction, c)) {
+				Gui.get().openAuctionDetailsView(this.auction, 2);
+			}
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setAuction(Auction a) {
@@ -159,6 +188,8 @@ public class AuctionDetailsController extends Controller {
 		this.ownerUsername.setText(u.getUsername());
 		this.ownerName.setText(u.getName());
 		this.ownerEmail.setText(u.getEMail());
+		
+		this.auctionDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(a.getDate()));
 		
 		if(u.getAvatar() != null && u.getAvatar().length > 0)
 			this.ownerAvatar.setImage(
@@ -228,6 +259,7 @@ public class AuctionDetailsController extends Controller {
 			ImageView imgView = new ImageView(img);
 			imgView.setFitHeight(320);
 			imgView.setFitWidth(500);
+			imgView.setPreserveRatio(true);
 			imageHolder.getChildren().add(imgView);
 		});
 		
@@ -237,6 +269,16 @@ public class AuctionDetailsController extends Controller {
 		try {
 			FilterManager fm = (FilterManager) Gui.get().context.lookup(Gui.FILTER_BEAN);
 			
+			List<model.Comment> comments = fm.findComments(a);
+			
+			comments.forEach((c) -> {
+				if(c.getParent() == null) {
+					commentList.getItems().add(new Comment(c));
+					c.getChildren().forEach((cc) -> {
+						commentList.getItems().add(new Comment(cc));
+					});
+				}
+			});
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -270,5 +312,9 @@ public class AuctionDetailsController extends Controller {
 	
 	private void setBid(int bid) {
 		this.bid.setText(""+bid);
+	}
+	
+	public void setTab(int id) {
+		this.tabpane.getSelectionModel().select(id);
 	}
 }

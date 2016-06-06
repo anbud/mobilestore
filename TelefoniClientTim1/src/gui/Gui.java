@@ -129,12 +129,17 @@ public class Gui extends Application {
 	}
 	
 	public void openAuctionDetailsView(Auction a) {
+		openAuctionDetailsView(a, 0);
+	}
+	
+	public void openAuctionDetailsView(Auction a, int tab) {
 		openContainerView();
 		
 		Loaded l = loadView("res/auction-details.fxml");
 		((BorderPane) stage.getScene().getRoot()).setCenter(l.node);
 		
 		((AuctionDetailsController) l.controller).setAuction(a);
+		((AuctionDetailsController) l.controller).setTab(tab);;
 		
 		stage.setResizable(true);
 	}

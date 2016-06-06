@@ -112,3 +112,7 @@
 .combo-box .list-cell {
 	-fx-background-radius: 0 0 15 15;
 }
+
+.listview-padded .list-cell {
+	-fx-padding: 5 0 5 0;
+}
