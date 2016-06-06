@@ -11,7 +11,7 @@ import model.User;
 @Remote
 public interface PostManager {
 
-	public boolean postComment(User user, Auction auction, Comment comment);
+	public boolean postComment(User user, Auction auction, Comment comment, Comment... parent);
 	
 	public boolean postAuction(User user, Phone phone);
 	
