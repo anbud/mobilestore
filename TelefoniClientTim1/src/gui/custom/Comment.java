@@ -75,7 +75,7 @@ public class Comment extends VBox {
 		
 		this.text.setText(comment.getText());
 		
-		this.reply.setVisible(comment.getParent() == null);
+		this.reply.setVisible(comment.getParent() == null && !comment.getAuction().getClosed());
 		
 		if(comment.getParent() != null) {
 			this.setPadding(new Insets(0, 0, 0, 80));
