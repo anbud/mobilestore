@@ -241,7 +241,7 @@
          </content></Tab>
     <Tab id="pics" closable="false" text="Pictures">
          <content>
-            <FlowPane alignment="CENTER" columnHalignment="CENTER">
+            <FlowPane fx:id="imageHolder" alignment="CENTER" columnHalignment="CENTER">
                <children>
                   <ImageView fitHeight="320.0" fitWidth="500.0" preserveRatio="true" />
                   <ImageView fitHeight="320.0" fitWidth="500.0" preserveRatio="true" />
