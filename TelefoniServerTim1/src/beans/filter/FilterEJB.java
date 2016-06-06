@@ -156,9 +156,9 @@ public class FilterEJB implements FilterManager {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comment> findReplyComments(Auction auction, Comment comment) {
-		Query q = em.createQuery("SELECT c FROM Comment c WHERE c.auction=:a AND c.parent=:c");
+		Query q = em.createQuery("SELECT c FROM Comment c WHERE c.auction=:a AND c.parent=:com");
 		q.setParameter("a", auction);
-		q.setParameter("c", comment);
+		q.setParameter("com", comment);
 
 		return q.getResultList();
 	}
