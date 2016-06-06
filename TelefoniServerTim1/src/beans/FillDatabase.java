@@ -18,7 +18,7 @@ import model.User;
 
 @LocalBean
 @Singleton
-@Startup
+//@Startup
 public class FillDatabase {
 
 	@PersistenceContext(name = "TelefoniServerTim1")
@@ -67,12 +67,13 @@ public class FillDatabase {
 		phone.setWiFi(true);
 
 		auction.setClosed(true);
-		auction.setDate(new Date());		
+		auction.setDate(new Date());	
+		auction.setBid(phone.getPrice());
 
 		comment.setDate(new Date());
 		comment.setText("Don't bid");
 		
-		phonePic.setPicture(new byte[0]);
+		phonePic.setPicture(new byte[0]);		
 		
 		auction.setPhone(phone);
 		auction.setUser(user);
@@ -86,7 +87,6 @@ public class FillDatabase {
 		em.persist(phone);		
 		em.persist(auction);
 		em.persist(comment);
-		//em.persist(phonePic);
 	}
 	
 	private void vsakos() {
@@ -123,6 +123,7 @@ public class FillDatabase {
 
 		auction.setClosed(false);
 		auction.setDate(new Date());		
+		auction.setBid(phone.getPrice());
 
 		comment.setDate(new Date());
 		comment.setText("Akos's phone.");
@@ -177,6 +178,7 @@ public class FillDatabase {
 
 		auction.setClosed(false);
 		auction.setDate(new Date());		
+		auction.setBid(phone.getPrice());
 
 		comment.setDate(new Date());
 		comment.setText("Andrej's phone.");
@@ -230,7 +232,8 @@ public class FillDatabase {
 		phone.setPrice(330);
 
 		auction.setClosed(false);
-		auction.setDate(new Date());		
+		auction.setDate(new Date());	
+		auction.setBid(phone.getPrice());
 
 		comment.setDate(new Date());
 		comment.setText("Ridjis's phone.");
@@ -284,7 +287,8 @@ public class FillDatabase {
 		phone.setPrice(470);
 
 		auction.setClosed(false);
-		auction.setDate(new Date());		
+		auction.setDate(new Date());	
+		auction.setBid(phone.getPrice());
 
 		comment.setDate(new Date());
 		comment.setText("Cole's phone.");
