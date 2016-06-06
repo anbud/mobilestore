@@ -2,7 +2,6 @@ package gui.controller;
 
 import java.util.List;
 
-import beans.post.PostManager;
 import gui.Controller;
 import gui.Gui;
 import gui.custom.PhoneCard;
@@ -50,7 +49,6 @@ public class BoardController extends Controller {
 			PhoneCard pc = new PhoneCard();
 			pc.setAuction(a);
 			listview.getItems().add(pc);
-			
 		});
 	}
 

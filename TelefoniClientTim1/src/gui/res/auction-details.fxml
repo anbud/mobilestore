@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -18,7 +24,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane focusTraversable="false" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AuctionDetailsController">
   <tabs>
     <Tab id="infos" closable="false" text="Informations">
          <content>
@@ -26,14 +32,14 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <Label id="phone-name" layoutX="19.0" layoutY="17.0" text="Smartphone model name" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="15.0">
+                        <Label id="phone-name" fx:id="phoneName" layoutX="19.0" layoutY="17.0" text="Smartphone model name" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="15.0">
                            <font>
                               <Font name="Roboto" size="25.0" />
                            </font>
                         </Label>
                         <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="30.0" layoutY="70.0" prefHeight="250.0" prefWidth="300.0" prefWrapLength="300.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
                            <children>
-                              <ImageView id="phone-pic" fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="phone-pic" fx:id="phonePhoto" fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                  <viewport>
                                     <Rectangle2D />
                                  </viewport>
@@ -45,7 +51,7 @@
                         </FlowPane>
                         <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="906.0" layoutY="70.0" prefHeight="64.0" prefWidth="64.0" prefWrapLength="64.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
                            <children>
-                              <ImageView id="user-avatar" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="user-avatar" fx:id="ownerAvatar" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@ico/avatar-placeholder-64.png" />
                                  </image>
@@ -96,14 +102,14 @@
                            <children>
                               <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="220.0">
                                  <children>
-                                    <AnchorPane>
+                                    <AnchorPane fx:id="bidHolder">
                                        <children>
-                                          <TextField alignment="CENTER" focusTraversable="false" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;">
+                                          <TextField fx:id="bid" alignment="CENTER" focusTraversable="false" maxHeight="32.0" maxWidth="69.0" minHeight="32.0" minWidth="69.0" prefHeight="32.0" prefWidth="69.0" style="-fx-border-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-border-radius: 20 0 0 20; -fx-background-radius: 20 0 0 20;">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </TextField>
-                                          <Button fx:id="raiseBid" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="0.0" layoutX="69.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-text-fill: #fff;" text="↑">
+                                          <Button fx:id="raiseBid" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="0.0" layoutX="69.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" onAction="#increaseAction" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: linear-gradient(to bottom right, #0095d9, #4300d9); -fx-text-fill: #fff;" text="↑">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
@@ -257,10 +263,10 @@
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <bottom>
-                  <AnchorPane prefHeight="80.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="comment" prefHeight="80.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextArea layoutX="14.0" prefHeight="80.0" prefWidth="200.0" promptText="Type a comment (max 400 characters)" styleClass="comment" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="5.0" />
-                        <Button alignment="CENTER" layoutX="900.0" layoutY="28.0" mnemonicParsing="false" prefWidth="90.0" style="-fx-background-radius: 0 20 20 0;" styleClass="gradient-button" text="Post a comment" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                        <TextArea fx:id="commentInput" layoutX="14.0" prefHeight="80.0" prefWidth="200.0" promptText="Type a comment (max 400 characters)" styleClass="comment" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="5.0" />
+                        <Button alignment="CENTER" layoutX="900.0" layoutY="28.0" mnemonicParsing="false" onAction="#commentAction" prefWidth="90.0" style="-fx-background-radius: 0 20 20 0;" styleClass="gradient-button" text="Post a comment" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                            <font>
                               <Font size="15.0" />
                            </font>

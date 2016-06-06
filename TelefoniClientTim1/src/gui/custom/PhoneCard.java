@@ -6,7 +6,6 @@ import java.util.Optional;
 import beans.post.PostManager;
 import gui.Gui;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -59,10 +58,6 @@ public class PhoneCard extends Pane {
 	
 	private Auction auction;
 	
-	private EventHandler<Event> increaseHandler;
-	private EventHandler<Event> confirmHandler;
-	private EventHandler<Event> openHandler;
-	
 	public PhoneCard() throws RuntimeException {
 		FXMLLoader loader = new FXMLLoader(Gui.class.getResource("res/phone-card.fxml"));
 		loader.setRoot(this);
@@ -82,25 +77,16 @@ public class PhoneCard extends Pane {
 	
 	@FXML
 	public void openAuctionAction(Event event) {
-		if(openHandler != null)
-			openHandler.handle(event);
-		
-		
+		Gui.get().openAuctionDetailsView(auction);
 	}
 	
 	@FXML
 	private void increaseAction(Event event) {
-		if(increaseHandler != null)
-			increaseHandler.handle(event);
-		
 		this.setBid(this.getBid()+1);
 	}
 	
 	@FXML
 	private void confirmAction(Event event) {
-		if(confirmHandler != null)
-			confirmHandler.handle(event);
-		
 		if(this.getBid() <= this.getCurrentBid()) {
 			Alert alert = new Alert(AlertType.ERROR, "Your bid must be higher than the current bid!");
 			alert.showAndWait();
@@ -136,18 +122,6 @@ public class PhoneCard extends Pane {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void setOnOpen(EventHandler<Event> handler) {
-		openHandler = handler;
-	}
-	
-	public void setOnIncrease(EventHandler<Event> handler) {
-		increaseHandler = handler;
-	}
-	
-	public void setOnConfirm(EventHandler<Event> handler) {
-		confirmHandler = handler;
 	}
 	
 	@FXML
@@ -244,6 +218,7 @@ public class PhoneCard extends Pane {
 	}
 	public void setInitialPrice(int initialPrice) {
 		this.initialPrice.setText("$ " + initialPrice);
+		//System.out.println(this.initialPrice);
 	}
 
 	public int getBid() {
@@ -282,7 +257,7 @@ public class PhoneCard extends Pane {
 		this.setOs(p.getOs() + " " + p.getOsVersion());
 		this.setStorage(p.getInternalStorage()+ " GB storage");
 		this.setRam(p.getRamString() + " RAM");
-		this.setScreen(String.format("%.1f | %s", p.getScreenSize(), p.getScreenRes()));
+		this.setScreen(String.format("%.1f\" | %s", p.getScreenSize(), p.getScreenRes()));
 		
 		String camera = "";
 		
@@ -329,7 +304,7 @@ public class PhoneCard extends Pane {
 		boolean enabled = myauction ? false : !a.getClosed();
 
 		this.setBidEnabled(enabled);
-		this.setAcceptEnabled(myauction && !a.getClosed());
+		this.setAcceptEnabled(myauction && !a.getClosed() && this.getInitialPrice() < this.getCurrentBid());
 	}
 	
 	public Auction getAuction() {
