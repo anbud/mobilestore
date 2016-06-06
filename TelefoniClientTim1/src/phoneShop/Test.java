@@ -82,7 +82,7 @@ public class Test {
 		
 		User u = um.getUser();
 
-		pm.postComment(um.getUser(), a, c, new Comment());
+		pm.postComment(um.getUser(), a, c);
 		
 		Comment c1 = new Comment();
 		c1.setText(poruka + " akosje...");
