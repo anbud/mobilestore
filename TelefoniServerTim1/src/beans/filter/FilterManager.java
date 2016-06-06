@@ -18,6 +18,8 @@ public interface FilterManager {
 	
 	public List<Comment> findComments(Auction auction);
 	
+	public List<Comment> findReplyComments(Auction auction, Comment comment);
+	
 	public List<PhonePicture> findPicturesByPhone(Phone phone);
 	
 	public Auction getAuction();	
