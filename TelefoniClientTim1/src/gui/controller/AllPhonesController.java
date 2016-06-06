@@ -62,8 +62,6 @@ public class AllPhonesController extends Controller {
 	@FXML
 	private FlowPane auctionHolder;
 	
-	private boolean wrongInput = false;
-	
 	private final String[] osesarr = {"", "Android", "iOS", "Windows"};
 	private final String[] contactorsarr = {"", "MTS", "Telenor", "VIP", "sim free", "other"};
 	private final String[] screenresarr = {"", "240x320", "240x400", "320x480", "480x800", "540x960", "640x960", "720x1280", "1080x1920", "1440x2560", "2160x3840"};
@@ -105,15 +103,12 @@ public class AllPhonesController extends Controller {
 		field.textProperty().addListener((a, b, c) -> {
 			try {
 				if (!field.getText().equals("")) {
-					wrongInput = false;
 					Integer.parseInt(field.getText());
 					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
 				} else {
-					wrongInput = false;
 					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
 				}
 			} catch (NumberFormatException e) {
-				wrongInput = true;
 				field.setStyle("-fx-border-color: #f00;");
 			}
 		});
@@ -123,15 +118,12 @@ public class AllPhonesController extends Controller {
 		field.textProperty().addListener((a, b, c) -> {
 			try {
 				if (!field.getText().equals("")) {
-					wrongInput = false;
 					Double.parseDouble(field.getText());
 					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
 				} else {
-					wrongInput = false;
 					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
 				}
 			} catch (NumberFormatException e) {
-				wrongInput = true;
 				field.setStyle("-fx-border-color: #f00;");
 			}
 		});
@@ -141,18 +133,18 @@ public class AllPhonesController extends Controller {
 	private void filterPhonesAction(Event event) {
 		Phone p = null;
 		
-		if (wrongInput) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText("Wrong input(s) - check for red border input fields");
-			alert.setContentText("See placeholders for right input.");
-			alert.showAndWait();
-			return;
-		} else {
+		try {
 			p = new Phone(phoneName.getText().trim(), oses.getSelectionModel().getSelectedItem() == null ? "" : oses.getSelectionModel().getSelectedItem().trim(), osVersion.getText().trim(), processor.getText().trim(), ramSizeFrom.getText().equals("") ? 0 : Integer.parseInt(ramSizeFrom.getText().trim()), ramSizeTo.getText().equals("") ? 0 : Integer.parseInt(ramSizeTo.getText().trim()),
 					storageFrom.getText().equals("") ? 0 : Integer.parseInt(storageFrom.getText().trim()), storageTo.getText().equals("") ? 0 : Integer.parseInt(storageTo.getText().trim()), screenResolutions.getSelectionModel().getSelectedItem() == null ? "" : screenResolutions.getSelectionModel().getSelectedItem().trim(), 
 					inchesFrom.getText().equals("") ? 0 : Double.parseDouble(inchesFrom.getText()), inchesTo.getText().equals("") ? 0 : Double.parseDouble(inchesTo.getText()), frontCameraFrom.getText().equals("") ? 0 : Double.parseDouble(frontCameraFrom.getText()), frontCameraTo.getText().equals("") ? 0 : Double.parseDouble(frontCameraTo.getText().trim()), 
 					cameraFrom.getText().equals("") ? 0 : Double.parseDouble(cameraFrom.getText().trim()), cameraTo.getText().equals("") ? 0 : Double.parseDouble(cameraTo.getText().trim()), contractors.getSelectionModel().getSelectedItem() == null ? "" : contractors.getSelectionModel().getSelectedItem().trim(), 
 					priceFrom.getText().equals("") ? 0 : Integer.parseInt(priceFrom.getText().trim()), priceTo.getText().equals("") ? 0 : Integer.parseInt(priceTo.getText().trim()));
+		} catch(NumberFormatException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Wrong input(s) - check for red border input fields");
+			alert.setContentText("See placeholders for right input.");
+			alert.showAndWait();
+			return;
 		}
 		
 		try {
