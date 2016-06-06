@@ -83,6 +83,9 @@ public class AddPhoneController extends Controller {
 		internalStorage.getItems().addAll(internalStoragearr);
 		contractor.getItems().addAll(contractorarr);
 		screenResolution.getItems().addAll(screenResarr);
+		
+		inputHandler(price);
+		doubleInputHandler(screenSize);
 	}
 	
 	@FXML
@@ -177,6 +180,36 @@ public class AddPhoneController extends Controller {
 			a.setContentText("It's not a valid number!");
 			a.showAndWait();
 		} catch (NamingException e) { }
+	}
+	
+	private void inputHandler(TextField field) {
+		field.textProperty().addListener((a, b, c) -> {
+			try {
+				if (!field.getText().equals("")) {
+					Integer.parseInt(field.getText());
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				} else {
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				}
+			} catch (NumberFormatException e) {
+				field.setStyle("-fx-border-color: #f00;");
+			}
+		});
+	}
+	
+	private void doubleInputHandler(TextField field) {
+		field.textProperty().addListener((a, b, c) -> {
+			try {
+				if (!field.getText().equals("")) {
+					Double.parseDouble(field.getText());
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				} else {
+					field.setStyle("-fx-border-color: linear-gradient(to bottom right, #a180ec, #80caec);");
+				}
+			} catch (NumberFormatException e) {
+				field.setStyle("-fx-border-color: #f00;");
+			}
+		});
 	}
 
 }
